@@ -1,17 +1,7 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
-
-CREATE TABLE users (
-	user_id SERIAL,
-	username varchar(50) NOT NULL UNIQUE,
-	password_hash varchar(200) NOT NULL,
-	role varchar(50) NOT NULL,
-	security_ans varchar(50) NOT NULL,
-
-	CONSTRAINT PK_user PRIMARY KEY (user_id),
-	CONSTRAINT FK_application_id FOREIGN KEY (application_id) REFERENCES applications(application_id)
-);
+DROP TABLE IF EXISTS applications;
 
 CREATE TABLE applications (
 	application_id SERIAL,
@@ -24,7 +14,19 @@ CREATE TABLE applications (
 	bkgrnd_check_approved boolean,
 	admin_approval boolean,
 	
-	CONSTRAINT PK_user PRIMARY KEY (application_id)
+	CONSTRAINT PK_application PRIMARY KEY (application_id)
+);
+
+CREATE TABLE users (
+	user_id SERIAL,
+	username varchar(50) NOT NULL UNIQUE,
+	password_hash varchar(200) NOT NULL,
+	role varchar(50) NOT NULL,
+	security_ans varchar(50),
+	application_id int,
+
+	CONSTRAINT PK_user PRIMARY KEY (user_id),
+	CONSTRAINT FK_application_id FOREIGN KEY (application_id) REFERENCES applications(application_id)
 );
 
 
