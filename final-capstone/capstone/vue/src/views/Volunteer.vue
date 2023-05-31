@@ -9,7 +9,7 @@
       the well-being of animals and be part of a supportive community.</p>
 
     <div class="form-container">
-      <form @submit.prevent="submitForm">
+      <form class="form" @submit.prevent="submitForm">
         <label for="full-name">Full Name:</label>
         <input type="text" id="full-name" v-model="fullName" required>
 
@@ -78,10 +78,13 @@
 </template>
 
 <script>
+import volunteerService from '../services/VolunteerService';
+
 export default {
   name: "volunteer",
   data() {
     return {
+      form: {
       fullName: "",
       dateOfBirth: "",
       availabilities: "",
@@ -93,12 +96,17 @@ export default {
       WouldYouSubmitABackGroundCheck: "no",
       DoYouHaveAnyExperienceWorkingWithAnimalsAtAShelterOrVetClinic: "no",
       DoYouHaveAMeansOfTransportation: "no"
-
+      }
     };
   },
   methods: {
     submitForm() {
       //info goes here
+      volunteerService.submitForm(this.form).then(response => {
+        if(response.status === 201){
+          this.$router.push({name: "volunteer"})
+        }
+      });
       console.log("Form submitted");
     }
   }
@@ -106,9 +114,19 @@ export default {
 </script>
 
 <style scoped>
+.volunteer {
+  color: #023047;
+  
+}
 
 .form-container {
   margin-top: 20px;
+  border: 5px solid #055983;
+}
+form {
+ margin-left: 20px;
+ margin-bottom: 20px;
+ margin-top: 10px;
 }
 label {
   display: block;
