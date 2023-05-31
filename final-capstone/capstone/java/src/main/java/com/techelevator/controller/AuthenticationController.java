@@ -46,6 +46,8 @@ public class AuthenticationController {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+        System.out.println(user.getUsername());
+
         return new ResponseEntity<>(new LoginResponseDto(jwt, user), httpHeaders, HttpStatus.OK);
     }
 
@@ -56,6 +58,7 @@ public class AuthenticationController {
             User user = userDao.findByUsername(newUser.getUsername());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
         } catch (UsernameNotFoundException e) {
+            //TODO: Only when the Application is approved should an account be registered
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
         }
     }

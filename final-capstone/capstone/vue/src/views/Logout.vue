@@ -6,7 +6,8 @@
 export default {
   created() {
     this.$store.commit("LOGOUT");
-    this.$router.push("/login");
+    //Edited to homepage instead of logout
+    this.$router.push("/");
   }
 };
 </script>
