@@ -12,7 +12,7 @@ CREATE TABLE applications (
 	home_address varchar(50) NOT NULL,
 	email varchar(50) NOT NULL,
 	phone_number varchar(25) NOT NULL,
-	bkgrnd_check_approved boolean,
+	bkgrnd_check_approved varchar(25),
 	admin_approval boolean,
 	
 	CONSTRAINT PK_application PRIMARY KEY (application_id)
@@ -35,6 +35,7 @@ CREATE TABLE animals(
 	animal_type varchar(50) NOT NULL,
 	gender varchar(20) NOT NULL,
 	age int NOT NULL,
+	description varchar(250),
 	energy_level int NOT NULL,
 	is_social boolean NOT NULL,
 	is_long_hair boolean NOT NULL,
