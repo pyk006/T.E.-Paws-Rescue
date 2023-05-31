@@ -2,7 +2,11 @@
   <div class="home">
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
+    <router-link v-bind:to="{ name: 'adoptedPets' }">Adopted Pets</router-link>&nbsp;|&nbsp;
+    <router-link v-bind:to="{ name: 'avaliablePets' }">Avaliable Pets</router-link>&nbsp;|&nbsp;
+     
   </div>
+
 </template>
 
 <script>
