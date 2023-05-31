@@ -22,6 +22,9 @@ public class Applications {
         this.adminApproval = adminApproval;
     }
 
+    public Applications() {
+    }
+
     public int getApplicationId() {
         return applicationId;
     }
@@ -85,13 +88,5 @@ public class Applications {
     public void setAdminApproval(boolean adminApproval) {
         this.adminApproval = adminApproval;
     }
-<<<<<<< HEAD
-=======
 
-
-
-
->>>>>>> main
-=======
->>>>>>> main
 }
