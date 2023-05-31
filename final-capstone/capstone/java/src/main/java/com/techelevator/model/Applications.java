@@ -4,6 +4,7 @@ public class Applications {
     private int applicationId;
     private String firstName ="";
     private String lastName ="";
+    private int socialSecurity;
     private String homeAddress ="";
     private String email ="";
     private String phoneNumber="";
@@ -84,4 +85,10 @@ public class Applications {
     public void setAdminApproval(boolean adminApproval) {
         this.adminApproval = adminApproval;
     }
+=======
+
+
+
+
+>>>>>>> main
 }
