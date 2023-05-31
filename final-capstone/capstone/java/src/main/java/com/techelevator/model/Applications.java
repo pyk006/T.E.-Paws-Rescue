@@ -85,13 +85,4 @@ public class Applications {
     public void setAdminApproval(boolean adminApproval) {
         this.adminApproval = adminApproval;
     }
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> main
-=======
->>>>>>> main
 }

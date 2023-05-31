@@ -15,6 +15,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
 
     @Override
     boolean approveApplication(int applicationId) {
+
     }
     @Override
     List<Applications> getAllApplications() {
