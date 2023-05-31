@@ -8,11 +8,10 @@ import java.util.*;
 
 @Component
 public class JdbcApplicationsDao implements ApplicationsDao {
-    private final JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate {
 
-    public JdbcApplicationsDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
     }
+
 
     @Override
     boolean approveApplication(int applicationId) {
@@ -22,9 +21,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
 
 
         }
-        boolean createApplication(String firstName, String lastName, String homeAddress, String email, String phoneNumber, String bkgrndCheckApproved, boolean adminApproval) {
 
-    }
     boolean createApplication(String firstName, String lastName, String homeAddress, String email, String phoneNumber, String bkgrndCheckApproved, boolean adminApproval) {
 
 
