@@ -20,8 +20,13 @@ public class JdbcApplicationsDao implements ApplicationsDao {
     @Override
     List<Applications> getAllApplications() {
 
+
         }
         boolean createApplication(String firstName, String lastName, String homeAddress, String email, String phoneNumber, String bkgrndCheckApproved, boolean adminApproval) {
+
+    }
+    boolean createApplication(String firstName, String lastName, String homeAddress, String email, String phoneNumber, String bkgrndCheckApproved, boolean adminApproval) {
+
 
 
     }
