@@ -10,7 +10,7 @@ public interface ApplicationsDao {
 
     List<Applications> getAllApplications();
 
-    boolean createApplication(String firstName, String lastName, String homeAddress, String email, String phoneNumber, String bkgrndCheckApproved, boolean adminApproval);
+    boolean createApplication(String firstName, String lastName, String homeAddress, String email, String phoneNumber);
 
     Applications findById(int applicationId);
 

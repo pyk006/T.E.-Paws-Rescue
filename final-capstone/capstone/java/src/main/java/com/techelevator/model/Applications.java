@@ -22,6 +22,9 @@ public class Applications {
         this.adminApproval = adminApproval;
     }
 
+    public Applications() {
+    }
+
     public int getApplicationId() {
         return applicationId;
     }
