@@ -18,7 +18,10 @@
       </div>
       <button type="submit">Sign in</button>
       <p>
-      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link>
+      <span> | </span>
+        <a href="#" @click.prevent="forgotPassword">Forgot password?</a>
+      </p>
     </form>
   </div>
 </template>
@@ -56,8 +59,13 @@ export default {
             this.invalidCredentials = true;
           }
         });
-    }
-  }
+    },
+    forgotPassword() {
+      // Replace this with your logic to send a password reset email
+      alert("An email is being sent to reset your password.");
+    },
+    
+  },
 };
 </script>
 
