@@ -153,4 +153,23 @@ public class Applications {
         this.adminApproval = adminApproval;
     }
 
+    @Override
+    public String toString() {
+        return "Applications{" +
+                "applicationId=" + applicationId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", homeAddress='" + homeAddress + '\'' +
+                ", availability='" + availability + '\'' +
+                ", schoolMascot='" + schoolMascot + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", optInText=" + optInText +
+                ", experience=" + experience +
+                ", transportation=" + transportation +
+                ", bkgrndCheckApproved='" + bkgrndCheckApproved + '\'' +
+                ", adminApproval='" + adminApproval + '\'' +
+                '}';
+    }
 }

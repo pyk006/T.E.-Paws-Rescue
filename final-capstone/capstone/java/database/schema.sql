@@ -41,13 +41,9 @@ CREATE TABLE animals(
 	gender varchar(20) NOT NULL,
 	age int NOT NULL,
 	description varchar(250),
-	energy_level int NOT NULL,
-	is_social boolean NOT NULL,
-	is_long_hair boolean NOT NULL,
-	is_fixed boolean NOT NULL,
+	breed varchar(25),
 	is_adoptable boolean NOT NULL,
-	is_on_walk boolean NOT NULL,
-	
+
 	CONSTRAINT PK_animal PRIMARY KEY (animal_id)
 );
 
