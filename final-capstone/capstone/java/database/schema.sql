@@ -10,6 +10,7 @@ CREATE TABLE applications (
 	last_name varchar(50) NOT NULL,
 	date_of_birth varchar(25) NOT NULL,
 	home_address varchar(50) NOT NULL,
+	availability varchar(50) NOT NULL,
 	school_mascot varchar(50) NOT NULL,
 	email varchar(50) NOT NULL,
 	phone_number varchar(25) NOT NULL,

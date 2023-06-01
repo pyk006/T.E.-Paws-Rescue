@@ -22,7 +22,7 @@ public class ApplicationsController {
 
     @PostMapping("/volunteer/submit-form")
     public void createApplication(@RequestBody Applications applications) {
-        applicationsDao.createApplication(applications.getFirstName(), applications.getLastName(), applications.getDateOfBirth(), applications.getHomeAddress(), applications.getSchoolMascot(), applications.getEmail(), applications.getPhoneNumber(), applications.isOptInText(), applications.isExperience(), applications.isTransportation());
+        applicationsDao.createApplication(applications.getFirstName(), applications.getLastName(), applications.getDateOfBirth(), applications.getHomeAddress(), applications.getAvailability(), applications.getSchoolMascot(), applications.getEmail(), applications.getPhoneNumber(), applications.isOptInText(), applications.isExperience(), applications.isTransportation());
     }
 
     @RequestMapping(path = "/applications", method = RequestMethod.PUT)

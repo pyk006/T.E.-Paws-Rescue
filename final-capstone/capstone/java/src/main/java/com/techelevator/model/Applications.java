@@ -10,6 +10,7 @@ public class Applications {
     private String lastName ="";
     private String dateOfBirth;
     private String homeAddress ="";
+    private String availability ="";
     private String schoolMascot ="";
     private String email ="";
     private String phoneNumber="";
@@ -19,12 +20,13 @@ public class Applications {
     private String bkgrndCheckApproved = "pending";
     private boolean adminApproval = false;
 
-    public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, boolean adminApproval) {
+    public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String availability, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, boolean adminApproval) {
         this.applicationId = applicationId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.homeAddress = homeAddress;
+        this.availability = availability;
         this.schoolMascot = schoolMascot;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -68,6 +70,14 @@ public class Applications {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 
     public String getSchoolMascot() {

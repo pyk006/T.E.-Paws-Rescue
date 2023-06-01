@@ -11,7 +11,7 @@ public interface ApplicationsDao {
 
     List<Applications> getAllApplications();
 
-    public boolean createApplication(String firstName, String lastName, String date, String homeAddress, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation);
+    public boolean createApplication(String firstName, String lastName, String date, String homeAddress, String availability, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation);
 
     Applications findById(int applicationId);
 
