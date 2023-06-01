@@ -31,7 +31,8 @@ np<template>
 <style>
 #app {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: #8ECAE6;
+  background-color: #b2d8f5;
+  min-height: 100vh;
 }
 
 header {

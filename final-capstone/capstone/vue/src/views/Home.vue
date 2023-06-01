@@ -1,82 +1,202 @@
 <template>
   <div class="home">
-    <router-link v-bind:to="{ name: 'adoptedPets' }">Adopted Pets</router-link>&nbsp;|&nbsp;
-    <router-link v-bind:to="{ name: 'availablePets' }">Available Pets</router-link>&nbsp;|&nbsp;
+    <router-link v-bind:to="{ name: 'adoptedPets' }">Adopted Pets</router-link
+    >&nbsp;|&nbsp;
+    <router-link v-bind:to="{ name: 'availablePets' }"
+      >Available Pets</router-link
+    >&nbsp;|&nbsp;
 
-       <div class="main-content">
+    <div class="main-content">
       <div id="who-we-are">WHO WE ARE</div>
       <p id="who">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit error
-        atque expedita possimus ipsum sapiente quibusdam. Omnis hic saepe
-        distinctio beatae a alias eligendi! Quisquam quasi tempora distinctio
-        quam cupiditate.
+        TE Paws Rescue, located in the heart of Portland, OR, is a renowned
+        animal shelter specializing in dogs while embracing all creatures in
+        need. With a capacity for 113 animals, we provide a safe haven for cats,
+        bunnies, lizards, and even the occasional goat. Our dedication to
+        inclusivity ensures that no animal is turned away.
+        <br /><br />
+        At TE Paws Rescue, visitors are welcome to witness the compassionate
+        care firsthand. While you explore the shelter, you might encounter
+        joyful dogs seeking human connection. However, please note that some
+        dogs may be out on walks. To plan your visit accordingly, check their
+        info page for updates on availability.
+        <br /><br />
+        TE Paws Rescue thrives on the belief that every animal deserves love and
+        a forever home. By opening our doors to a diverse range of species, we
+        offer a unique opportunity for animal enthusiasts and potential adopters
+        alike to experience the heartwarming connections that can be forged at
+        our shelter.
       </p>
       <div id="our-goals">OUR GOALS</div>
       <p id="goals">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit error
-        atque expedita possimus ipsum sapiente quibusdam. Omnis hic saepe
-        distinctio beatae a alias eligendi! Quisquam quasi tempora distinctio
-        quam cupiditate.
+        At TE Paws Rescue, our primary goal is to provide a safe haven for
+        animals in need and ensure their well-being. We are committed to finding
+        loving homes for our residents. By offering a diverse range of animals
+        for adoption, TE Paws Rescue aims to match each animal with a caring and
+        responsible owner, creating lasting bonds that bring joy to both humans
+        and animals.
+        <br /><br />
+        In addition to our adoption efforts, TE Paws Rescue strives to educate
+        the community about responsible pet ownership, animal welfare, and the
+        importance of spaying/neutering. We believe that by spreading awareness
+        and knowledge, we can make a positive impact and reduce the number of
+        animals in need of rescue. Through our outreach programs, events, and
+        partnerships, TE Paws Rescue endeavors to create a compassionate
+        community that values and advocates for the well-being of all animals.
       </p>
 
       <div id="how-to-help">HOW TO HELP</div>
       <p id="help">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit error
-        atque expedita possimus ipsum sapiente quibusdam. Omnis hic saepe
-        distinctio beatae a alias eligendi! Quisquam quasi tempora distinctio
-        quam cupiditate.
+        Volunteers and the community play a vital role in supporting TE Paws
+        Rescue's mission. By donating your time and skills, volunteers can
+        assist with daily care, socialization, and administrative tasks,
+        creating a nurturing environment for our animals.
+        <br /><br />
+        Sharing our shelter's message, organizing fundraising events, and
+        hosting adoption drives in the community are effective ways for
+        individuals to help us find loving homes for our residents. Financial
+        contributions also make a significant impact by providing medical care,
+        nutrition, and comfortable accommodations. Together, with the support of
+        volunteers and the community, we can make a positive difference in the
+        lives of animals in need at TE Paws Rescue.
       </p>
     </div>
 
     <footer>
       <div id="contact-us">Contact Us:</div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <img src="@/assets/phone.png" alt="Phone Icon" class="icon" />
+          <span>555-555-5555</span>
+        </div>
+        <div class="contact-item">
+          <img src="@/assets/mail.png" alt="Email Icon" class="icon" />
+          <span>tepawsrescue@gmail.com</span>
+        </div>
+      </div>
       <div id="find-us">Find Us:</div>
+      <div class="address">
+        <img src="@/assets/location-pin.png" alt="Location Icon" class="icon" />
+        <span>111 Street Name Portland, OR zipcode</span>
+      </div>
       <div id="follow-us">Follow Us:</div>
+      <div class="social-icons">
+        <img src="@/assets/facebook.png" alt="Facebook Icon" class="icon" />
+        <img src="@/assets/instagram.png" alt="Instagram Icon" class="icon" />
+      </div>
     </footer>
   </div>
-  
+
 </template>
 
 <script>
 export default {
-  name: "home"
+  name: "home",
 };
 </script>
 
 <style>
-
-#who{
+#who {
   grid-area: who;
 }
 
-#help{
+#help {
   grid-area: help;
 }
 
-#goals{
+#goals {
   grid-area: goals;
+}
+
+#who-we-are,
+#our-goals,
+#how-to-help {
+  font-weight: bold;
+  color: whitesmoke;
 }
 
 .main-content {
   display: grid;
   align-content: center;
+  justify-items: center;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas:
-    "who-we-are who-we-are who-we-are"
-    "our-goals our-goals our-goals"
-    "how-to-help how-to-help how-to-help"
+    "who-we-are our-goals how-to-help"
     "who goals help";
   grid-gap: 20px;
-  background-color: #219ebc;
+  background-color: #6fb3d1;
+  color: whitesmoke;
   padding: 20px;
 }
 
 footer {
-  background-color: #055983;
+  background-color: #366a8c;
   padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  color: white;
+  align-content: flex-start;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "contact-us find-us follow-us"
+    "contact-info address social-icons"
+    "contact-info address .";
+  color: whitesmoke;
 }
+
+#contact-us {
+  grid-area: contact-us;
+}
+
+.contact-info {
+  grid-area: contact-info;
+}
+
+#find-us {
+  grid-area: find-us;
+}
+
+.address {
+  grid-area: address;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#follow-us {
+  grid-area: follow-us;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.address {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.social-icons .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
 
 </style>
