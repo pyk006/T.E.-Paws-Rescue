@@ -55,7 +55,7 @@
         <label for="last-name">Last Name:</label>
         <input type="text" id="last-name" v-model="form.lastName" required />
 
-        <label for="dob">Date of Birth:</label>
+        <label for="dob">Date of Birth (YYYY-MM-DD):</label>
         <input type="text" id="dob" v-model="form.dateOfBirth" required />
 
         <label for="">Location(for on call):</label>
@@ -83,7 +83,7 @@
         <label for="phone">Phone Number:</label>
         <input type="tel" id="phone" v-model="form.phoneNumber" required />
 
-        <label for="opt-in">Opt-in for Text Messages:</label>
+  
         <div>
           <label for="opt-in">Opt-in for Text Messages:</label>
           <div class="radio-buttons">
@@ -227,6 +227,7 @@ export default {
       volunteerService.submitForm(this.form).then((response) => {
         if (response.status === 201) {
           console.log(response.status);
+          this.showForm = false; //hide after successful submission
           this.$router.push({ name: "volunteer" });
         }
       });
