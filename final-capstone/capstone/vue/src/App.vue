@@ -1,4 +1,4 @@
-np<template>
+<template>
   <div id="app">
     <div id="nav">
       <img
