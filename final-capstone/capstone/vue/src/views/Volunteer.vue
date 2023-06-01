@@ -49,22 +49,25 @@
 
     <div v-if="showForm" class="form-container">
       <form class="form" @submit.prevent="submitForm">
-        <label for="full-name">Full Name:</label>
-        <input type="text" id="full-name" v-model="form.fullName" required />
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" v-model="form.firstName" required />
 
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" v-model="form.lastName" required />
+      
         <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" v-model="form.dateOfBirth" required />
+        <input type="text" id="dob" v-model="form.dateOfBirth" required />
 
         <label for="">Availabilities:</label>
         <input
-          type="availabilities"
+          type="availability"
           id="availabilities"
           v-model="form.availabilities"
           required
         />
 
         <label for="">Location(for on call):</label>
-        <input type="location" id="location" v-model="form.location" required />
+        <input type="homeAddress" id="homeAddress" v-model="form.homeAddress" required />
 
         <label for="school-mascot">School Mascot:</label>
         <input type="text" id="school-mascot" v-model="form.schoolMascot" />
@@ -84,16 +87,16 @@
             <input
               type="radio"
               id="opt-in-yes"
-              value="yes"
-              v-model="form.optInTextMessages"
+              value=true
+              v-model="form.optInText"
             />
 
             <label for="opt-in-no">No</label>
             <input
               type="radio"
               id="opt-in-no"
-              value="no"
-              v-model="form.optInTextMessages"
+              value=false
+              v-model="form.optInText"
             />
           </div>
         </div>
@@ -105,16 +108,16 @@
             <input
               type="radio"
               id="background-check-yes"
-              value="yes"
-              v-model="form.WouldYouSubmitABackGroundCheck"
+              value=true
+              v-model="form.bkgrndCheckApproved"
             />
 
             <label for="background-check-no">No</label>
             <input
               type="radio"
               id="background-check-no"
-              value="no"
-              v-model="form.WouldYouSubmitABackGroundCheck"
+              value=false
+              v-model="form.bkgrndCheckApproved"
             />
           </div>
         </div>
@@ -129,9 +132,9 @@
             <input
               type="radio"
               id="experience-yes"
-              value="yes"
+              value=true
               v-model="
-                form.DoYouHaveAnyExperienceWorkingWithAnimalsAtAShelterOrVetClinic
+                form.experience
               "
             />
 
@@ -139,9 +142,9 @@
             <input
               type="radio"
               id="experience-no"
-              value="no"
+              value=false
               v-model="
-                form.DoYouHaveAnyExperienceWorkingWithAnimalsAtAShelterOrVetClinic
+                form.experience
               "
             />
           </div>
@@ -154,16 +157,16 @@
             <input
               type="radio"
               id="transportation-yes"
-              value="yes"
-              v-model="form.DoYouHaveAMeansOfTransportation"
+              value=true
+              v-model="form.transportation"
             />
 
             <label for="transportation-no">No</label>
             <input
               type="radio"
               id="transportation-no"
-              value="no"
-              v-model="form.DoYouHaveAMeansOfTransportation"
+              value=false
+              v-model="form.transportation"
             />
           </div>
         </div>
@@ -183,17 +186,18 @@ export default {
     return {
       showForm: false,
       form: {
-        fullName: "",
+        firstName: "",
+        lastName: "",
         dateOfBirth: "",
-        availabilities: "",
-        location: "",
+        availability: "",
+        homeAddress: "",
         schoolMascot: "",
         email: "",
         phoneNumber: "",
-        optInTextMessages: "no",
-        WouldYouSubmitABackGroundCheck: "no",
-        DoYouHaveAnyExperienceWorkingWithAnimalsAtAShelterOrVetClinic: "no",
-        DoYouHaveAMeansOfTransportation: "no",
+        optInText: false,
+        experience: false,
+        transportation: false,
+        bkgrndCheckApproved: false,
       },
     };
   },
@@ -205,22 +209,24 @@ export default {
     resetForm() {
       // Reset form fields to initial values
       this.form = {
-        fullName: "",
+        firstName: "",
+        lastName: "",
         dateOfBirth: "",
         availabilities: "",
-        location: "",
+        homeAddress: "",
         schoolMascot: "",
         email: "",
         phoneNumber: "",
-        optInTextMessages: "no",
-        WouldYouSubmitABackGroundCheck: "no",
-        DoYouHaveAnyExperienceWorkingWithAnimalsAtAShelterOrVetClinic: "no",
-        DoYouHaveAMeansOfTransportation: "no",
+        optInText: false,
+        experience: false,
+        transportation: false,
+        bkgrndCheckApproved: false,
       };
     },
     submitForm(formData) {
       volunteerService.submitForm(formData).then((response) => {
         if (response.status === 201) {
+          console.log(response.status);
           this.$router.push({ name: "volunteer" });
         }
       });

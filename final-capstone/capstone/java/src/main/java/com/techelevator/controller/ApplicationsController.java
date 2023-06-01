@@ -20,12 +20,12 @@ public class ApplicationsController {
         return applicationsDao.getAllApplications();
     }
 
-    @PostMapping("/applications")
+    @PostMapping("/volunteer/submit-form")
     public void createApplication(@RequestBody Applications applications) {
         applicationsDao.createApplication(applications.getFirstName(), applications.getLastName(), applications.getDateOfBirth(), applications.getHomeAddress(), applications.getSchoolMascot(), applications.getEmail(), applications.getPhoneNumber(), applications.isOptInText(), applications.isExperience(), applications.isTransportation());
     }
 
-    @RequestMapping(path = "/volunteer/submit-form", method = RequestMethod.PUT)
+    @RequestMapping(path = "/applications", method = RequestMethod.PUT)
     public String approveApplication(@RequestBody Applications applications) {
         return applicationsDao.approveApplication(applications.getApplicationId(), applications.isAdminApproval()) ? "Successfully Approved Application!" : "That didn't work";
     }
