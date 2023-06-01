@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Volunteer from '../views/Volunteer.vue'
+import AvailablePets from '../views/AvailablePets.vue'
 import Applications from '../views/Applications.vue'
 
 Vue.use(Router)
@@ -56,7 +57,7 @@ const router = new Router({
       }
     },
     {
-    path: "/volunteer",
+      path: "/volunteer",
       name: "volunteer",
       component: Volunteer,
       meta: {
@@ -67,6 +68,11 @@ const router = new Router({
       path: "/volunteer/submit-form",
       name: "submit-form",
       component: Volunteer
+    },
+    {
+      path: "/availablePets",
+      name: "availablePets",
+      component: AvailablePets
     },
     {
       path: "/applications",

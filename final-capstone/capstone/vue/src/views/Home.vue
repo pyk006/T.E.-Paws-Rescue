@@ -115,6 +115,7 @@ export default {
 #how-to-help {
   font-weight: bold;
   color: whitesmoke;
+  font-size: 40px;
 }
 
 .main-content {
@@ -129,6 +130,7 @@ export default {
   background-color: #6fb3d1;
   color: whitesmoke;
   padding: 20px;
+  font-size: 20px;
 }
 
 footer {
