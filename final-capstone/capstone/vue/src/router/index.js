@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Volunteer from '../views/Volunteer.vue'
+import Applications from '../views/Applications.vue'
 
 Vue.use(Router)
 
@@ -66,7 +67,15 @@ const router = new Router({
       path: "/volunteer/submit-form",
       name: "submit-form",
       component: Volunteer
-    }
+    },
+    {
+      path: "/applications",
+      name: "applications",
+      component: Applications,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 
