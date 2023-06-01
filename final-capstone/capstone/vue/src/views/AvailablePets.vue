@@ -59,4 +59,6 @@ export default {
   display: inline-block;
   margin-right: 30px;
 }
+
+/* need more table styling */
 </style>
