@@ -29,11 +29,11 @@ export default {
     };
   },
   created() {
-    this.loadPets();
+    this.fetchPets();
   },
   methods: {
     fetchPets() {
-      petService.getPets()
+      petService.getPet()
         .then(response => {
           this.pets = response.data;
           console.log(response.data);
