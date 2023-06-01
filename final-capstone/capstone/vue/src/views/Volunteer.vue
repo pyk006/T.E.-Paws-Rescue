@@ -58,16 +58,16 @@
         <label for="dob">Date of Birth:</label>
         <input type="text" id="dob" v-model="form.dateOfBirth" required />
 
-        <label for="">Availabilities:</label>
+        <label for="">Location(for on call):</label>
+        <input type="homeAddress" id="homeAddress" v-model="form.homeAddress" required />
+
+        <label for="">Availability (hours per week):</label>
         <input
           type="availability"
           id="availabilities"
-          v-model="form.availabilities"
+          v-model="form.availability"
           required
         />
-
-        <label for="">Location(for on call):</label>
-        <input type="homeAddress" id="homeAddress" v-model="form.homeAddress" required />
 
         <label for="school-mascot">School Mascot:</label>
         <input type="text" id="school-mascot" v-model="form.schoolMascot" />
@@ -79,7 +79,6 @@
         <input type="tel" id="phone" v-model="form.phoneNumber" required />
 
         <label for="opt-in">Opt-in for Text Messages:</label>
-
         <div>
           <label for="opt-in">Opt-in for Text Messages:</label>
           <div class="radio-buttons">
@@ -189,8 +188,8 @@ export default {
         firstName: "",
         lastName: "",
         dateOfBirth: "",
-        availability: "",
         homeAddress: "",
+        availability: "",
         schoolMascot: "",
         email: "",
         phoneNumber: "",
@@ -212,8 +211,8 @@ export default {
         firstName: "",
         lastName: "",
         dateOfBirth: "",
-        availabilities: "",
         homeAddress: "",
+        availability: "",
         schoolMascot: "",
         email: "",
         phoneNumber: "",
