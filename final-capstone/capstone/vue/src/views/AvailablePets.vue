@@ -1,4 +1,5 @@
 <template>
+<!-- <dog-card v-for="n in 30"> -->
   <div class="available-container">
     <div class="available-title">
       <h1 class="availablepets">Available Pets</h1>
@@ -17,7 +18,12 @@
       </router-link>
       <h2 class="CharlieInfo">Max <br> Age: 1.5 years</h2>
     </div>
+
+    
   </div>
+  
+
+  
 </template>
 
 <style>
