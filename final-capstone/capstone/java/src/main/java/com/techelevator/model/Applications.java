@@ -1,23 +1,36 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDate;
+
 public class Applications {
     private int applicationId;
     private String firstName ="";
     private String lastName ="";
-    private int socialSecurity;
+    private String dateOfBirth;
     private String homeAddress ="";
+    private String schoolMascot ="";
     private String email ="";
     private String phoneNumber="";
+    private boolean optInText;
+    private boolean experience;
+    private boolean transportation;
     private String bkgrndCheckApproved = "pending";
     private boolean adminApproval = false;
 
-    public Applications(int applicationId, String firstName, String lastName, String homeAddress, String email, String phoneNumber, String bkgrndCheckApproved, boolean adminApproval) {
+    public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, boolean adminApproval) {
         this.applicationId = applicationId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
         this.homeAddress = homeAddress;
+        this.schoolMascot = schoolMascot;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.optInText = optInText;
+        this.experience = experience;
+        this.transportation = transportation;
         this.bkgrndCheckApproved = bkgrndCheckApproved;
         this.adminApproval = adminApproval;
     }
@@ -49,6 +62,22 @@ public class Applications {
         this.lastName = lastName;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getSchoolMascot() {
+        return schoolMascot;
+    }
+
+    public void setSchoolMascot(String schoolMascot) {
+        this.schoolMascot = schoolMascot;
+    }
+
     public String getHomeAddress() {
         return homeAddress;
     }
@@ -73,6 +102,30 @@ public class Applications {
         this.phoneNumber = phoneNumber;
     }
 
+    public boolean isOptInText() {
+        return optInText;
+    }
+
+    public void setOptInText(boolean optInText) {
+        this.optInText = optInText;
+    }
+
+    public boolean isExperience() {
+        return experience;
+    }
+
+    public void setExperience(boolean experience) {
+        this.experience = experience;
+    }
+
+    public boolean isTransportation() {
+        return transportation;
+    }
+
+    public void setTransportation(boolean transportation) {
+        this.transportation = transportation;
+    }
+
     public String getBkgrndCheckApproved() {
         return bkgrndCheckApproved;
     }
@@ -88,4 +141,5 @@ public class Applications {
     public void setAdminApproval(boolean adminApproval) {
         this.adminApproval = adminApproval;
     }
+
 }

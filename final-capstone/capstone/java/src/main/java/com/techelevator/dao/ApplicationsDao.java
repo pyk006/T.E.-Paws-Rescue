@@ -1,16 +1,17 @@
 package com.techelevator.dao;
 
+import java.time.LocalDate;
 import java.util.*;
 import com.techelevator.model.Applications;
 
 public interface ApplicationsDao {
-     boolean approveApplication(int applicationId);
+     boolean approveApplication(int applicationId, boolean approval);
 
 
 
     List<Applications> getAllApplications();
 
-    boolean createApplication(String firstName, String lastName, String homeAddress, String email, String phoneNumber);
+    public boolean createApplication(String firstName, String lastName, String date, String homeAddress, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation);
 
     Applications findById(int applicationId);
 

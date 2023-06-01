@@ -8,11 +8,16 @@ CREATE TABLE applications (
 	application_id SERIAL,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
+	date_of_birth varchar(25) NOT NULL,
 	home_address varchar(50) NOT NULL,
+	school_mascot varchar(50) NOT NULL,
 	email varchar(50) NOT NULL,
 	phone_number varchar(25) NOT NULL,
+	opt_in_text boolean,
+	experience boolean,
+	transportation boolean,
 	bkgrnd_check_approved varchar(25),
-	admin_approval boolean,
+    admin_approval boolean,
 	
 	CONSTRAINT PK_application PRIMARY KEY (application_id)
 );
