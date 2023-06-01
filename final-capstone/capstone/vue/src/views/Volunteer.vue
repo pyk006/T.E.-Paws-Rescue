@@ -222,8 +222,8 @@ export default {
         bkgrndCheckApproved: false,
       };
     },
-    submitForm(formData) {
-      volunteerService.submitForm(formData).then((response) => {
+    submitForm() {
+      volunteerService.submitForm(this.form).then((response) => {
         if (response.status === 201) {
           console.log(response.status);
           this.$router.push({ name: "volunteer" });
