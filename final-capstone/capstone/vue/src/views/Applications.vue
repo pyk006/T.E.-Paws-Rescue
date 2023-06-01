@@ -23,7 +23,7 @@
 </template>
 
 <script>
-
+import volunteerService from "../services/VolunteerService";
 
 export default {
   data() {
@@ -31,8 +31,20 @@ export default {
       applications: [],
     };
   },
+  created(){
+      this.fetchApplications();
+      
+  },
   methods: {
-    
+    fetchApplications() {
+      volunteerService.getApplications().then(response => {
+          this.applications = response.data;
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error("Error fetching applications:", error);
+        });
+    },
   },
 };
 </script>

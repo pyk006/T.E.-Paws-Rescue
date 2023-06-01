@@ -69,7 +69,7 @@ const router = new Router({
       component: Volunteer
     },
     {
-      path: "/volunteer/applications",
+      path: "/applications",
       name: "applications",
       component: Applications,
       meta: {

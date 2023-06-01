@@ -1,8 +1,5 @@
 <template>
   <div class="volunteer">
-    <router-link v-if="isAdmin" :to="{ name: 'applications' }"
-      >View Applications</router-link
-    >
     <h2>Volunteer With Us</h2>
     <p>
       At TE Paw Rescue, we are always looking for dedicated and compassionate
