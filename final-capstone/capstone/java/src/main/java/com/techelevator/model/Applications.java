@@ -19,9 +19,9 @@ public class Applications {
     private boolean experience;
     private boolean transportation;
     private String bkgrndCheckApproved = "pending";
-    private boolean adminApproval = false;
+    private String adminApproval = "pending";
 
-    public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String availability, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, boolean adminApproval) {
+    public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String availability, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, String adminApproval) {
         this.applicationId = applicationId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -145,11 +145,11 @@ public class Applications {
         this.bkgrndCheckApproved = bkgrndCheckApproved;
     }
 
-    public boolean isAdminApproval() {
+    public String isAdminApproval() {
         return adminApproval;
     }
 
-    public void setAdminApproval(boolean adminApproval) {
+    public void setAdminApproval(String adminApproval) {
         this.adminApproval = adminApproval;
     }
 

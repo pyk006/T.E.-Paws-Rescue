@@ -21,7 +21,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
 
     @Override
 
-    public boolean approveApplication(int applicationId, boolean approval) {
+    public boolean approveApplication(int applicationId, String approval) {
         String sql = "UPDATE applications SET admin_approval = NOT ? WHERE application_id = ?; ";
         return jdbcTemplate.update(sql, approval, applicationId) == 1;
     }
@@ -39,7 +39,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
 
     public boolean createApplication(String firstName, String lastName, String date, String homeAddress, String availability, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation) {
         String sql = "INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, " +
-            "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', false);";
+            "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', 'Pending');";
         return jdbcTemplate.update(sql, firstName, lastName, date, homeAddress, availability, mascot, email, phoneNumber, optInText, experience, transportation ) == 1;
 
     }
@@ -90,7 +90,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
         application.setExperience(sql.getBoolean("experience"));
         application.setTransportation(sql.getBoolean("transportation"));
         application.setBkgrndCheckApproved(sql.getString("bkgrnd_check_approved"));
-        application.setAdminApproval(sql.getBoolean("admin_approval"));
+        application.setAdminApproval(sql.getString("admin_approval"));
         return application;
 
     }

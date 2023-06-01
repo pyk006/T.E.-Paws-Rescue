@@ -5,7 +5,7 @@ import java.util.*;
 import com.techelevator.model.Applications;
 
 public interface ApplicationsDao {
-     boolean approveApplication(int applicationId, boolean approval);
+     boolean approveApplication(int applicationId, String approval);
 
 
 

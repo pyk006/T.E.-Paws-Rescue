@@ -18,7 +18,7 @@ CREATE TABLE applications (
 	experience boolean,
 	transportation boolean,
 	bkgrnd_check_approved varchar(25),
-    admin_approval boolean,
+    admin_approval varchar(25) NOT NULL,
 	
 	CONSTRAINT PK_application PRIMARY KEY (application_id)
 );
