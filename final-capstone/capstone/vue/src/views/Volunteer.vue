@@ -218,14 +218,12 @@ export default {
         DoYouHaveAMeansOfTransportation: "no",
       };
     },
-    submitForm() {
-      //info goes here
-      volunteerService.submitForm(this.form).then((response) => {
+    submitForm(formData) {
+      volunteerService.submitForm(formData).then((response) => {
         if (response.status === 201) {
           this.$router.push({ name: "volunteer" });
         }
       });
-      console.log("Form submitted");
     },
   },
 };
