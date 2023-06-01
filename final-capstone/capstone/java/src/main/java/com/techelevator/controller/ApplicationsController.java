@@ -15,7 +15,7 @@ public class ApplicationsController {
     @Autowired
     ApplicationsDao applicationsDao;
 
-    @RequestMapping(path = "/volunteers", method = RequestMethod.GET)
+    @RequestMapping(path = "/applications", method = RequestMethod.GET)
     public List<Applications> listApplications () {
         return applicationsDao.getAllApplications();
     }
