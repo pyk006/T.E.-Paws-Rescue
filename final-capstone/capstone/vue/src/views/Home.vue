@@ -5,6 +5,8 @@
     <router-link v-bind:to="{ name: 'availablePets' }"
       >Available Pets</router-link
     >&nbsp;|&nbsp;
+    <router-link v-bind:to="{ name: 'applications' }"
+      >Applications</router-link>
 
     <div class="main-content">
       <div id="who-we-are">WHO WE ARE</div>
