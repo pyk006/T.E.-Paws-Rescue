@@ -1,5 +1,8 @@
 <template>
   <div class="volunteer">
+    <router-link v-if="isAdmin" :to="{ name: 'applications' }"
+      >View Applications</router-link
+    >
     <h2>Volunteer With Us</h2>
     <p>
       At TE Paw Rescue, we are always looking for dedicated and compassionate
@@ -54,12 +57,17 @@
 
         <label for="last-name">Last Name:</label>
         <input type="text" id="last-name" v-model="form.lastName" required />
-      
+
         <label for="dob">Date of Birth:</label>
         <input type="text" id="dob" v-model="form.dateOfBirth" required />
 
         <label for="">Location(for on call):</label>
-        <input type="homeAddress" id="homeAddress" v-model="form.homeAddress" required />
+        <input
+          type="homeAddress"
+          id="homeAddress"
+          v-model="form.homeAddress"
+          required
+        />
 
         <label for="">Availability (hours per week):</label>
         <input
@@ -86,7 +94,7 @@
             <input
               type="radio"
               id="opt-in-yes"
-              value=true
+              value="true"
               v-model="form.optInText"
             />
 
@@ -94,7 +102,7 @@
             <input
               type="radio"
               id="opt-in-no"
-              value=false
+              value="false"
               v-model="form.optInText"
             />
           </div>
@@ -107,7 +115,7 @@
             <input
               type="radio"
               id="background-check-yes"
-              value=true
+              value="true"
               v-model="form.bkgrndCheckApproved"
             />
 
@@ -115,7 +123,7 @@
             <input
               type="radio"
               id="background-check-no"
-              value=false
+              value="false"
               v-model="form.bkgrndCheckApproved"
             />
           </div>
@@ -131,20 +139,16 @@
             <input
               type="radio"
               id="experience-yes"
-              value=true
-              v-model="
-                form.experience
-              "
+              value="true"
+              v-model="form.experience"
             />
 
             <label for="experience-no">No</label>
             <input
               type="radio"
               id="experience-no"
-              value=false
-              v-model="
-                form.experience
-              "
+              value="false"
+              v-model="form.experience"
             />
           </div>
         </div>
@@ -156,7 +160,7 @@
             <input
               type="radio"
               id="transportation-yes"
-              value=true
+              value="true"
               v-model="form.transportation"
             />
 
@@ -164,7 +168,7 @@
             <input
               type="radio"
               id="transportation-no"
-              value=false
+              value="false"
               v-model="form.transportation"
             />
           </div>
@@ -222,13 +226,22 @@ export default {
         bkgrndCheckApproved: false,
       };
     },
-    submitForm(formData) {
-      volunteerService.submitForm(formData).then((response) => {
+    submitForm() {
+      volunteerService.submitForm(this.form).then((response) => {
         if (response.status === 201) {
           console.log(response.status);
           this.$router.push({ name: "volunteer" });
         }
       });
+    },
+  },
+  computed: {
+    isAdmin() {
+      if (this.user && this.user.role === "admin") {
+        return true; // User is an admin
+      } else {
+        return false; // User is not an admin
+      }
     },
   },
 };
