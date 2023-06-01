@@ -5,13 +5,12 @@ import java.util.*;
 import com.techelevator.model.Applications;
 
 public interface ApplicationsDao {
+
      boolean approveApplication(int applicationId, String approval);
-
-
 
     List<Applications> getAllApplications();
 
-    public boolean createApplication(String firstName, String lastName, String date, String homeAddress, String availability, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation);
+    boolean createApplication(String firstName, String lastName, String date, String homeAddress, String availability, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation);
 
     Applications findById(int applicationId);
 
