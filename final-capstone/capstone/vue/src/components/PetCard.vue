@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pet-info">
     <h2>{{ animalName }}</h2>
     <p>Type: {{ animalType }}</p>
     <p>Gender: {{ gender }}</p>
@@ -24,3 +24,7 @@ export default {
   }
 };
 </script>
+
+<style>
+
+</style>
