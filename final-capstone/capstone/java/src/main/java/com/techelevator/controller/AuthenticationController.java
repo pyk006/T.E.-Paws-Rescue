@@ -58,6 +58,8 @@ public class AuthenticationController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
         } catch (UsernameNotFoundException e) {
             //TODO: Only when the Application is approved should an account be registered
+            System.out.println("Test");
+            System.out.println(newUser.getUsername());
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
         }
     }

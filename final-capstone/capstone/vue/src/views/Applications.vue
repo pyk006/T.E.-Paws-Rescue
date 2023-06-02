@@ -76,7 +76,7 @@ export default {
     },
     updateAdminApproval(application) {
       const newStatus = application.adminApproval === "approve" ? "approved" : "declined";
-      const isNewlyApproved = application.adminApproval === "pending" && newStatus === "approved";
+      const isNewlyApproved = newStatus === "approved";
       volunteerService
         .updateApplication({ adminApproval: newStatus, applicationId: application.applicationId })
         .then((response) => {
