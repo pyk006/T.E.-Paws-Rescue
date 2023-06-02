@@ -75,27 +75,26 @@ export default {
         });
     },
     updateAdminApproval(application) {
-      const newStatus =
-        application.adminApproval === "approve" ? "approved" : "declined";
+      const newStatus = application.adminApproval === "approve" ? "approved" : "declined";
+      const isNewlyApproved = application.adminApproval === "pending" && newStatus === "approved";
       volunteerService
-        .updateApplication(application.id, { status: newStatus })
+        .updateApplication({ adminApproval: newStatus, applicationId: application.applicationId })
         .then((response) => {
           console.log("Admin approval updated successfully:", response.data);
-          if (newStatus === "approved") {
+          if (isNewlyApproved) {
             // Register the user as a new user with an auto-generated password
             const newUser = {
               username: application.email,
               password: "tepawsvolunteer",
-              // Assign other user properties from the application object
-              firstName: application.firstName,
-              lastName: application.lastName,
-              // ...
+              confirmPassword: "tepawsvolunteer",
+              role: "user",
             };
             authService.register(newUser)
               .then((registerResponse) => {
                 if (registerResponse.status === 201) {
                   console.log("User registered successfully:", registerResponse.data);
-                  // Redirect to success page or perform any other actions
+                  // push new user to the database..
+                  window.alert("New user added successfully");
                 }
               })
               .catch((registerError) => {

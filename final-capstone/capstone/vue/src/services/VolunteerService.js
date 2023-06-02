@@ -10,8 +10,8 @@ export default {
         return axios.get('/applications');
     },
 
-    updateApplication(applicationId, data) {
-        const url = `/applications/${applicationId}`;
+    updateApplication(data) {
+        const url = "/applications";
         return axios.put(url, data);
     },
 
