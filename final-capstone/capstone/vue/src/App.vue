@@ -22,6 +22,8 @@
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
           >Logout</router-link>
+          
+
         </template>  
       </nav>
     </div>
