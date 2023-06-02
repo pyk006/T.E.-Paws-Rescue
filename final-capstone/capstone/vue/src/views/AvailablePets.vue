@@ -3,7 +3,7 @@
   <div class="available-container">
     <h1 class="availablepets">Available Pets</h1>
     <div class="pet-card-container">
-    <div class="pet-card" v-for="pet in pets" :key="pet.animal_id">
+    <div class="pet-cards" v-for="pet in pets" :key="pet.animal_id">
       <pet
         :animalName="pet.animalName"
         :animalType="pet.animalType"
@@ -62,6 +62,7 @@ export default {
 .availablepets {
   text-align: center;
   margin-bottom: 20px;
+  
 }
 
 .pet-card-container {
@@ -69,14 +70,18 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+  
+  
 }
 
-.pet-card {
-  border: 2px solid black;
+.pet-cards {
+  border: 3px solid black;
   border-radius: 10px;
   width: 250px;
-  height: 300px;
-  margin: 10px;
-}
+  height: 350px; 
+  padding: 0 20px;
+  margin-bottom: 20px;
+  
+} 
 
 </style>
