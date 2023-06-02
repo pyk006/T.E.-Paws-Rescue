@@ -3,7 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.ApplicationsDao;
 import com.techelevator.model.Applications;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -20,6 +20,7 @@ public class ApplicationsController {
         return applicationsDao.getAllApplications();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/volunteer/submit-form")
     public void createApplication(@RequestBody Applications applications) {
         applicationsDao.createApplication(applications.getFirstName(), applications.getLastName(), applications.getDateOfBirth(), applications.getHomeAddress(), applications.getAvailability(), applications.getSchoolMascot(), applications.getEmail(), applications.getPhoneNumber(), applications.isOptInText(), applications.isExperience(), applications.isTransportation());
