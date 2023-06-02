@@ -1,13 +1,12 @@
 <template>
   <div class="home">
-    <router-link v-bind:to="{ name: 'adoptedPets' }">Adopted Pets</router-link
-    >&nbsp;|&nbsp;
-    <router-link v-bind:to="{ name: 'availablePets' }"
-      >Available Pets</router-link
-    >&nbsp;|&nbsp;
-    <router-link v-bind:to="{ name: 'applications' }"
+    <div class="homepage-links-container">
+    <router-link class="homepage-link" v-bind:to="{ name: 'adoptedPets' }">Adopted Pets</router-link>
+    <router-link class="homepage-link" v-bind:to="{ name: 'availablePets' }"
+      >Available Pets</router-link>
+    <router-link class="homepage-link" v-bind:to="{ name: 'applications' }"
       >Applications</router-link>
-
+    </div> 
     <div class="main-content">
       <div id="who-we-are">WHO WE ARE</div>
       <p id="who">
@@ -202,5 +201,24 @@ footer {
   margin-right: 10px;
 }
 
+.homepage-links-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.homepage-link {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ED815A;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.8); 
+  color: #0870a3;
+  cursor: pointer;
+  margin: 0 10px;
+}
 
 </style>

@@ -2,16 +2,18 @@
 <!-- <dog-card v-for="n in 30"> -->
   <div class="available-container">
     <h1 class="availablepets">Available Pets</h1>
-    <div v-for="pet in pets" :key="pet.animal_id">
+    <div class="pet-card-container">
+    <div class="pet-card" v-for="pet in pets" :key="pet.animal_id">
       <pet
-        :animalName="pet.animal_name"
-        :animalType="pet.animal_type"
+        :animalName="pet.animalName"
+        :animalType="pet.animalType"
         :gender="pet.gender"
         :age="pet.age"
         :description="pet.description"
         :breed="pet.breed"
-        :isAdoptable="pet.is_adoptable"
+        :isAdoptable="pet.adoptable"
       />
+      </div>
     </div>
 
     
@@ -43,6 +45,7 @@ export default {
         .then(response => {
           this.pets = response.data;
           console.log(response.data);
+          console.log(response.data[0].adopotable);
         })
         .catch(error => {
           console.error("Error loading pets.", error);
@@ -58,13 +61,22 @@ export default {
 <style>
 .availablepets {
   text-align: center;
-  margin: 30px;
+  margin-bottom: 20px;
 }
 
-.pet-info {
-  display: inline-block;
-  margin-right: 30px;
+.pet-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-/* need more table styling */
+.pet-card {
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 250px;
+  height: 300px;
+  margin: 10px;
+}
+
 </style>

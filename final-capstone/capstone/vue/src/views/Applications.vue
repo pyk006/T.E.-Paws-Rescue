@@ -4,7 +4,6 @@
     <table id="tblApplications">
       <thead>
         <tr>
-          <th>Status</th>
           <th>Admin Approval</th>
           <th>First Name</th>
           <th>Last Name</th>
@@ -21,12 +20,12 @@
       </thead>
       <tbody>
         <tr v-for="application in applications" :key="application.id">
-          <td>{{ application.status }}</td>
           <td>
             <select
               v-model="application.adminApproval"
               @change="updateAdminApproval(application)"
             >
+              <option value="pending">Pending</option>
               <option value="approve">Approve</option>
               <option value="decline">Decline</option>
             </select>
@@ -49,6 +48,7 @@
 
 <script>
 import volunteerService from "../services/VolunteerService";
+import authService from "../services/AuthService";
 
 export default {
   name: "applications-list",
@@ -63,11 +63,10 @@ export default {
   methods: {
     fetchApplications() {
       volunteerService
-        .getApplications()
-        .then((response) => {
+        .getApplications().then((response) => {
           this.applications = response.data.map((application) => ({
             ...application,
-            status: "pending", // Set the status as "pending" for all applications
+            adminApproval: "pending", // Set the status as "pending" for all applications when pulled in
           }));
           console.log(response.data);
         })
@@ -82,6 +81,27 @@ export default {
         .updateApplication(application.id, { status: newStatus })
         .then((response) => {
           console.log("Admin approval updated successfully:", response.data);
+          if (newStatus === "approved") {
+            // Register the user as a new user with an auto-generated password
+            const newUser = {
+              username: application.email,
+              password: "tepawsvolunteer",
+              // Assign other user properties from the application object
+              firstName: application.firstName,
+              lastName: application.lastName,
+              // ...
+            };
+            authService.register(newUser)
+              .then((registerResponse) => {
+                if (registerResponse.status === 201) {
+                  console.log("User registered successfully:", registerResponse.data);
+                  // Redirect to success page or perform any other actions
+                }
+              })
+              .catch((registerError) => {
+                console.error("Error registering user:", registerError);
+              });
+          }
         })
         .catch((error) => {
           console.error("Error updating admin approval:", error);

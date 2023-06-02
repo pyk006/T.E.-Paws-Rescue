@@ -11,11 +11,11 @@
         >&nbsp;
         <router-link class="button-link" v-bind:to="{ name: 'volunteer' }">Volunteer</router-link
         >&nbsp;
-        <router-link class="button-link" v-bind:to="{ name: 'login' }">Login </router-link>
-        &nbsp;
         <router-link class="button-link" v-bind:to="{ name: 'register' }">Register </router-link>
         &nbsp;
-        <router-link class="button-link"
+        <router-link class="button-link" v-bind:to="{ name: 'login' }">Login </router-link>
+        &nbsp;
+        <router-link class="button-link last-button-link"
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
           >Logout</router-link
@@ -64,6 +64,10 @@ header {
   box-shadow: 0 2px 4px rgba(0,0,0,0.8); 
   color: #0870a3;
   cursor: pointer;
+}
+
+.last-button-link {
+  margin-right: 10px;
 }
 
 .button-link:hover{
