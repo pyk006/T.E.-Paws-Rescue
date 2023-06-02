@@ -1,7 +1,10 @@
 package com.techelevator.dao;
-
+package com.techelevator.exception;
 import com.techelevator.Application;
 import com.techelevator.model.Applications;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.BadSqlGrammarException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -22,17 +25,36 @@ public class JdbcApplicationsDao implements ApplicationsDao {
     @Override
 
     public boolean approveApplication(int applicationId, String approval) {
+        int rowsChanged = 0;
         String sql = "UPDATE applications SET admin_approval = NOT ? WHERE application_id = ?; ";
-        return jdbcTemplate.update(sql, approval, applicationId) == 1;
+        try {
+            rowsChanged = jdbcTemplate.update(sql, approval, applicationId);
+            if (rowsChanged == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return rowsChanged == 1;
     }
     @Override
     public List<Applications> getAllApplications() {
         List<Applications> applicationsList = new ArrayList<>();
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, " +
                 "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        while(results.next()) {
-            applicationsList.add(mapRowToApplications(results));
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                applicationsList.add(mapRowToApplications(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
         }
         return applicationsList;
     }
@@ -40,27 +62,48 @@ public class JdbcApplicationsDao implements ApplicationsDao {
     public boolean createApplication(String firstName, String lastName, String date, String homeAddress, String availability, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation) {
         String sql = "INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, " +
             "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', 'Pending');";
-        return jdbcTemplate.update(sql, firstName, lastName, date, homeAddress, availability, mascot, email, phoneNumber, optInText, experience, transportation ) == 1;
-
+        boolean isSuccessful = false;
+        try {
+            isSuccessful = jdbcTemplate.update(sql, firstName, lastName, date, homeAddress, availability, mascot, email, phoneNumber, optInText, experience, transportation) == 1;
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return isSuccessful;
     }
 
     public Applications findById(int applicationId) {
+        Applications application = null;
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email," +
                 "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE application_id = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, applicationId);
-        if (results.next()) {
-            return mapRowToApplications(results);
-        } else {
-            return null;
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, applicationId);
+            if (results.next()) {
+                application = mapRowToApplications(results);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
         }
+        return application;
     }
     public List<Applications> findByFirstName(String firstName) {
         List<Applications> applicationsList = new ArrayList<>();
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email," +
                 "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE first_name = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName);
-        while(results.next()) {
-            applicationsList.add(mapRowToApplications(results));
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName);
+            while (results.next()) {
+                applicationsList.add(mapRowToApplications(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
         }
         return applicationsList;
     }
@@ -68,9 +111,15 @@ public class JdbcApplicationsDao implements ApplicationsDao {
         List<Applications> applicationsList = new ArrayList<>();
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email," +
                 "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE last_name = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, lastName);
-        while(results.next()) {
-            applicationsList.add(mapRowToApplications(results));
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, lastName);
+            while (results.next()) {
+                applicationsList.add(mapRowToApplications(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
         }
         return applicationsList;
     }

@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.AnimalsDao;
 import com.techelevator.model.Animals;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class AnimalsController {
     @GetMapping(path = "/availablePets")
     public List<Animals> listAnimals() { return animalsDao.getAllAnimals(); }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/animals-create")
     public void createAnimal(@RequestBody Animals animals){
         animalsDao.createAnimal(animals.getAnimalName(), animals.getAnimalType(), animals.getGender(),
@@ -28,6 +30,7 @@ public class AnimalsController {
         animalsDao.updateAnimal(animals);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/animals/{id}", method = RequestMethod.DELETE)
     public void deleteAnimal(@PathVariable int id){
         animalsDao.deleteAnimal(id);

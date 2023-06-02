@@ -1,6 +1,10 @@
 package com.techelevator.dao;
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Animals;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.BadSqlGrammarException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -23,11 +27,16 @@ public class JdbcAnimalsDao implements AnimalsDao{
         String sql = "SELECT animal_id, animal_name, animal_type, gender, age, " +
                 " description, breed, is_adoptable " +
                 " FROM animals;";
-
+        try{
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
         while(results.next()){
             animalsList.add(mapRowToAnimals(results));
+        }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
         }
         return animalsList;
     }
@@ -36,38 +45,71 @@ public class JdbcAnimalsDao implements AnimalsDao{
     public boolean createAnimal(String animalName, String animalType, String gender, int age, String description, String breed, boolean isAdoptable) {
         String sql = "INSERT INTO animals (animal_name, animal_type, gender, age, description, " +
                 " breed, is_adoptable) VALUES (?, ?, ?, ?, ?, ?, ?);";
-
-        return jdbcTemplate.update(sql, animalName, animalType, gender, age, description, breed, isAdoptable) == 1;
+        boolean status;
+        try{
+            status= jdbcTemplate.update(sql, animalName, animalType, gender, age, description, breed, isAdoptable) == 1;
+        }  catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return status;
     }
 
     @Override
     public Animals getAnimalById(int animalId) {
+        Animals animal = null;
         String sql = "SELECT animal_id, animal_name, animal_type, gender, age, " +
                 " description, breed, is_adoptable " +
                 " FROM animals WHERE animal_id = ?";
-
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, animalId);
-        if(results.next()){
-            return mapRowToAnimals(results);
-        } else {
-            return null;
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, animalId);
+            if (results.next()) {
+                animal= mapRowToAnimals(results);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
         }
+        return animal;
     }
 
     @Override
     public boolean updateAnimal(Animals animal) {
         String sql = "UPDATE animals SET animal_name = ?, animal_type = ?, gender = ?, age = ?, " +
                 " description = ?, breed = ?, is_adoptable = ? WHERE animal_id = ?";
-
-        return jdbcTemplate.update(sql, animal.getAnimalName(), animal.getAnimalType(), animal.getGender(),
+        boolean status;
+        try{
+        status= jdbcTemplate.update(sql, animal.getAnimalName(), animal.getAnimalType(), animal.getGender(),
                 animal.getAge(), animal.getDescription(), animal.getBreed(), animal.isAdoptable(), animal.getAnimalId()) == 1;
+        }  catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return status;
     }
 
     @Override
     public boolean deleteAnimal(int animalId) {
         String sql = "DELETE FROM animals WHERE animal_id = ?";
         // TODO delete other table's dependencies
-        return jdbcTemplate.update(sql, animalId) == 1;
+        boolean status;
+        try {
+            status = jdbcTemplate.update(sql, animalId) == 1;
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return status;
     }
 
     private Animals mapRowToAnimals(SqlRowSet result){

@@ -40,4 +40,26 @@ INSERT INTO applications (first_name, last_name, date_of_birth, home_address, av
         '10', 'Bulldogs', 'nwinning99@gmail.com', '555-213-9945', true, true, false, 'Pending', 'Pending');
 INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('John', 'Smith', '1989-02-01', '777 Apple Rd., Portland, OR, 97218',
         '25', 'Eagles', 'JohnSmith1234@hotmail.com', '555-898-1735', false, true, true, 'Pending', 'Pending');
+INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('Jane', 'Doe', '1995-06-12', '123 Main St., Seattle, WA, 98101',
+ '40', 'Tigers', 'JaneDoe5678@gmail.com', '555-123-4567', true, false, true, 'Approved', 'Pending');
+INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('Michael', 'Johnson', '1992-09-22', '456 Oak Ave., Los Angeles, CA, 90001',
+ '30', 'Lions', 'MichaelJohnson9012@yahoo.com', '555-987-6543', false, true, false, 'Approved', 'Approved');
+INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('Emily', 'Brown', '1998-03-15', '789 Elm Rd., Chicago, IL, 60601',
+ '20', 'Bulldogs', 'EmilyBrown3456@hotmail.com', '555-456-7890', true, true, true, 'Approved', 'Approved');
+INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('David', 'Davis', '1990-11-28', '321 Pine St., Denver, CO, 80202',
+ '35', 'Panthers', 'DavidDavis7890@gmail.com', '555-234-5678', true, false, true, 'Rejected', 'Rejected');
+INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('Sarah', 'Wilson', '1994-07-09', '987 Cedar Ave., San Francisco, CA, 94101',
+ '15', 'Hawks', 'SarahWilson2345@yahoo.com', '555-567-8901', false, true, true, 'Pending', 'Pending');
+INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('Daniel', 'Taylor', '1996-04-18', '654 Maple Rd., Austin, TX, 78701',
+ '40', 'Cougars', 'DanielTaylor6789@hotmail.com', '555-901-2345', true, true, true, 'Approved', 'Approved');
+INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('Olivia', 'Anderson', '1993-08-25', '321 Oak Ave., Boston, MA, 02101',
+ '25', 'Wolves', 'OliviaAnderson0123@gmail.com', '555-345-6789', false, true, true, 'Rejected', 'Rejected');
+INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('Matthew', 'Martinez', '1987-12-04', '789 Pine St., Miami, FL, 33101',
+ '30', 'Eagles', 'MatthewMartinez4567@yahoo.com', '555-678-9012', true, false, false, 'Pending', 'Pending');
+INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('Ava', 'Wilson', '1999-01-10', '456 Elm Rd., Dallas, TX, 75201',
+ '35', 'Tigers', 'AvaWilson8901@hotmail.com', '555-901-2345', false, true, true, 'Approved', 'Approved');
+
+
+
+
 COMMIT TRANSACTION;
