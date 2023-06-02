@@ -13,13 +13,16 @@
         >&nbsp;
         <router-link class="button-link" v-bind:to="{ name: 'register' }">Register </router-link>
         &nbsp;
-        <router-link class="button-link" v-bind:to="{ name: 'login' }">Login </router-link>
-        &nbsp;
-        <router-link class="button-link last-button-link"
+
+        <template v-if="!isLoggedIn">
+        <router-link class="button-link-last" v-bind:to="{ name: 'login' }">Login </router-link>
+        </template>
+        <template v-else>
+        <router-link class="button-link-last"
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
-          >Logout</router-link
-        >
+          >Logout</router-link>
+        </template>  
       </nav>
     </div>
  
@@ -27,6 +30,18 @@
  </div>
  
 </template>
+
+<script>
+export default {
+  computed: {
+    isLoggedIn(){
+      return this.$store.state.token !== '';
+    },
+
+  },
+};
+
+</script>
 
 <style>
 #app {
@@ -55,7 +70,7 @@ header {
   align-items: center;
 }
 
-.button-link {
+.button-link, .button-link-last {
   font-weight: bold;
   text-decoration: none;
   background-color: #ED815A;
@@ -66,7 +81,7 @@ header {
   cursor: pointer;
 }
 
-.last-button-link {
+.button-link-last {
   margin-right: 10px;
 }
 
