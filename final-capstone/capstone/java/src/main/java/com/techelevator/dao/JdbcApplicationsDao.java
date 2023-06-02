@@ -1,6 +1,6 @@
 package com.techelevator.dao;
-package com.techelevator.exception;
 import com.techelevator.Application;
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Applications;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.BadSqlGrammarException;
