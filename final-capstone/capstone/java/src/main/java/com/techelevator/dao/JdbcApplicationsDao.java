@@ -26,7 +26,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
 
     public boolean approveApplication(int applicationId, String approval) {
         int rowsChanged = 0;
-        String sql = "UPDATE applications SET admin_approval = NOT ? WHERE application_id = ?; ";
+        String sql = "UPDATE applications SET admin_approval = ? WHERE application_id = ?; ";
         try {
             rowsChanged = jdbcTemplate.update(sql, approval, applicationId);
             if (rowsChanged == 0) {
