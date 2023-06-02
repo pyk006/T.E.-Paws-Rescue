@@ -8,6 +8,7 @@ import store from '../store/index'
 import Volunteer from '../views/Volunteer.vue'
 import AvailablePets from '../views/AvailablePets.vue'
 import Applications from '../views/Applications.vue'
+import AddPets from '../views/AddPets.vue'
 
 Vue.use(Router)
 
@@ -75,6 +76,14 @@ const router = new Router({
       component: AvailablePets
     },
     {
+      path: "/availablePets/addPets",
+      name: "addPets",
+      component: AddPets,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: "/applications",
       name: "applications",
       component: Applications,
@@ -82,6 +91,7 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    
   ]
 })
 

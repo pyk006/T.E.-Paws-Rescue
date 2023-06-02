@@ -1,5 +1,7 @@
 <template>
-<!-- <dog-card v-for="n in 30"> -->
+<div class="new-pets">
+    <router-link class="button-link-last" v-bind:to="{ name: 'addPets' }">Add Pets</router-link>
+
   <div class="available-container">
     <h1 class="availablepets">Available Pets</h1>
     <div class="pet-card-container">
@@ -15,8 +17,7 @@
       />
       </div>
     </div>
-
-    
+    </div>
   </div>
   
 

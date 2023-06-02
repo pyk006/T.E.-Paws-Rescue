@@ -19,7 +19,7 @@ public class AnimalsController {
     public List<Animals> listAnimals() { return animalsDao.getAllAnimals(); }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/animals-create")
+    @PostMapping("/availablePets/addPets")
     public void createAnimal(@RequestBody Animals animals){
         animalsDao.createAnimal(animals.getAnimalName(), animals.getAnimalType(), animals.getGender(),
                 animals.getAge(), animals.getDescription(), animals.getBreed(), animals.isAdoptable());
