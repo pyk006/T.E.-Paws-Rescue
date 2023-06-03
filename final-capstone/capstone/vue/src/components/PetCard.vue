@@ -12,12 +12,16 @@
     </div>
     <div class="walk-status">
       <p>On a Walk: {{ isOnWalk ? "Yes" : "No" }}</p>
-      <button @click="toggleWalkStatus">{{ isOnWalk ? "End Walk" : "Start Walk" }}</button>
+      <button @click="handleToggleWalkAndModalVisibility">{{ isOnWalk ? "End Walk" : "Start Walk" }}</button>
+          <Modal
+      v-show="isModalVisible"
+      @close="closeModal"/>
     </div>
   </div>
 </template>
 
 <script>
+import Modal from './Modal.vue';
 export default {
   props: {
     animalName: String,
@@ -30,13 +34,30 @@ export default {
   },
   data() {
     return {
+      isModalVisible: false,
       isOnWalk: false
     };
   },
+  components: {
+    Modal,
+  },
   methods: {
-    toggleWalkStatus() {
-      this.isOnWalk = !this.isOnWalk;
-    }
+  handleToggleWalkAndModalVisibility() {
+    this.toggleWalkStatus();
+    this.showModal();
+  },
+  toggleWalkStatus() {
+    this.isOnWalk = !this.isOnWalk;
+  },
+  showModal() {
+    this.isModalVisible = true;
+  },
+  closeModal() {
+    this.isModalVisible = false;
+  },
+  triggerInit() {
+      this.$root.$emit('initMap');
+    },
   },
   watch: {
     isOnWalk(value) {
