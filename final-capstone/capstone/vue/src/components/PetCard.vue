@@ -23,8 +23,6 @@
 <script>
 import Modal from './Modal.vue';
 export default {
-  //For testing
-  
   props: {
     animalName: String,
     animalType: String,
@@ -47,6 +45,7 @@ export default {
   handleToggleWalkAndModalVisibility() {
     this.toggleWalkStatus();
     this.showModal();
+    this.triggerInit();
   },
   toggleWalkStatus() {
     this.isOnWalk = !this.isOnWalk;
@@ -56,9 +55,10 @@ export default {
   },
   closeModal() {
     this.isModalVisible = false;
+    this.isOnWalk = false;
   },
   triggerInit() {
-      this.$root.$emit('initMap');
+      this.$root.$emit('Locations');
     },
   },
   watch: {

@@ -8,7 +8,6 @@
 
       <div id="input-area">
 
-          <p>For best results the address should have this format: <em>2934 Russell St, Detroit, MI, 48207</em></p>
 
           Location to Add: <input v-model="currentInput" type="input"/>
           <button class = "route-btn" v-on:click="addToList">Add to Route</button>
@@ -39,9 +38,9 @@ export default {
       roundTrip : true,
       mapCenter: { lat: 45.5152, lng: -122.6784 },
       locations: [
-      "5200 Woodward Ave, Detroit, MI 48202",
-      "2645 Woodward Ave, Detroit, MI 48201",
-      "2934 Russell St, Detroit, MI, 48207",
+      "The Old Church Concert Hall, 1422 SW 11th Ave, Portland, OR 97201",
+      "Biketown, SW 4th at Madison, Portland, OR 97204",
+      "Waterfront Park Trail,, 209 Waterfront Park Trail, Portland, OR 97204",
       ],
     };
   },
@@ -49,7 +48,6 @@ export default {
   methods: {
     // This function is called during load, but can also be called to reset the map
     initMap() {
-      console.log("Map Initialized");
       this.map = new window.google.maps.Map(document.getElementById("map"), {
         center: this.mapCenter,
         zoom: 14,
@@ -159,7 +157,10 @@ export default {
   },
 
   mounted() {
-    this.initMap();
+    this.$root.$on('Locations', () => {
+      this.initMap();
+    })
+
   },
 };
 </script>
