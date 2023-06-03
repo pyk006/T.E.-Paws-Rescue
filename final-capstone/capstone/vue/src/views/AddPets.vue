@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
       <label for="image-upload">Image (PNG only):</label>
-      <input type="file" id="image-upload" accept="image/png" @change="handleImageUpload" />
+      <CloudinaryComp />
 
         <label for="animal-name">Name:</label>
         <input type="text" id="animal-name" v-model="form.animalName" required />
@@ -48,8 +48,13 @@
 
 <script>
 import petService from '../services/PetService'
+import CloudinaryComp from '../components/CloudinaryComp.vue'
+
 export default {
   name: "addPets",
+  components: {
+    CloudinaryComp
+  },
   data() {
     return {
       form: {

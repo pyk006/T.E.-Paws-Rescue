@@ -18,7 +18,10 @@
 </template>
 
 <script>
+
 export default {
+  //For testing
+  
   props: {
     animalName: String,
     animalType: String,
