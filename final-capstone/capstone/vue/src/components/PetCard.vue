@@ -23,6 +23,8 @@
 <script>
 import Modal from './Modal.vue';
 export default {
+  //For testing
+  
   props: {
     animalName: String,
     animalType: String,
