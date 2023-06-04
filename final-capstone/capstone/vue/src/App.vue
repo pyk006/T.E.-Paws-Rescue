@@ -52,7 +52,18 @@ export default {
   background-color: #b2d8f5;
   min-height: 100vh;
 }
-
+::-webkit-scrollbar {
+  background-color:#b2d8f5;
+}
+::-webkit-scrollbar-track {
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb {
+  height: 1px;
+  border-radius: 100vw;
+  border: 0.2em solid #b2d8f5;
+  background-color: #ED815A;
+}
 header {
   display: flex;
   justify-content: space-between;
