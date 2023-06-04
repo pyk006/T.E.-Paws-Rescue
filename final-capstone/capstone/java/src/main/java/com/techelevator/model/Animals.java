@@ -10,10 +10,11 @@ public class Animals {
     private String description;
     private String breed;
     private boolean isAdoptable;
+    private String photo;
 
     public Animals() {}
 
-    public Animals(String animalName, String animalType, String gender, int age, String description, String breed, boolean isAdoptable) {
+    public Animals(String animalName, String animalType, String gender, int age, String description, String breed, boolean isAdoptable, String photo) {
         this.animalName = animalName;
         this.animalType = animalType;
         this.gender = gender;
@@ -21,6 +22,7 @@ public class Animals {
         this.description = description;
         this.breed = breed;
         this.isAdoptable = isAdoptable;
+        this.photo = photo;
     }
 
     public int getAnimalId() {
@@ -87,6 +89,13 @@ public class Animals {
         isAdoptable = adoptable;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     @Override
     public String toString() {
@@ -99,6 +108,7 @@ public class Animals {
                 ", description='" + description + '\'' +
                 ", breed='" + breed + '\'' +
                 ", isAdoptable=" + isAdoptable +
+                ", photo=" + photo +
                 '}';
     }
 }
