@@ -90,15 +90,23 @@ submitForm() {
 .form-container {
   display: flex;
   flex-direction: column;
+  border: 4px solid rgb(5, 81, 119); 
+  padding: 5px; 
+  align-items: center; 
+  justify-content: center; 
+  max-width: 400px;
+  color:rgb(5, 81, 119); 
 }
 
 .form-container label {
-  margin: 5px 0;
+  margin: 2px 0;
 }
 
 .form-container input[type="text"] {
   padding: 5px;
   width: 200px;
 }
+
+
 
 </style>

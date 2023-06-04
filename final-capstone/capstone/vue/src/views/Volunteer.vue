@@ -247,7 +247,7 @@ export default {
 
 <style scoped>
 .volunteer {
-  color: #023047;
+  color: rgb(5, 81, 119); ;
 }
 
 .form-container {

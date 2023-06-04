@@ -63,6 +63,7 @@ export default {
 .availablepets {
   text-align: center;
   margin-bottom: 20px;
+  color:rgb(5, 81, 119); 
   
 }
 
@@ -71,6 +72,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+  color:rgb(5, 81, 119); 
   
   
 }

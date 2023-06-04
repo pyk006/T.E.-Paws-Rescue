@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <div class="homepage-links-container">
-    <router-link class="homepage-link" v-bind:to="{ name: 'adoptedPets' }">Adopted Pets</router-link>
-    <router-link class="homepage-link" v-bind:to="{ name: 'availablePets' }"
-      >Available Pets</router-link>
-    <router-link class="homepage-link" v-bind:to="{ name: 'applications' }"
-      >Applications</router-link>
-    </div> 
+      <router-link class="homepage-link" v-bind:to="{ name: 'adoptedPets' }">Adopted Pets</router-link>
+      <router-link class="homepage-link" v-bind:to="{ name: 'availablePets' }">Available Pets</router-link>
+      <template v-if="isLoggedIn">
+        <router-link class="homepage-link" v-bind:to="{ name: 'applications' }">Applications</router-link>
+      </template>
+    </div>
     <div class="main-content">
       <div id="who-we-are">WHO WE ARE</div>
       <p id="who">
@@ -92,7 +92,12 @@
 
 <script>
 export default {
-  name: "home",
+  computed: {
+    isLoggedIn(){
+      return this.$store.state.token !== '';
+    },
+
+  },
 };
 </script>
 
