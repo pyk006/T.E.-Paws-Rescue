@@ -43,7 +43,7 @@ CREATE TABLE animals(
 	description varchar(250),
 	breed varchar(25),
 	is_adoptable boolean NOT NULL,
-    photo varchar,
+    photo varchar(250),
 	CONSTRAINT PK_animal PRIMARY KEY (animal_id)
 );
 
