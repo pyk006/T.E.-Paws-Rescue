@@ -76,8 +76,6 @@
         nutrition, and comfortable accommodations. Together, with the support of
         volunteers and the community, we can make a positive difference in the
         lives of animals in need at TE Paws Rescue.
-        <br><br>
-        <router-link class="volunteer-directory-link" v-bind:to="{ path: '/directory' }">Volunteer Directory</router-link>
       </p>
     </div>
 
@@ -307,24 +305,6 @@ footer {
   margin: 0 10px;
 }
   .homepage-link:hover{
-  background-color: #ED815A;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
-}
-
-  .volunteer-directory-link {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    font-weight: bold;
-    padding: 4px 8px;
-    background-color: #ed815a;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-    color: #0870a3;
-    text-decoration: none;
-  }
-
-  .volunteer-directory-link:hover{
   background-color: #ED815A;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }

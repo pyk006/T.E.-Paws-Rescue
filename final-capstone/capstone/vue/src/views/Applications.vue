@@ -1,5 +1,14 @@
 <template>
   <div>
+    <div class="directory-link">
+      <template v-if="isLoggedIn">
+        <router-link
+          class="volunteer-directory-link"
+          v-bind:to="{ path: '/directory' }"
+          >Volunteer Directory</router-link
+        >
+      </template>
+    </div>
     <h1>Applications</h1>
     <table id="tblApplications">
       <thead>
@@ -49,12 +58,36 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="application in applications" :key="application.applicationId">
+        <tr
+          v-for="application in applications"
+          :key="application.applicationId"
+        >
           <td>
             <select
               v-model="application.adminApproval"
               @change="updateAdminApproval(application)"
             >
+              <option
+                value="Pending"
+                v-if="application.adminApproval === 'Pending'"
+                selected
+              >
+                Pending
+              </option>
+              <option
+                value="Approved"
+                v-if="application.adminApproval === 'Approved'"
+                selected
+              >
+                Approve
+              </option>
+              <option
+                value="Declined"
+                v-if="application.adminApproval === 'Declined'"
+                selected
+              >
+                Decline
+              </option>
               <option value="Pending">Pending</option>
               <option value="Approved">Approve</option>
               <option value="Declined">Decline</option>
@@ -98,9 +131,8 @@ export default {
         .then((response) => {
           this.applications = response.data.map((application) => ({
             ...application,
-            adminApproval: "Pending", // Set the status as "pending" for all applications when pulled in or retrieve stored status data
+            adminApproval: application.adminApproval, // Set the status from the database
           }));
-          console.log(response.data);
         })
         .catch((error) => {
           console.error("Error fetching applications:", error);
@@ -118,15 +150,17 @@ export default {
         .then((response) => {
           console.log("Admin approval updated successfully:", response.data);
           const updatedApplicationIndex = this.applications.findIndex(
-        (app) => app.id === application.id);
-        if (updatedApplicationIndex !== -1) {
-        // Update the admin approval status
-        this.applications[updatedApplicationIndex].adminApproval = newStatus;
-        }
-        if (!isNewlyApproved) {
-          // Remove the application from the list view
-          this.applications.splice(updatedApplicationIndex, 1);
-        }
+            (app) => app.id === application.id
+          );
+          if (updatedApplicationIndex !== -1) {
+            // Update the admin approval status
+            this.applications[updatedApplicationIndex].adminApproval =
+              newStatus;
+          }
+          if (!isNewlyApproved) {
+            // Remove the application from the list view
+            this.applications.splice(updatedApplicationIndex, 1);
+          }
           if (isNewlyApproved) {
             // Register the user as a new user with an auto-generated password
             const newUser = {
@@ -156,9 +190,11 @@ export default {
           console.error("Error updating admin approval:", error);
         });
     },
-  
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.state.token !== "";
+    },
     // filteredApplications(){
     //   const filters = this.searchFilters;
     //   return this.applications.filter(application => {
@@ -211,5 +247,23 @@ tr:nth-child(even) {
 
 tr:hover {
   background-color: #ddd;
+}
+
+.volunteer-directory-link {
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+  padding: 4px 8px;
+  background-color: #ed815a;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  color: #0870a3;
+  text-decoration: none;
+}
+
+.volunteer-directory-link:hover {
+  background-color: #ed815a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 </style>
