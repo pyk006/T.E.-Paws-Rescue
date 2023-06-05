@@ -129,10 +129,8 @@ export default {
       volunteerService
         .getApplications()
         .then((response) => {
-          this.applications = response.data.map((application) => ({
-            ...application,
-            adminApproval: application.adminApproval, // Set the status from the database
-          }));
+          this.applications = response.data
+          console.log(response.data);
         })
         .catch((error) => {
           console.error("Error fetching applications:", error);

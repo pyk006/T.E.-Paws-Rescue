@@ -24,6 +24,7 @@
 <script>
 import Modal from './Modal.vue';
 
+
 export default {
   props: {
     photo: String,
