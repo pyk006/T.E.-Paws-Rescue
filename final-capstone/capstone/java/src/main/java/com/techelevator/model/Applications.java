@@ -19,13 +19,9 @@ public class Applications {
     private boolean experience;
     private boolean transportation;
     private String bkgrndCheckApproved = "pending";
-<<<<<<< HEAD
     @JsonProperty("adminApproval")
     private String adminApproval = "pending";
-=======
-    private String adminApproval = "Pending";
     private String photo = "";
->>>>>>> 9f28946b253b346d712515fd3f164c812c956da6
 
     public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String availability, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, String adminApproval, String photo) {
         this.applicationId = applicationId;
