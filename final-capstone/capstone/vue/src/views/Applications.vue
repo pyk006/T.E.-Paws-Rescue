@@ -4,6 +4,37 @@
     <table id="tblApplications">
       <thead>
         <tr>
+          <!-- <th>
+            <input type="text" v-model="searchFilters.firstName" placeholder="Search by First Name" />
+          </th>
+          <th>
+            <input type="text" v-model="searchFilters.lastName" placeholder="Search by Last Name" />
+          </th>
+          <th>
+            <input type="text" v-model="searchFilters.dateOfBirth" placeholder="Search by Date of Birth" />
+          </th>
+          <th>
+            <input type="text" v-model="searchFilters.homeAddress" placeholder="Search by Address" />
+          </th>
+          <th>
+            <input type="text" v-model="searchFilters.schoolMascot" placeholder="Search by School Mascot" />
+          </th>
+          <th>
+            <input type="text" v-model="searchFilters.email" placeholder="Search by Email" />
+          </th>
+          <th>
+            <input type="text" v-model="searchFilters.phoneNumber" placeholder="Search by Phone Number" />
+          </th>
+          <th>
+            <input type="text" v-model="searchFilters.optInText" placeholder="Search by Opt-in Text" />
+          </th>
+          <th>
+            <input type="text" v-model="searchFilters.experience" placeholder="Search by Prior Experience" />
+          </th>
+          <th>
+            <input type="text" v-model="searchFilters.transportation" placeholder="Search by Transportation" />
+          </th> -->
+
           <th>Admin Approval</th>
           <th>First Name</th>
           <th>Last Name</th>
@@ -75,8 +106,8 @@ export default {
         });
     },
     updateAdminApproval(application) {
-      const newStatus = application.adminApproval === "approve" ? "approved" : "declined";
-      const isNewlyApproved = newStatus === "approved";
+      const newStatus = application.adminApproval === "approve" ? "Approved" : "Declined";
+      const isNewlyApproved = newStatus === "Approved";
       volunteerService
         .updateApplication({ adminApproval: newStatus, applicationId: application.applicationId })
         .then((response) => {
@@ -106,6 +137,26 @@ export default {
           console.error("Error updating admin approval:", error);
         });
     },
+  },
+  computed: {
+    // filteredApplications(){
+    //   const filters = this.searchFilters;
+    //   return this.applications.filter(application => {
+    //     return (
+    //       application.firstName.toLowerCase().includes(filters.firstName.toLowerCase()) &&
+    //       application.lastName.toLowerCase().includes(filters.lastName.toLowerCase()) &&
+    //       application.dateOfBirth.toLowerCase().includes(filters.dateOfBirth.toLowerCase()) &&
+    //       application.homeAddress.toLowerCase().includes(filters.homeAddress.toLowerCase()) &&
+    //       application.schoolMascot.toLowerCase().includes(filters.schoolMascot.toLowerCase()) &&
+    //       application.email.toLowerCase().includes(filters.email.toLowerCase()) &&
+    //       application.phoneNumber.toLowerCase().includes(filters.phoneNumber.toLowerCase()) &&
+    //       application.optInText.toLowerCase().includes(filters.optInText.toLowerCase()) &&
+    //       application.experience.toLowerCase().includes(filters.experience.toLowerCase()) &&
+    //       application.transportation.toLowerCase().includes(filters.transportation.toLowerCase()) 
+    //     );
+    //   });
+    // },
+
   },
 };
 </script>

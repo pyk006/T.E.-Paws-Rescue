@@ -9,6 +9,7 @@ import Volunteer from '../views/Volunteer.vue'
 import AvailablePets from '../views/AvailablePets.vue'
 import Applications from '../views/Applications.vue'
 import AddPets from '../views/AddPets.vue'
+import VolunteerDirectory from '../views/VolunteerDirectory.vue'
 
 
 Vue.use(Router)
@@ -90,6 +91,14 @@ const router = new Router({
       component: Applications,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: "/directory",
+      name: "volunteer-directory",
+      component: VolunteerDirectory,
+      meta: {
+        requiresAuth: false
       }
     },
     

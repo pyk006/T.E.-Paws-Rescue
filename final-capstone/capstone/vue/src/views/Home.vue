@@ -1,21 +1,31 @@
 <template>
   <div class="home">
     <div class="homepage-links-container">
-      <router-link class="homepage-link" v-bind:to="{ name: 'adoptedPets' }">Adopted Pets</router-link>
-      <router-link class="homepage-link" v-bind:to="{ name: 'availablePets' }">Available Pets</router-link>
+      <router-link class="homepage-link" v-bind:to="{ name: 'adoptedPets' }"
+        >Adopted Pets</router-link
+      >
+      <router-link class="homepage-link" v-bind:to="{ name: 'availablePets' }"
+        >Available Pets</router-link
+      >
       <template v-if="isLoggedIn">
-        <router-link class="homepage-link" v-bind:to="{ name: 'applications' }">Applications</router-link>
+        <router-link class="homepage-link" v-bind:to="{ name: 'applications' }"
+          >Applications</router-link
+        >
       </template>
     </div>
 
-   <div class="banner">
+    <div class="banner">
       <div class="banner-slider">
-        <div class="banner-slide" v-for="(slide, index) in bannerSlides" :key="index">
+        <div
+          class="banner-slide"
+          v-for="(slide, index) in bannerSlides"
+          :key="index"
+        >
           <img :src="slide" alt="Banner Slide" class="slide-image" />
         </div>
       </div>
     </div>
-    
+
     <div class="main-content">
       <div id="who-we-are">WHO WE ARE</div>
       <p id="who">
@@ -69,6 +79,8 @@
         nutrition, and comfortable accommodations. Together, with the support of
         volunteers and the community, we can make a positive difference in the
         lives of animals in need at TE Paws Rescue.
+        <br><br>
+        <router-link class="volunteer-directory-link" v-bind:to="{ path: '/directory' }">Volunteer Directory</router-link>
       </p>
     </div>
 
@@ -96,7 +108,6 @@
       </div>
     </footer>
   </div>
-
 </template>
 
 <script>
@@ -104,15 +115,14 @@ export default {
   data() {
     return {
       bannerSlides: [
-       require('@/assets/adoptedPics/kobe.png'),
-        require('@/assets/adoptedPics/jaeger.png'),
-        require('@/assets/adoptedPics/kiaser.png'),
-        require('@/assets/adoptedPics/noodles.png'),
-        require('@/assets/adoptedPics/ponyo.png'),
-        require('@/assets/adoptedPics/velvet.png'),
-        require('@/assets/adoptedPics/sammy.png'),
-        require('@/assets/adoptedPics/siren.png') ,
-      
+        require("@/assets/adoptedPics/kobe.png"),
+        require("@/assets/adoptedPics/jaeger.png"),
+        require("@/assets/adoptedPics/kiaser.png"),
+        require("@/assets/adoptedPics/noodles.png"),
+        require("@/assets/adoptedPics/ponyo.png"),
+        require("@/assets/adoptedPics/velvet.png"),
+        require("@/assets/adoptedPics/sammy.png"),
+        require("@/assets/adoptedPics/siren.png"),
       ],
     };
   },
@@ -121,13 +131,19 @@ export default {
   },
   methods: {
     startBannerAnimation() {
-      const bannerSlider = document.querySelector('.banner-slider');
+      const bannerSlider = document.querySelector(".banner-slider");
 
       setInterval(() => {
-        const firstSlide = bannerSlider.querySelector('.banner-slide');
+        const firstSlide = bannerSlider.querySelector(".banner-slide");
         bannerSlider.appendChild(firstSlide);
       }, 3000);
     },
+  },
+  computed: {
+     isLoggedIn() {
+      return this.$store.state.token !== "";
+    },
+
   },
 };
 </script>
@@ -142,13 +158,13 @@ export default {
   display: inline-block;
   animation: rollBannerAnimation linear infinite;
   animation-duration: 12s;
-  margin-right: -10px; 
-  border: 3px solid rgb(5, 81, 119); 
+  margin-right: -10px;
+  border: 3px solid rgb(5, 81, 119);
   border-left: none;
   border-right: none;
   padding: 3px 0;
-  box-sizing:border-box;
-  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1)
+  box-sizing: border-box;
+  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .banner-slide {
@@ -280,13 +296,35 @@ footer {
   justify-content: center;
   font-weight: bold;
   text-decoration: none;
-  background-color: #ED815A;
+  background-color: #ed815a;
   padding: 4px 8px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.8); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   color: #0870a3;
   cursor: pointer;
   margin: 0 10px;
+}
+  .homepage-link:hover{
+  background-color: #ED815A;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+  .volunteer-directory-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 4px 8px;
+    background-color: #ed815a;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    color: #0870a3;
+    text-decoration: none;
+  }
+
+  .volunteer-directory-link:hover{
+  background-color: #ED815A;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 </style>

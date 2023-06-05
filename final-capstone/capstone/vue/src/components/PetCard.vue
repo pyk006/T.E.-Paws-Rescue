@@ -1,5 +1,6 @@
 <template>
   <div class="pet-card">
+    <img :src="photo" alt="Pet Photo" class="pet-photo" />
     <div class="pet-info">
       <h2>{{ animalName }}</h2>
       <p>Type: {{ animalType }}</p>
@@ -10,9 +11,9 @@
       <p v-if="isAdoptable">Status: Adoptable</p>
       <p v-else>Status: Not Adoptable</p>
     </div>
-    <div class="walk-status">
+    <div class="walk-status" v-if="animalType === 'Dog'">
       <p>On a Walk: {{ isOnWalk ? "Yes" : "No" }}</p>
-      <button @click="handleToggleWalkAndModalVisibility">{{ isOnWalk ? "End Walk" : "Start Walk" }}</button>
+      <button v-if="isLoggedIn" @click="handleToggleWalkAndModalVisibility">{{ isOnWalk ? "End Walk" : "Start Walk" }}</button>
           <Modal
       v-show="isModalVisible"
       @close="closeModal"/>
@@ -22,15 +23,17 @@
 
 <script>
 import Modal from './Modal.vue';
+
 export default {
   props: {
+    photo: String,
     animalName: String,
     animalType: String,
     gender: String,
     age: Number,
     description: String,
     breed: String,
-    isAdoptable: Boolean
+    isAdoptable: Boolean,
   },
   data() {
     return {
@@ -73,6 +76,15 @@ export default {
         console.log("The pet has finished the walk.");
       }
     }
-  }
+  },
+  computed:{
+    isLoggedIn() {
+      return this.$store.state.token !== "";
+    },
+  },
 };
 </script>
+
+<style>
+
+</style>
