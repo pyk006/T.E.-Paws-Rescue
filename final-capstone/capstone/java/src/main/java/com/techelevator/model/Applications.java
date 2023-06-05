@@ -20,8 +20,9 @@ public class Applications {
     private boolean transportation;
     private String bkgrndCheckApproved = "pending";
     private String adminApproval = "Pending";
+    private String photo = "";
 
-    public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String availability, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, String adminApproval) {
+    public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String availability, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, String adminApproval, String photo) {
         this.applicationId = applicationId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,6 +37,7 @@ public class Applications {
         this.transportation = transportation;
         this.bkgrndCheckApproved = bkgrndCheckApproved;
         this.adminApproval = adminApproval;
+        this.photo = photo;
     }
 
     public Applications() {
@@ -151,6 +153,14 @@ public class Applications {
 
     public void setAdminApproval(String adminApproval) {
         this.adminApproval = adminApproval;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     @Override
