@@ -167,7 +167,7 @@ export default {
           origin: this.locations[0],
           destination: this.locations[this.locations.length-1],
           waypoints: myWaypoints,
-          travelMode: window.google.maps.TravelMode.DRIVING,
+          travelMode: window.google.maps.TravelMode.WALKING,
           avoidTolls: true,
           optimizeWaypoints: true
         }
