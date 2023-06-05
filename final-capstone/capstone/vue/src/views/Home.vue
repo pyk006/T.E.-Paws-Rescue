@@ -4,11 +4,6 @@
       <router-link class="homepage-link" v-bind:to="{ name: 'availablePets' }"
         >Available Pets</router-link
       >
-      <template v-if="isLoggedIn">
-        <router-link class="homepage-link" v-bind:to="{ name: 'applications' }"
-          >Applications</router-link
-        >
-      </template>
     </div>
 
     <div class="banner">
@@ -101,6 +96,9 @@
         <img src="@/assets/facebook.png" alt="Facebook Icon" class="icon" />
         <img src="@/assets/instagram.png" alt="Instagram Icon" class="icon" />
       </div>
+      <div v-if="isLoggedIn" class="applications-link">
+        <router-link class="application-button" v-bind:to="{ name: 'applications' }">Applications</router-link>
+      </div>
     </footer>
   </div>
 </template>
@@ -135,10 +133,9 @@ export default {
     },
   },
   computed: {
-     isLoggedIn() {
+    isLoggedIn() {
       return this.$store.state.token !== "";
     },
-
   },
 };
 </script>
@@ -177,7 +174,7 @@ export default {
 
 .slide-image {
   width: 300px;
-  height: 350px; 
+  height: 350px;
   object-fit: cover;
 }
 
@@ -221,12 +218,31 @@ footer {
   padding: 20px;
   display: grid;
   align-content: flex-start;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-areas:
-    "contact-us find-us follow-us"
-    "contact-info address social-icons"
-    "contact-info address .";
+    "contact-us find-us follow-us ."
+    "contact-info address social-icons application"
+    "contact-info address social-icons .";
   color: whitesmoke;
+}
+
+.application-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ed815a;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  color: #0870a3;
+  cursor: pointer;
+}
+
+.application-button:hover {
+  background-color: #ed815a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 #contact-us {
@@ -239,6 +255,10 @@ footer {
 
 #find-us {
   grid-area: find-us;
+}
+
+#application-link {
+  grid-area: application;
 }
 
 .address {
@@ -277,6 +297,7 @@ footer {
   display: flex;
   justify-content: flex-start;
   margin-top: 10px;
+  grid-area: social-icons;
 }
 
 .social-icons .icon {
@@ -304,8 +325,8 @@ footer {
   cursor: pointer;
   margin: 0 10px;
 }
-  .homepage-link:hover{
-  background-color: #ED815A;
+.homepage-link:hover {
+  background-color: #ed815a;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
@@ -320,5 +341,4 @@ footer {
     margin-bottom: 10px;
   }
 }
-
 </style>

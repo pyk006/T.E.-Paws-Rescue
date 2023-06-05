@@ -3,6 +3,7 @@
     <h1 class="volunteer-directory">Volunteer Directory</h1>
     <div class="volunteer-card-container">
       <div class="volunteer-card" v-for="application in applications" :key="application.id">
+        <img src="@/assets/blank-profile.png" alt="Profile Image" class="profile-image" />
         <div class="volunteer-card-content">
           <h3>{{ application.firstName }} {{ application.lastName }}</h3>
           <p>Phone Number: {{ application.phoneNumber }}</p>
@@ -52,15 +53,25 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  color: rgb(5, 81, 119);
+  color: whitesmoke;
 }
 
 .volunteer-card {
   border: 3px solid rgb(5, 81, 119);
+  background-color: rgb(5, 81, 119);
   border-radius: 10px;
   width: 250px;
-  height: 150px;
+  height: 250px;
   padding: 0 20px;
   margin: 10px;
 }
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
 </style>
