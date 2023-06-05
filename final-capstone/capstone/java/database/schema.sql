@@ -38,11 +38,11 @@ CREATE TABLE animals(
 	animal_id serial,
 	animal_name varchar(50) NOT NULL,
 	animal_type varchar(50) NOT NULL,
+	breed varchar(25),
 	gender varchar(20) NOT NULL,
 	age int NOT NULL,
-	description varchar(250),
-	breed varchar(25),
 	is_adoptable boolean NOT NULL,
+	description varchar(250),
     photo varchar(250),
 	CONSTRAINT PK_animal PRIMARY KEY (animal_id)
 );
