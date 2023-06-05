@@ -105,4 +105,21 @@ header {
 }
 
 
+@media (max-width: 576px) {
+  .pr-logo {
+    width: 150px;
+  }
+
+  .button-link,
+  .button-link-last {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 6px;
+  }
+
+  .button-link-last {
+    margin-right: 15px;
+  }
+}
+
 </style>

@@ -106,7 +106,7 @@ export default {
   border: 3px solid rgb(5, 81, 119);
   border-radius: 10px;
   width: 490px;
-  height: 750px;
+  height: 780px;
   padding: 0 10px;
   margin-bottom: 20px;
   background: rgb(5, 81, 119);;

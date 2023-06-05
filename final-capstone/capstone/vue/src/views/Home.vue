@@ -309,16 +309,52 @@ footer {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "who-we-are"
+      "who"
+      "our-goals"
+      "goals"
+      "how-to-help"
+      "help";
+  }
+
+  .main-content > * {
+    margin-bottom: 20px;
+  }
+
+  footer {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "contact-us"
+      "contact-info"
+      "find-us"
+      "address"
+      "follow-us"
+      "social-icons";
+  }
+
+  .address {
+    text-align: left;
+  }
+
+  .banner-slider {
+    padding: 1px 0;
+    border-width: 2px;
+  }
+
   .banner-slide {
-    display: block;
+    margin-bottom: 5px;
+  }
+
+   .slide-image {
+    width: 140px;
+    height: 140px;
   }
 }
 
-@media (max-width: 576px) {
-  .banner-slide {
-    margin-bottom: 10px;
-  }
-}
+
 
 </style>
