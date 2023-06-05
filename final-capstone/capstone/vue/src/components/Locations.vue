@@ -36,16 +36,44 @@ export default {
       routeRendererService: null,
       currentInput : "",
       roundTrip : true,
-      mapCenter: { lat: 45.5152, lng: -122.6784 },
-      locations: [
-      "The Old Church Concert Hall, 1422 SW 11th Ave, Portland, OR 97201",
-      "Biketown, SW 4th at Madison, Portland, OR 97204",
-      "Waterfront Park Trail,, 209 Waterfront Park Trail, Portland, OR 97204",
-      ],
+      mapCenter: { lat: 45.490509, lng: -122.598167 },
+      locations: [],
     };
   },
 
   methods: {
+    calculateRandomLocation() {
+  // Convert the latitude and longitude to radians
+  const radiansLat = this.mapCenter.lat * (Math.PI / 180);
+  const radiansLong = this.mapCenter.lng * (Math.PI / 180);
+
+  // Earth's radius in miles
+  const earthRadiusMiles = 3959;
+  const minDistanceInMiles = 1;
+  const maxDistanceInMiles = 3;
+  // Convert the minimum and maximum distances to radians
+  const minDistanceRadians = minDistanceInMiles / earthRadiusMiles;
+  const maxDistanceRadians = maxDistanceInMiles / earthRadiusMiles;
+
+  // Calculate a random distance between the minimum and maximum distances
+  const distanceRadians = Math.random() * (maxDistanceRadians - minDistanceRadians) + minDistanceRadians;
+
+  // Calculate a random angle in radians
+  const angle = Math.random() * 2 * Math.PI;
+
+  // Calculate the new latitude and longitude
+  const newLatitude = Math.asin(Math.sin(radiansLat) * Math.cos(distanceRadians) +
+                    Math.cos(radiansLat) * Math.sin(distanceRadians) * Math.cos(angle));
+
+  const newLongitude = radiansLong + Math.atan2(Math.sin(angle) * Math.sin(distanceRadians) * Math.cos(radiansLong),
+                        Math.cos(distanceRadians) - Math.sin(radiansLong) * Math.sin(newLatitude));
+
+  // Convert the new latitude and longitude back to degrees
+  const newLatitudeDegrees = newLatitude * (180 / Math.PI);
+  const newLongitudeDegrees = newLongitude * (180 / Math.PI);
+
+  return [newLatitudeDegrees, newLongitudeDegrees];
+},
     // This function is called during load, but can also be called to reset the map
     initMap() {
       this.map = new window.google.maps.Map(document.getElementById("map"), {
@@ -155,8 +183,12 @@ export default {
 
     }
   },
+  
 
   mounted() {
+    this.locations.push(this.calculateRandomLocation().toString());
+    this.locations.push("45.490509, -122.598167");
+    this.locations.push(this.calculateRandomLocation().toString());
     this.$root.$on('Locations', () => {
       this.initMap();
     })
