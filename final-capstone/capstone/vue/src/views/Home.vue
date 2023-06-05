@@ -104,16 +104,15 @@ export default {
   data() {
     return {
       bannerSlides: [
-        require('@/assets/ChocoLab/Lab1.png'),
-        require('@/assets/ChocoLab/Lab2.png'),
-        require('@/assets/ChocoLab/Lab2.png'),
-        require('@/assets/WhiteLab/whiteLab1.png'),
-        require('@/assets/WhiteLab/whiteLab2.png'),
-        require('@/assets/ChocoLab/Lab2.png'),
-        
-
-
-
+       require('@/assets/adoptedPics/kobe.png'),
+        require('@/assets/adoptedPics/jaeger.png'),
+        require('@/assets/adoptedPics/kiaser.png'),
+        require('@/assets/adoptedPics/noodles.png'),
+        require('@/assets/adoptedPics/ponyo.png'),
+        require('@/assets/adoptedPics/velvet.png'),
+        require('@/assets/adoptedPics/sammy.png'),
+        require('@/assets/adoptedPics/siren.png') ,
+      
       ],
     };
   },
@@ -143,9 +142,11 @@ export default {
   display: inline-block;
   animation: rollBannerAnimation linear infinite;
   animation-duration: 12s;
-  margin-right: -20px; 
-  border: 3px solid rgb(5, 81, 119); ; 
-  padding: 5px;
+  margin-right: -10px; 
+  border: 3px solid rgb(5, 81, 119); 
+  border-left: none;
+  border-right: none;
+  padding: 3px 0;
   box-sizing:border-box;
   transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1)
 }
@@ -159,9 +160,9 @@ export default {
 }
 
 .slide-image {
-  width: 205px;
-  height: 205px; 
-  object-fit: cover; 
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
 #who {
