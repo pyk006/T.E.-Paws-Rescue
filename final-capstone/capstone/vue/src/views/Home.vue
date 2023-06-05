@@ -7,6 +7,15 @@
         <router-link class="homepage-link" v-bind:to="{ name: 'applications' }">Applications</router-link>
       </template>
     </div>
+
+   <div class="banner">
+      <div class="banner-slider">
+        <div class="banner-slide" v-for="(slide, index) in bannerSlides" :key="index">
+          <img :src="slide" alt="Banner Slide" class="slide-image" />
+        </div>
+      </div>
+    </div>
+    
     <div class="main-content">
       <div id="who-we-are">WHO WE ARE</div>
       <p id="who">
@@ -92,16 +101,69 @@
 
 <script>
 export default {
-  computed: {
-    isLoggedIn(){
-      return this.$store.state.token !== '';
-    },
+  data() {
+    return {
+      bannerSlides: [
+        require('@/assets/ChocoLab/Lab1.png'),
+        require('@/assets/ChocoLab/Lab2.png'),
+        require('@/assets/ChocoLab/Lab2.png'),
+        require('@/assets/WhiteLab/whiteLab1.png'),
+        require('@/assets/WhiteLab/whiteLab2.png'),
+        require('@/assets/ChocoLab/Lab2.png'),
+        
 
+
+
+      ],
+    };
+  },
+  mounted() {
+    this.startBannerAnimation();
+  },
+  methods: {
+    startBannerAnimation() {
+      const bannerSlider = document.querySelector('.banner-slider');
+
+      setInterval(() => {
+        const firstSlide = bannerSlider.querySelector('.banner-slide');
+        bannerSlider.appendChild(firstSlide);
+      }, 3000);
+    },
   },
 };
 </script>
 
 <style>
+.banner {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.banner-slider {
+  display: inline-block;
+  animation: rollBannerAnimation linear infinite;
+  animation-duration: 12s;
+  margin-right: -20px; 
+  border: 3px solid rgb(5, 81, 119); ; 
+  padding: 5px;
+  box-sizing:border-box;
+  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1)
+}
+
+.banner-slide {
+  display: inline-block;
+  margin-right: 0;
+  animation: bannerAnimation linear infinite;
+  animation-duration: 12s;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide-image {
+  width: 205px;
+  height: 205px; 
+  object-fit: cover; 
+}
+
 #who {
   grid-area: who;
 }

@@ -10,6 +10,7 @@ import AvailablePets from '../views/AvailablePets.vue'
 import Applications from '../views/Applications.vue'
 import AddPets from '../views/AddPets.vue'
 
+
 Vue.use(Router)
 
 /**
