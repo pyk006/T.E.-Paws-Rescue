@@ -9,7 +9,7 @@ public interface ApplicationsDao {
      boolean approveApplication(int applicationId, String approval);
 
     List<Applications> getAllApplications();
-
+    List<Applications> getAllApprovedApplications();
     boolean createApplication(String firstName, String lastName, String date, String homeAddress, String availability, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation);
 
     Applications findById(int applicationId);

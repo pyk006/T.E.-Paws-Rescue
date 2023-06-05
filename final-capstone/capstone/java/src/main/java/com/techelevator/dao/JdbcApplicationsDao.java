@@ -58,6 +58,23 @@ public class JdbcApplicationsDao implements ApplicationsDao {
         }
         return applicationsList;
     }
+    @Override
+    public List<Applications> getAllApprovedApplications() {
+        List<Applications> applicationsList = new ArrayList<>();
+        String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, " +
+                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE admin_approval = 'Approved;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                applicationsList.add(mapRowToApplications(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
+        }
+        return applicationsList;
+    }
 
     public boolean createApplication(String firstName, String lastName, String date, String homeAddress, String availability, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation) {
         String sql = "INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, " +

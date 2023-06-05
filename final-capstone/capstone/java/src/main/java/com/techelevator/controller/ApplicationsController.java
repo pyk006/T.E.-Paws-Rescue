@@ -20,6 +20,12 @@ public class ApplicationsController {
         return applicationsDao.getAllApplications();
     }
 
+    @RequestMapping(path = "/directory", method = RequestMethod.GET)
+    public List<Applications> listApprovedApplications () {
+        return applicationsDao.getAllApprovedApplications();
+    }
+
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/volunteer/submit-form")
     public void createApplication(@RequestBody Applications applications) {
