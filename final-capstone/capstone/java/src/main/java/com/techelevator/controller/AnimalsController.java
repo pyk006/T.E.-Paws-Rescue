@@ -22,7 +22,7 @@ public class AnimalsController {
     @PostMapping("/availablePets/addPets")
     public void createAnimal(@RequestBody Animals animals){
         animalsDao.createAnimal(animals.getAnimalName(), animals.getAnimalType(), animals.getGender(),
-                animals.getAge(), animals.getDescription(), animals.getBreed(), animals.isAdoptable());
+                animals.getAge(), animals.getDescription(), animals.getBreed(), animals.isAdoptable(), animals.getPhoto());
     }
 
     @RequestMapping(path = "/animals", method = RequestMethod.PUT)

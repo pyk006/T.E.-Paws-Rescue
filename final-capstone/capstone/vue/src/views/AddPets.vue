@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
       <label for="image-upload">Image (PNG only):</label>
-      <CloudinaryComp />
+      <CloudinaryComp ref="cloudinaryComp" @image-uploaded="handleImageUploaded" />
 
         <label for="animal-name">Name:</label>
         <input type="text" id="animal-name" v-model="form.animalName" required />
@@ -13,7 +13,7 @@
         <input type="text" id="gender" v-model="form.gender" required />
 
         <label for="description">Description:</label>
-        <input type="text" id="dob" v-model="form.age" required />
+        <input type="text" id="dob" v-model="form.description" required />
 
         <label for="breed">Breed:</label>
         <input type="text" id="breed" v-model="form.breed" required />
@@ -37,10 +37,11 @@
               value="false"
               v-model="form.optInText"
             />
-<br>
-            <button type="submit">Submit</button>
+      <br>        
+            <!-- <button type="submit">Submit</button> -->
         
       </div>
+      <button type="submit" @click="submitForm">Submit</button>
     </div>
 
 
@@ -65,21 +66,36 @@ export default {
         description: "",
         breed: "",
         isAdoptable: false,
-      
+        photo: "", // Variable to store the image URL
       },
     };
   },
 
 methods: {
 submitForm() {
-      petService.submitForm(this.form).then((response) => {
+      
+      const cloudinaryComp = this.$refs.cloudinaryComp;
+      if (cloudinaryComp.selectedFile) {
+        cloudinaryComp.uploadImage();
+        petService.submitForm(this.form).then((response) => {
         if (response.status === 201) {
           console.log(response.status);
           this.showForm = false; //hide after successful submission
-          this.$router.push({ name: "addPets" });
+          window.alert("Photo uploaded");
+          
         }
-      });
-    }
+      },
+      );
+      } else {
+        console.log("Please select an image to upload");
+      }
+      
+    },
+     handleImageUploaded(data) {
+      // Access the image URL from the response data
+      this.form.photo = data.url; // Assuming the URL is stored in the 'url' property of the response object
+      console.log(data.url);
+    },
   },
 };
 

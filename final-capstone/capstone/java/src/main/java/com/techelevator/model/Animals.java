@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Animals {
 
     private int animalId;
@@ -10,6 +12,7 @@ public class Animals {
     private String description;
     private String breed;
     private boolean isAdoptable;
+    @JsonProperty("photo")
     private String photo;
 
     public Animals() {}

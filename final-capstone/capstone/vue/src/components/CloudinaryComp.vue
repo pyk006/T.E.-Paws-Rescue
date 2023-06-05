@@ -1,56 +1,46 @@
 <template>
   <div>
-      <button v-on:click="upload">Upload</button><br>
+    <input type="file" @change="handleFileUpload" ref="fileInput" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CloudinaryComp',
   data() {
     return {
-      myWidget : {}
-    }
+      selectedFile: null,
+    };
   },
   methods: {
-      upload() {
-        this.myWidget.open();
-      }
-  },
-  mounted() {
-       this.myWidget = window.cloudinary.createUploadWidget(
-      {
-        // Insert your cloud name and presets here, 
-        // see the documentation
-        cloudName: 'dfg9ft030', 
-        uploadPreset: 'animalPhotoCloud'
-      }, 
-      (error, result) => { 
-        if (!error && result && result.event === "success") { 
-          console.log('Done! Here is the image info: ', result.info); 
-          console.log("Image URL: " + result.info.url);
-        }
-      }
-    );
+    handleFileUpload(event) {
+      this.selectedFile = event.target.files[0];
+    },
+    uploadImage() {
+      const formData = new FormData();
+      formData.append("file", this.selectedFile);
+      formData.append("upload_preset", "animalPhotoCloud"); // Replace with your Cloudinary upload preset
 
-  }
-}
+      fetch(
+        `https://api.cloudinary.com/v1_1/dfg9ft030/upload`, // Replace with your Cloudinary cloud name
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          // Handle the response from Cloudinary
+          // You can store the uploaded image URL or perform any other actions
+        })
+        .catch((error) => {
+          console.error(error);
+          // Handle error if upload fails
+        });
+    },
+  },
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+
+
