@@ -10,40 +10,18 @@
       </template>
     </div>
     <h1>Applications</h1>
+    <div class="search-container">
+      <input
+        type="text"
+        v-model="searchQuery"
+        placeholder="Search by name"
+        @keyup.enter="searchApplications"
+      />
+      <button @click="searchApplications">Search</button>
+    </div>
     <table id="tblApplications">
       <thead>
         <tr>
-          <!-- <th>
-            <input type="text" v-model="searchFilters.firstName" placeholder="Search by First Name" />
-          </th>
-          <th>
-            <input type="text" v-model="searchFilters.lastName" placeholder="Search by Last Name" />
-          </th>
-          <th>
-            <input type="text" v-model="searchFilters.dateOfBirth" placeholder="Search by Date of Birth" />
-          </th>
-          <th>
-            <input type="text" v-model="searchFilters.homeAddress" placeholder="Search by Address" />
-          </th>
-          <th>
-            <input type="text" v-model="searchFilters.schoolMascot" placeholder="Search by School Mascot" />
-          </th>
-          <th>
-            <input type="text" v-model="searchFilters.email" placeholder="Search by Email" />
-          </th>
-          <th>
-            <input type="text" v-model="searchFilters.phoneNumber" placeholder="Search by Phone Number" />
-          </th>
-          <th>
-            <input type="text" v-model="searchFilters.optInText" placeholder="Search by Opt-in Text" />
-          </th>
-          <th>
-            <input type="text" v-model="searchFilters.experience" placeholder="Search by Prior Experience" />
-          </th>
-          <th>
-            <input type="text" v-model="searchFilters.transportation" placeholder="Search by Transportation" />
-          </th> -->
-
           <th>Admin Approval</th>
           <th>First Name</th>
           <th>Last Name</th>
@@ -59,7 +37,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="application in applications"
+          v-for="application in filteredApplications"
           :key="application.applicationId"
         >
           <td>
@@ -67,27 +45,6 @@
               v-model="application.adminApproval"
               @change="updateAdminApproval(application)"
             >
-              <option
-                value="Pending"
-                v-if="application.adminApproval === 'Pending'"
-                selected
-              >
-                Pending
-              </option>
-              <option
-                value="Approved"
-                v-if="application.adminApproval === 'Approved'"
-                selected
-              >
-                Approve
-              </option>
-              <option
-                value="Declined"
-                v-if="application.adminApproval === 'Declined'"
-                selected
-              >
-                Decline
-              </option>
               <option value="Pending">Pending</option>
               <option value="Approved">Approve</option>
               <option value="Declined">Decline</option>
@@ -118,6 +75,8 @@ export default {
   data() {
     return {
       applications: [],
+      filteredApplications: [],
+      searchQuery: "",
     };
   },
   created() {
@@ -129,7 +88,8 @@ export default {
       volunteerService
         .getApplications()
         .then((response) => {
-          this.applications = response.data
+          this.applications = response.data;
+          this.filteredApplications = response.data;
           console.log(response.data);
         })
         .catch((error) => {
@@ -148,7 +108,7 @@ export default {
         .then((response) => {
           console.log("Admin approval updated successfully:", response.data);
           const updatedApplicationIndex = this.applications.findIndex(
-            (app) => app.id === application.id
+            (app) => app.applicationId === application.applicationId
           );
           if (updatedApplicationIndex !== -1) {
             // Update the admin approval status
@@ -188,28 +148,24 @@ export default {
           console.error("Error updating admin approval:", error);
         });
     },
+    searchApplications() {
+      if (this.searchQuery) {
+        const query = this.searchQuery.toLowerCase();
+        this.filteredApplications = this.applications.filter(
+          (application) =>
+            application.firstName.toLowerCase().includes(query) ||
+            application.lastName.toLowerCase().includes(query)
+        );
+      } else {
+        this.filteredApplications = this.applications; // Reset filteredApplications to original data
+      }
+    },
   },
   computed: {
     isLoggedIn() {
       return this.$store.state.token !== "";
     },
-    // filteredApplications(){
-    //   const filters = this.searchFilters;
-    //   return this.applications.filter(application => {
-    //     return (
-    //       application.firstName.toLowerCase().includes(filters.firstName.toLowerCase()) &&
-    //       application.lastName.toLowerCase().includes(filters.lastName.toLowerCase()) &&
-    //       application.dateOfBirth.toLowerCase().includes(filters.dateOfBirth.toLowerCase()) &&
-    //       application.homeAddress.toLowerCase().includes(filters.homeAddress.toLowerCase()) &&
-    //       application.schoolMascot.toLowerCase().includes(filters.schoolMascot.toLowerCase()) &&
-    //       application.email.toLowerCase().includes(filters.email.toLowerCase()) &&
-    //       application.phoneNumber.toLowerCase().includes(filters.phoneNumber.toLowerCase()) &&
-    //       application.optInText.toLowerCase().includes(filters.optInText.toLowerCase()) &&
-    //       application.experience.toLowerCase().includes(filters.experience.toLowerCase()) &&
-    //       application.transportation.toLowerCase().includes(filters.transportation.toLowerCase())
-    //     );
-    //   });
-    // },
+
   },
 };
 </script>
