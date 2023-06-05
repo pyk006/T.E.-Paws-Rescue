@@ -154,11 +154,17 @@ export default {
   white-space: nowrap;
 }
 
+.banner {
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 .banner-slider {
   display: inline-block;
   animation: rollBannerAnimation linear infinite;
   animation-duration: 12s;
-  margin-right: -10px;
   border: 3px solid rgb(5, 81, 119);
   border-left: none;
   border-right: none;
@@ -169,15 +175,14 @@ export default {
 
 .banner-slide {
   display: inline-block;
-  margin-right: 0;
   animation: bannerAnimation linear infinite;
   animation-duration: 12s;
   transition: transform 0.5s ease-in-out;
 }
 
 .slide-image {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 350px; 
   object-fit: cover;
 }
 
@@ -325,6 +330,18 @@ footer {
   .volunteer-directory-link:hover{
   background-color: #ED815A;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 768px) {
+  .banner-slide {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-slide {
+    margin-bottom: 10px;
+  }
 }
 
 </style>
