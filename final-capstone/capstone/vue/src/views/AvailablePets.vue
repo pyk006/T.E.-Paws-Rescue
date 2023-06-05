@@ -69,6 +69,9 @@ export default {
     searchPets() {
       this.fetchPets();
     },
+    updateSearchQuery(event) {
+      this.searchQuery = event.target.value;
+    },
   },
   computed: {
     isLoggedIn() {
@@ -99,7 +102,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  color: rgb(5, 81, 119);
+  color: white
 }
 
 .pet-cards {
@@ -109,6 +112,7 @@ export default {
   height: 750px;
   padding: 0 10px;
   margin-bottom: 20px;
+  background: rgb(5, 81, 119);;
 }
 
 .pet-cards .pet-photo {
@@ -125,18 +129,20 @@ export default {
 
 .search-container {
   margin-bottom: 10px;
+  margin-left: 20px;
 }
 
 .search-container input {
   width: 200px;
   padding: 10px;
-  margin-right: 10px;
+  margin-right: 20px;
+  
 }
 
 .search-container button {
   background-color: rgb(5, 81, 119);
   color: white;
-  padding: 10px 30px;
+  padding: 10px 0px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
