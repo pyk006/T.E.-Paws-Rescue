@@ -4,9 +4,9 @@
       <input
         type="text"
         v-model="searchQuery"
-        placeholder="Search by type"
+        placeholder="Search by animal type"
       />
-      <button v-on:click="searchPets">Search</button>
+      <button @click="searchPets">Search</button>
     </div>
 
     <router-link
@@ -69,6 +69,9 @@ export default {
     searchPets() {
       this.fetchPets();
     },
+    updateSearchQuery(event) {
+      this.searchQuery = event.target.value;
+    },
   },
   computed: {
     isLoggedIn() {
@@ -106,7 +109,7 @@ export default {
   border: 3px solid rgb(5, 81, 119);
   border-radius: 10px;
   width: 490px;
-  height: 780px;
+  height: 750px;
   padding: 0 10px;
   margin-bottom: 20px;
   background: rgb(5, 81, 119);;

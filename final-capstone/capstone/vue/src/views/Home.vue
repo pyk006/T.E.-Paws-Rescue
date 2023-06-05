@@ -375,10 +375,4 @@ footer {
     height: 140px;
   }
 }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 935e5043855edb02ec4bab5e720d8480f756dcb9
 </style>
