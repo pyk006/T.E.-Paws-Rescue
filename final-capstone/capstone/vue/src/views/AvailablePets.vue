@@ -4,9 +4,9 @@
       <input
         type="text"
         v-model="searchQuery"
-        placeholder="Search by animal type"
+        placeholder="Search by type"
       />
-      <button @click="searchPets">Search</button>
+      <button v-on:click="searchPets">Search</button>
     </div>
 
     <router-link
@@ -68,9 +68,6 @@ export default {
     },
     searchPets() {
       this.fetchPets();
-    },
-    updateSearchQuery(event) {
-      this.searchQuery = event.target.value;
     },
   },
   computed: {
