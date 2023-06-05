@@ -46,7 +46,6 @@
           <th>Opt-in Text</th>
           <th>Prior Experience</th>
           <th>Transportation</th>
-          
         </tr>
       </thead>
       <tbody>
@@ -94,7 +93,8 @@ export default {
   methods: {
     fetchApplications() {
       volunteerService
-        .getApplications().then((response) => {
+        .getApplications()
+        .then((response) => {
           this.applications = response.data.map((application) => ({
             ...application,
             adminApproval: "pending", // Set the status as "pending" for all applications when pulled in
@@ -106,12 +106,22 @@ export default {
         });
     },
     updateAdminApproval(application) {
-      const newStatus = application.adminApproval === "approve" ? "Approved" : "Declined";
+      const newStatus =
+        application.adminApproval === "approve" ? "Approved" : "Declined";
       const isNewlyApproved = newStatus === "Approved";
       volunteerService
-        .updateApplication({ adminApproval: newStatus, applicationId: application.applicationId })
+        .updateApplication({
+          adminApproval: newStatus,
+          applicationId: application.applicationId,
+        })
         .then((response) => {
           console.log("Admin approval updated successfully:", response.data);
+          const updatedApplication = this.applications.find(
+            (app) => app.id === application.id
+          );
+          if (updatedApplication) {
+            updatedApplication.adminApproval = newStatus;
+          }
           if (isNewlyApproved) {
             // Register the user as a new user with an auto-generated password
             const newUser = {
@@ -120,10 +130,14 @@ export default {
               confirmPassword: "tepawsvolunteer",
               role: "user",
             };
-            authService.register(newUser)
+            authService
+              .register(newUser)
               .then((registerResponse) => {
                 if (registerResponse.status === 201) {
-                  console.log("User registered successfully:", registerResponse.data);
+                  console.log(
+                    "User registered successfully:",
+                    registerResponse.data
+                  );
                   // push new user to the database..
                   window.alert("New user added successfully");
                 }
@@ -152,11 +166,10 @@ export default {
     //       application.phoneNumber.toLowerCase().includes(filters.phoneNumber.toLowerCase()) &&
     //       application.optInText.toLowerCase().includes(filters.optInText.toLowerCase()) &&
     //       application.experience.toLowerCase().includes(filters.experience.toLowerCase()) &&
-    //       application.transportation.toLowerCase().includes(filters.transportation.toLowerCase()) 
+    //       application.transportation.toLowerCase().includes(filters.transportation.toLowerCase())
     //     );
     //   });
     // },
-
   },
 };
 </script>

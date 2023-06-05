@@ -15,4 +15,8 @@ export default {
         return axios.put(url, data);
     },
 
+    getVolunteers() {
+        return axios.get('/directory');
+    },
+
 }

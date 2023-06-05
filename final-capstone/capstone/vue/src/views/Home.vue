@@ -1,9 +1,6 @@
 <template>
   <div class="home">
     <div class="homepage-links-container">
-      <router-link class="homepage-link" v-bind:to="{ name: 'adoptedPets' }"
-        >Adopted Pets</router-link
-      >
       <router-link class="homepage-link" v-bind:to="{ name: 'availablePets' }"
         >Available Pets</router-link
       >

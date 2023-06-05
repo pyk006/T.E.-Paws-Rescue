@@ -62,7 +62,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
     public List<Applications> getAllApprovedApplications() {
         List<Applications> applicationsList = new ArrayList<>();
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, " +
-                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE admin_approval = 'Approved;";
+                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE admin_approval = 'Approved'";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
