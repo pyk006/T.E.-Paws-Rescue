@@ -8,7 +8,7 @@ public interface AnimalsDao {
 
     List<Animals> getAllAnimals();
 
-    boolean createAnimal(String animalName, String animalType, String gender, int age, String description, String breed, boolean isAdoptable);
+    boolean createAnimal(String animalName, String animalType, String gender, int age, String description, String breed, boolean isAdoptable, String photo);
 
     Animals getAnimalById(int animalId);
 

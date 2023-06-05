@@ -42,12 +42,12 @@ public class JdbcAnimalsDao implements AnimalsDao{
     }
 
     @Override
-    public boolean createAnimal(String animalName, String animalType, String gender, int age, String description, String breed, boolean isAdoptable) {
-        String sql = "INSERT INTO animals (animal_name, animal_type, gender, age, description, " +
-                " breed, is_adoptable) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    public boolean createAnimal(String animalName, String animalType, String gender, int age, String description, String breed, boolean isAdoptable, String photo) {
+        String sql = "INSERT INTO animals (animal_name, animal_type, gender, age, description," +
+                " breed, is_adoptable, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         boolean status;
         try{
-            status= jdbcTemplate.update(sql, animalName, animalType, gender, age, description, breed, isAdoptable) == 1;
+            status= jdbcTemplate.update(sql, animalName, animalType, gender, age, description, breed, isAdoptable, photo) == 1;
         }  catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (BadSqlGrammarException e) {
