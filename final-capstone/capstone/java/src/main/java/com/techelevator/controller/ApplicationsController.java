@@ -36,4 +36,9 @@ public class ApplicationsController {
     public String approveApplication(@RequestBody Applications applications) {
         return applicationsDao.approveApplication(applications.getApplicationId(), applications.isAdminApproval()) ? "Successfully Approved Application!" : "That didn't work";
     }
+
+    @RequestMapping(path = "/updateApps", method = RequestMethod.PUT)
+    public String updateApplication(@RequestBody Applications applications) {
+        return applicationsDao.updateApplication(applications) ? "Successfully Updated Application" : "Update failed";
+    }
 }

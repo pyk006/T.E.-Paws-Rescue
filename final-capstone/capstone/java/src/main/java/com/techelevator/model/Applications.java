@@ -19,10 +19,15 @@ public class Applications {
     private boolean experience;
     private boolean transportation;
     private String bkgrndCheckApproved = "pending";
+<<<<<<< HEAD
     @JsonProperty("adminApproval")
     private String adminApproval = "pending";
+=======
+    private String adminApproval = "Pending";
+    private String photo = "";
+>>>>>>> 9f28946b253b346d712515fd3f164c812c956da6
 
-    public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String availability, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, String adminApproval) {
+    public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String availability, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, String adminApproval, String photo) {
         this.applicationId = applicationId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,6 +42,7 @@ public class Applications {
         this.transportation = transportation;
         this.bkgrndCheckApproved = bkgrndCheckApproved;
         this.adminApproval = adminApproval;
+        this.photo = photo;
     }
 
     public Applications() {
@@ -152,6 +158,14 @@ public class Applications {
 
     public void setAdminApproval(String adminApproval) {
         this.adminApproval = adminApproval;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     @Override
