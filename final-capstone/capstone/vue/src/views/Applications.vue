@@ -49,15 +49,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="application in applications" :key="application.id">
+        <tr v-for="application in applications" :key="application.applicationId">
           <td>
             <select
               v-model="application.adminApproval"
               @change="updateAdminApproval(application)"
             >
-              <option value="pending">Pending</option>
-              <option value="approve">Approve</option>
-              <option value="decline">Decline</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approve</option>
+              <option value="Declined">Decline</option>
             </select>
           </td>
           <td>{{ application.firstName }}</td>
@@ -90,6 +90,7 @@ export default {
   created() {
     this.fetchApplications();
   },
+
   methods: {
     fetchApplications() {
       volunteerService
@@ -97,7 +98,7 @@ export default {
         .then((response) => {
           this.applications = response.data.map((application) => ({
             ...application,
-            adminApproval: "pending", // Set the status as "pending" for all applications when pulled in
+            adminApproval: "Pending", // Set the status as "pending" for all applications when pulled in or retrieve stored status data
           }));
           console.log(response.data);
         })
@@ -107,7 +108,7 @@ export default {
     },
     updateAdminApproval(application) {
       const newStatus =
-        application.adminApproval === "approve" ? "Approved" : "Declined";
+        application.adminApproval === "Approved" ? "Approved" : "Declined";
       const isNewlyApproved = newStatus === "Approved";
       volunteerService
         .updateApplication({
@@ -116,12 +117,16 @@ export default {
         })
         .then((response) => {
           console.log("Admin approval updated successfully:", response.data);
-          const updatedApplication = this.applications.find(
-            (app) => app.id === application.id
-          );
-          if (updatedApplication) {
-            updatedApplication.adminApproval = newStatus;
-          }
+          const updatedApplicationIndex = this.applications.findIndex(
+        (app) => app.id === application.id);
+        if (updatedApplicationIndex !== -1) {
+        // Update the admin approval status
+        this.applications[updatedApplicationIndex].adminApproval = newStatus;
+        }
+        if (!isNewlyApproved) {
+          // Remove the application from the list view
+          this.applications.splice(updatedApplicationIndex, 1);
+        }
           if (isNewlyApproved) {
             // Register the user as a new user with an auto-generated password
             const newUser = {
@@ -151,6 +156,7 @@ export default {
           console.error("Error updating admin approval:", error);
         });
     },
+  
   },
   computed: {
     // filteredApplications(){
