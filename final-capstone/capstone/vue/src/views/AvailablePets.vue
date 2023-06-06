@@ -22,7 +22,6 @@
         <div class="pet-cards" v-for="pet in filteredPets" :key="pet.animal_id">
           <pet
             :photo="pet.photo"
-            :animalId = "pet.animalId"
             :animalName="pet.animalName"
             :animalType="pet.animalType"
             :gender="pet.gender"
@@ -86,11 +85,12 @@ export default {
     },
     filteredPets() {
       if (this.searchQuery) {
-        return this.pets.filter((pet) =>
-          pet.animalType.toLowerCase().includes(this.searchQuery.toLowerCase())
+        return this.pets.filter((pet) => {
+          return pet.animalType.toLowerCase().includes(this.searchQuery.toLowerCase()) && pet.isAdoptable
+        }
         );
       } else {
-        return this.pets;
+      return this.pets.filter((pet) => pet.isAdoptable);
       }
     },
   },
