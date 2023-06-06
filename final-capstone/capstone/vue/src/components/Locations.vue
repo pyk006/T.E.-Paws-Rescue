@@ -189,9 +189,7 @@ export default {
     this.locations.push(this.calculateRandomLocation().toString());
     this.locations.push("45.490509, -122.598167");
     this.locations.push(this.calculateRandomLocation().toString());
-    this.$root.$on('Locations', () => {
-      this.initMap();
-    })
+    this.initMap();
 
   },
 };

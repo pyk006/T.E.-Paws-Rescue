@@ -15,7 +15,7 @@
       <p>On a Walk: {{ isOnWalk ? "Yes" : "No" }}</p>
       <button v-if="isLoggedIn" @click="handleToggleWalkAndModalVisibility">{{ isOnWalk ? "End Walk" : "Start Walk" }}</button>
           <Modal
-      v-show="isModalVisible"
+      v-if="isModalVisible"
       @close="closeModal"/>
     </div>
   </div>
