@@ -71,31 +71,54 @@ export default {
     };
   },
 
+
 methods: {
-submitForm() {
-      
-      const cloudinaryComp = this.$refs.cloudinaryComp;
-      if (cloudinaryComp.selectedFile) {
-        cloudinaryComp.uploadImage();
-        petService.submitForm(this.form).then((response) => {
-        if (response.status === 201) {
-          console.log(response.status);
-          this.showForm = false; //hide after successful submission
-          window.alert("Photo uploaded");
-          
-        }
-      },
-      );
-      } else {
-        console.log("Please select an image to upload");
-      }
-      
-    },
-     handleImageUploaded(data) {
+ submitForm() {
+  const cloudinaryComp = this.$refs.cloudinaryComp;
+  if (cloudinaryComp.selectedFile) {
+    cloudinaryComp.uploadImage().then((data) => {
       // Access the image URL from the response data
-      this.form.photo = data.url; // Assuming the URL is stored in the 'url' property of the response object
-      console.log(data.url);
-    },
+      const imageUrl = data.url;
+
+      // Emit the image-uploaded event with the image URL
+        this.handleImageUploaded(imageUrl);
+
+        // Submit the form data with the image URL to the backend
+        this.submitFormData();
+     })
+      .catch((error) => {
+        console.error(error);
+        // Handle error if image upload fails
+      });
+  } else {
+    console.log("Please select an image to upload");
+  }
+},
+submitFormData() {
+  // Send the form data to the backend
+  petService.submitForm(this.form)
+    .then((response) => {
+      if (response.status === 201) {
+        console.log(response.status);
+        this.showForm = false; // hide after successful submission
+        window.alert("Form submitted successfully");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      // Handle error if form submission fails
+    });
+},
+
+
+  handleImageUploaded(imageUrl) {
+  this.form.photo = imageUrl; // Assign the image URL to the form's photo field
+  console.log(imageUrl);
+
+   // Emit the image-uploaded event with the image URL
+  this.$emit("image-uploaded", imageUrl);
+},
+
   },
 };
 

@@ -18,25 +18,20 @@ export default {
     uploadImage() {
       const formData = new FormData();
       formData.append("file", this.selectedFile);
-      formData.append("upload_preset", "animalPhotoCloud"); // Replace with your Cloudinary upload preset
+      formData.append("upload_preset", "animalPhotoCloud"); 
 
-      fetch(
-        `https://api.cloudinary.com/v1_1/dfg9ft030/upload`, // Replace with your Cloudinary cloud name
+      return fetch(
+        `https://api.cloudinary.com/v1_1/dfg9ft030/upload`, 
         {
           method: "POST",
           body: formData,
         }
       )
         .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          // Handle the response from Cloudinary
-          // You can store the uploaded image URL or perform any other actions
-        })
         .catch((error) => {
-          console.error(error);
-          // Handle error if upload fails
-        });
+         console.error(error);
+       // Handle error if upload fails
+      });
     },
   },
 };
