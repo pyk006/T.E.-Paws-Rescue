@@ -67,7 +67,6 @@ export default {
     return {
       isModalVisible: false,
       isOnWalk: false,
-      updatedAnimalObject:{
       updatedAnimalName: '',
       updatedAnimalType: '',
       updatedGender: '',
@@ -75,7 +74,7 @@ export default {
       updatedDescription: '',
       updatedBreed: '',
       updatedIsAdoptable: false,
-      }
+      
     };
   },
   components: {
@@ -98,16 +97,28 @@ export default {
       this.isOnWalk = false;
     },
     updateAnimal() {
-      
-        PetService.editPet(this.updatedAnimalObject).then((response) => {
-         this.updatedAnimal= response.data;
-         console.log (response.status);
-      
-         
+      const updatedAnimalObject = {
+        animalId: this.animalId,
+        animalName: this.updatedAnimalName,
+        animalType: this.updatedAnimalType,
+        gender: this.updatedGender,
+        age: this.updatedAge,
+        description: this.updatedDescription,
+        breed: this.updatedBreed,
+        isAdoptable: this.updatedIsAdoptable,
+      };
+
+      PetService.editPet(updatedAnimalObject)
+        .then((response) => {
+          this.$emit('update-pet', response.data);
+          console.log('Animal updated:', response.data);
         })
         .catch((error) => {
           console.error('Error updating animal:', error);
         });
+    },
+    fetchPets() {
+
     },
     triggerInit() {
       this.$root.$emit('Locations');

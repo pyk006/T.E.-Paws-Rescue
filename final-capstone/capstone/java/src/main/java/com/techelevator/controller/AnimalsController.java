@@ -27,6 +27,7 @@ public class AnimalsController {
 
     @RequestMapping(path = "/animals", method = RequestMethod.PUT)
     public void updateAnimal(@RequestBody Animals animals){
+        System.out.println(animals.toString());
         animalsDao.updateAnimal(animals);
     }
 

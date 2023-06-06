@@ -22,6 +22,7 @@
         <div class="pet-cards" v-for="pet in filteredPets" :key="pet.animal_id">
           <pet
             :photo="pet.photo"
+            :animalId = "pet.animalId"
             :animalName="pet.animalName"
             :animalType="pet.animalType"
             :gender="pet.gender"
