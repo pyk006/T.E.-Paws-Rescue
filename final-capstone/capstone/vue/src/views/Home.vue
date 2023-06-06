@@ -89,7 +89,7 @@
       <div id="find-us">Find Us:</div>
       <div class="address">
         <img src="@/assets/location-pin.png" alt="Location Icon" class="icon" />
-        <span>111 Street Name Portland, OR zipcode</span>
+        <span>6305 SE Foster Rd, Portland, OR 97206</span>
       </div>
       <div id="follow-us">Follow Us:</div>
       <div class="social-icons">

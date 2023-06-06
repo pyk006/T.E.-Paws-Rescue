@@ -3,7 +3,7 @@
     <h1 class="volunteer-directory">Volunteer Directory</h1>
     <div class="volunteer-card-container">
       <div class="volunteer-card" v-for="application in applications" :key="application.id">
-        <img src="@/assets/blank-profile.png" alt="Profile Image" class="profile-image" />
+        <img :src="application.photo" alt="Profile Image" class="profile-image" />
         <div class="volunteer-card-content">
           <h3>{{ application.firstName }} {{ application.lastName }}</h3>
           <p>Phone Number: {{ application.phoneNumber }}</p>
@@ -31,7 +31,6 @@ export default {
     fetchVolunteers(){
       volunteerService.getVolunteers().then((response) => {
         this.applications = response.data;
-        // this.applications = response.data.filter(application => application.adminApproval === "Approved");
       }).catch((error) => {
         console.error("Error fetching volunteers:", error);
       });
