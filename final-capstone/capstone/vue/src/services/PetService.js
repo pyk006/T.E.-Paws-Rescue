@@ -9,4 +9,8 @@ export default {
 submitForm(formData) {
         return axios.post(`/availablePets/addPets`, formData)
     },
+
+    editPet(animalId) {
+    return axios.put('/animals', animalId)
+},
 }
