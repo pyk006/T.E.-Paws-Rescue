@@ -59,7 +59,6 @@ INSERT INTO applications (first_name, last_name, date_of_birth, home_address, av
 INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES ('Ava', 'Wilson', '1999-01-10', '456 Elm Rd., Dallas, TX, 75201',
  '35', 'Tigers', 'AvaWilson8901@hotmail.com', '555-901-2345', false, true, true, 'Approved', 'Pending');
 
-
-
+INSERT INTO adopter(animal_id, adopter_first_name, adopter_last_name, email, phone_number) VALUES ((SELECT animal_id FROM animals WHERE animal_name = 'Lola'), 'Bob', 'Bob', 'Bob', 'Bob');
 
 COMMIT TRANSACTION;

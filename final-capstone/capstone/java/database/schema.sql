@@ -2,7 +2,9 @@ BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS applications;
+DROP TABLE IF EXISTS adopter;
 DROP TABLE IF EXISTS animals;
+
 
 CREATE TABLE applications (
 	application_id SERIAL,
@@ -46,6 +48,18 @@ CREATE TABLE animals(
 	description varchar(250),
     photo varchar(250),
 	CONSTRAINT PK_animal PRIMARY KEY (animal_id)
+);
+
+CREATE TABLE adopter(
+adopter_id serial,
+animal_id int NOT NULL,
+adopter_first_name varchar(50) NOT NULL,
+adopter_last_name varchar(50) NOT NULL,
+email varchar(50) NOT NULL,
+phone_number varchar(50) NOT NULL,
+
+CONSTRAINT PK_adopter PRIMARY KEY (adopter_id),
+CONSTRAINT FK_animal_id FOREIGN KEY (animal_id) REFERENCES animals(animal_id)
 );
 
 
