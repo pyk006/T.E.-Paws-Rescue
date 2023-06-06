@@ -9,6 +9,7 @@ import Volunteer from '../views/Volunteer.vue'
 import AvailablePets from '../views/AvailablePets.vue'
 import Applications from '../views/Applications.vue'
 import AddPets from '../views/AddPets.vue'
+import EditPets from '../views/EditPets.vue'
 import VolunteerDirectory from '../views/VolunteerDirectory.vue'
 
 
@@ -81,6 +82,14 @@ const router = new Router({
       path: "/availablePets/addPets",
       name: "addPets",
       component: AddPets,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/availablePets/editPets",
+      name: "editPets",
+      component: EditPets,
       meta: {
         requiresAuth: true
       }

@@ -10,6 +10,7 @@
       <p>Breed: {{ breed }}</p>
       <p v-if="isAdoptable">Status: Adoptable</p>
       <p v-else>Status: Not Adoptable</p>
+      <slot></slot>
     </div>
     <div class="walk-status" v-if="animalType === 'Dog'">
       <p>On a Walk: {{ isOnWalk ? "Yes" : "No" }}</p>

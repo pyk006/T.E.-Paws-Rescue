@@ -30,6 +30,12 @@
             :breed="pet.breed"
             :isAdoptable="pet.adoptable"
           />
+<router-link
+      class="button-edit-pets"
+      v-if="isLoggedIn"
+      v-bind:to="{ name: 'editPets' }"
+      >Edit/Delete</router-link
+    >
         </div>
       </div>
     </div>
@@ -174,13 +180,13 @@ export default {
 
 @media (max-width: 768px) {
   .pet-card-container {
-    justify-content: center; /* Center align cards */
+    justify-content: center; 
   }
 
   .pet-cards {
-    width: 100%; /* Take full width of the container */
-    max-width: none; /* Remove the max-width limit */
-    margin: 10px 0; /* Adjust margin */
+    width: 100%; 
+    max-width: none; 
+    margin: 10px 0; 
   }
 }
 
