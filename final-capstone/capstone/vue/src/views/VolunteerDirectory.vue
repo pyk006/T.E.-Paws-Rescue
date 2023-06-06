@@ -3,7 +3,7 @@
     <h1 class="volunteer-directory">Volunteer Directory</h1>
     <div class="volunteer-card-container">
       <div class="volunteer-card" v-for="application in applications" :key="application.id">
-        <img :src="application.photo" alt="Profile Image" class="profile-image" />
+        <img :src="getPhoto(application.photo)" alt="Profile Image" class="profile-image" />
         <div class="volunteer-card-content">
           <h3>{{ application.firstName }} {{ application.lastName }}</h3>
           <p>Phone Number: {{ application.phoneNumber }}</p>
@@ -34,6 +34,14 @@ export default {
       }).catch((error) => {
         console.error("Error fetching volunteers:", error);
       });
+    },
+
+    getPhoto(photo){
+      if (photo && photo.trim() !== ""){
+        return photo;
+      } else {
+        return require("@/assets/blank-profile.png");
+      }
     },
 
   },
