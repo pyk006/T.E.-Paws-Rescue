@@ -34,7 +34,7 @@
 <router-link
       class="button-edit-pets"
       v-if="isLoggedIn"
-      v-bind:to="{ name: 'editPets' }"
+      v-bind:to="{ name: 'editPets', params: {pet: pet} }"
       >Edit/Delete</router-link
     >
         </div>

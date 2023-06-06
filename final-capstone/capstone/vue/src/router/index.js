@@ -92,7 +92,8 @@ const router = new Router({
       component: EditPets,
       meta: {
         requiresAuth: true
-      }
+      },
+      props: true,
     },
     {
       path: "/applications",

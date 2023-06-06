@@ -11,6 +11,7 @@ public class Animals {
     private int age;
     private String description;
     private String breed;
+    @JsonProperty("isAdoptable")
     private boolean isAdoptable;
     @JsonProperty("photo")
     private String photo;

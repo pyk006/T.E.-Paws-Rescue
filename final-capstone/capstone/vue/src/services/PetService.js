@@ -10,7 +10,7 @@ submitForm(formData) {
         return axios.post(`/availablePets/addPets`, formData)
     },
 
-    editPet(animalId) {
-    return axios.put('/animals', animalId)
+    editPet(animalObject) {
+    return axios.put('/animals', animalObject)
 },
 }
