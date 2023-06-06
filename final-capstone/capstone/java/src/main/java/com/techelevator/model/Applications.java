@@ -181,6 +181,7 @@ public class Applications {
                 ", transportation=" + transportation +
                 ", bkgrndCheckApproved='" + bkgrndCheckApproved + '\'' +
                 ", adminApproval='" + adminApproval + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }
