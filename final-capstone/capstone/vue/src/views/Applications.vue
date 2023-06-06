@@ -220,4 +220,28 @@ tr:hover {
   background-color: #ed815a;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
+
+@media (max-width: 600px) {
+  /* Mobile styles */
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow-x: auto;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 6px;
+  }
+
+  .volunteer-directory-link {
+    font-size: 14px;
+  }
+}
+
 </style>

@@ -46,7 +46,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: #b2d8f5;
@@ -110,16 +110,26 @@ header {
     width: 150px;
   }
 
-  .button-link,
-  .button-link-last {
+ #nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .button-link, .button-link-last {
     font-size: 12px;
     padding: 2px 6px;
     border-radius: 6px;
+    margin-right: 5px;
+    margin-bottom: 10px;
   }
 
-  .button-link-last {
-    margin-right: 15px;
-  }
 }
 
 </style>

@@ -102,22 +102,22 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  color: white
+  color: white;
 }
 
 .pet-cards {
   border: 3px solid rgb(5, 81, 119);
   border-radius: 10px;
-  width: 490px;
-  height: 830px;
+  max-width: 400px;
+  height: 800px;
   padding: 0 10px;
-  margin-bottom: 20px;
+  margin: 10px;
   background: rgb(5, 81, 119);;
 }
 
 .pet-cards .pet-photo {
   width: 100%;
-  height: 400px; 
+  height: 300px; 
   object-fit: cover;
   border-radius: 10px;
   margin-top: 5px;
@@ -171,4 +171,17 @@ export default {
 .button-link-last:hover {
   opacity: 0.8;
 }
+
+@media (max-width: 768px) {
+  .pet-card-container {
+    justify-content: center; /* Center align cards */
+  }
+
+  .pet-cards {
+    width: 100%; /* Take full width of the container */
+    max-width: none; /* Remove the max-width limit */
+    margin: 10px 0; /* Adjust margin */
+  }
+}
+
 </style>

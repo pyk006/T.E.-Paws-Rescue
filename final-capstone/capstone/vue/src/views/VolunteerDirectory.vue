@@ -74,4 +74,14 @@ export default {
   margin-top: 10px;
 }
 
+@media (max-width: 576px) {
+  .directory-container {
+    margin: 0 20px; /* Adjust the margin as desired */
+  }
+
+  .volunteer-card {
+    width: 100%; /* Make the cards take full width */
+  }
+}
+
 </style>

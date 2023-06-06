@@ -97,7 +97,11 @@
         <img src="@/assets/instagram.png" alt="Instagram Icon" class="icon" />
       </div>
       <div v-if="isLoggedIn" class="applications-link">
-        <router-link class="application-button" v-bind:to="{ name: 'applications' }">Applications</router-link>
+        <router-link
+          class="application-button"
+          v-bind:to="{ name: 'applications' }"
+          >Applications</router-link
+        >
       </div>
     </footer>
   </div>
@@ -140,7 +144,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .banner {
   overflow: hidden;
   white-space: nowrap;
@@ -323,7 +327,7 @@ footer {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   color: #0870a3;
   cursor: pointer;
-  margin: 0 10px;
+  margin-top: 10px;
 }
 .homepage-link:hover {
   background-color: #ed815a;
@@ -370,9 +374,38 @@ footer {
     margin-bottom: 5px;
   }
 
-   .slide-image {
+  .slide-image {
     width: 140px;
     height: 140px;
+  }
+
+  .homepage-links-container {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .homepage-link {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+    .applications-link {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .application-button {
+    font-weight: bold;
+    text-decoration: none;
+    background-color: #ED815A;
+    padding: 4px 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.8); 
+    color: #0870a3;
+    cursor: pointer;
+    max-width: 200px; 
   }
 }
 </style>

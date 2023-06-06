@@ -28,14 +28,14 @@
               type="radio"
               id="opt-in-yes"
               value="true"
-              v-model="form.optInText"
+              v-model="form.adoptable"
           />
-          <label for="opt-in-no">No</label>
+          <label for="isAdoptable">No</label>
             <input
               type="radio"
               id="opt-in-no"
               value="false"
-              v-model="form.optInText"
+              v-model="form.adoptable"
             />
       <br>        
             <!-- <button type="submit">Submit</button> -->
