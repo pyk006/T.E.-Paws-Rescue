@@ -45,7 +45,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
     public List<Applications> getAllApplications() {
         List<Applications> applicationsList = new ArrayList<>();
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, " +
-                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications;";
+                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval, photo FROM applications;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
@@ -62,7 +62,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
     public List<Applications> getAllApprovedApplications() {
         List<Applications> applicationsList = new ArrayList<>();
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, " +
-                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE admin_approval = 'Approved'";
+                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval, photo FROM applications WHERE admin_approval = 'Approved'";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
@@ -76,12 +76,12 @@ public class JdbcApplicationsDao implements ApplicationsDao {
         return applicationsList;
     }
 
-    public boolean createApplication(String firstName, String lastName, String date, String homeAddress, String availability, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation) {
+    public boolean createApplication(String firstName, String lastName, String date, String homeAddress, String availability, String mascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String photo) {
         String sql = "INSERT INTO applications (first_name, last_name, date_of_birth, home_address, availability, school_mascot, email, " +
-            "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', 'Pending');";
+            "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', 'Pending', ?);";
         boolean isSuccessful = false;
         try {
-            isSuccessful = jdbcTemplate.update(sql, firstName, lastName, date, homeAddress, availability, mascot, email, phoneNumber, optInText, experience, transportation) == 1;
+            isSuccessful = jdbcTemplate.update(sql, firstName, lastName, date, homeAddress, availability, mascot, email, phoneNumber, optInText, experience, transportation, photo) == 1;
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (BadSqlGrammarException e) {
@@ -95,7 +95,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
     public Applications findById(int applicationId) {
         Applications application = null;
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email," +
-                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE application_id = ?";
+                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval, photo FROM applications WHERE application_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, applicationId);
             if (results.next()) {
@@ -111,7 +111,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
     public List<Applications> findByFirstName(String firstName) {
         List<Applications> applicationsList = new ArrayList<>();
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email," +
-                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE first_name = ?";
+                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval, photo FROM applications WHERE first_name = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName);
             while (results.next()) {
@@ -127,7 +127,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
     public List<Applications> findByLastName(String lastName) {
         List<Applications> applicationsList = new ArrayList<>();
         String sql = "SELECT application_id, first_name, last_name, date_of_birth, home_address, availability, school_mascot, email," +
-                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval FROM applications WHERE last_name = ?";
+                "phone_number, opt_in_text, experience, transportation, bkgrnd_check_approved, admin_approval, photo FROM applications WHERE last_name = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, lastName);
             while (results.next()) {
@@ -178,6 +178,7 @@ public class JdbcApplicationsDao implements ApplicationsDao {
         application.setTransportation(sql.getBoolean("transportation"));
         application.setBkgrndCheckApproved(sql.getString("bkgrnd_check_approved"));
         application.setAdminApproval(sql.getString("admin_approval"));
+        application.setPhoto(sql.getString("photo"));
         return application;
 
     }
