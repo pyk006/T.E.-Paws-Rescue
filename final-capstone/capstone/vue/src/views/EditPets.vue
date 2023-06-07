@@ -21,8 +21,22 @@
       <label for="breed">Breed:</label>
       <input type="text" id="breed" v-model="updatedBreed" required>
       
-      <label for="isAdoptable">Adoptable:</label>
-      <input type="checkbox" id="isAdoptable" v-model="updatedIsAdoptable">
+            <label for="adoptable-yes">Yes</label>
+            <input
+              type="radio"
+              id="adoptable-yes"
+              value="true"
+              v-model="updatedIsAdoptable"
+            />
+
+            <label for="adoptable-no">No</label>
+            <input
+              type="radio"
+              id="adoptable-no"
+              value="false"
+              v-model="updatedIsAdoptable"
+            />
+
       
       <button type="submit">Save Changes</button>
       </div>
@@ -37,6 +51,7 @@ import PetService from '../services/PetService'
 
 export default {
   props: {
+    pet: Object,
     photo: String,
     animalName: String,
     animalType: String,
@@ -65,7 +80,7 @@ export default {
   methods: {
     updateAnimal() {
       const updatedAnimalObject = {
-        animalId: this.animalId,
+        animalId: this.pet.animalId,
         animalName: this.updatedAnimalName,
         animalType: this.updatedAnimalType,
         gender: this.updatedGender,
@@ -77,7 +92,8 @@ export default {
 
       PetService.editPet(updatedAnimalObject)
         .then((response) => {
-          this.$emit('update-pet', response.data);
+          this.$emit('update-pet', updatedAnimalObject);
+          window.alert(`${updatedAnimalObject.animalName} has been changed!`)
           console.log('Animal updated:', response.data);
         })
         .catch((error) => {
