@@ -116,7 +116,7 @@ export default {
   border: 3px solid rgb(5, 81, 119);
   border-radius: 10px;
   max-width: 400px;
-  height: 800px;
+  height: 850px;
   padding: 0 10px;
   margin: 10px;
   background: rgb(5, 81, 119);;
@@ -177,6 +177,19 @@ export default {
 
 .button-link-last:hover {
   opacity: 0.8;
+}
+.button-edit-pets{
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ed815a;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  color: #0870a3;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 @media (max-width: 768px) {
