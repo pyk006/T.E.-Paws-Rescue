@@ -15,4 +15,5 @@ public interface ApplicationsDao {
     List<Applications> findByFirstName(String firstName);
     List<Applications> findByLastName(String lastName);
     boolean updateApplication(Applications applications);
+    boolean updateApplicationPhoto (Applications applications);
 }

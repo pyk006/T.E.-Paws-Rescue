@@ -41,4 +41,11 @@ public class ApplicationsController {
     public String updateApplication(@RequestBody Applications applications) {
         return applicationsDao.updateApplication(applications) ? "Successfully Updated Application" : "Update failed";
     }
+
+    @RequestMapping(path = "/updateApps/photo", method = RequestMethod.PUT)
+    public String updateApplicationPhoto(@RequestBody Applications applications) {
+        System.out.println(applications.toString());
+        return applicationsDao.updateApplicationPhoto(applications) ? "Successfully Updated Application" : "Update failed";
+    }
 }
+
