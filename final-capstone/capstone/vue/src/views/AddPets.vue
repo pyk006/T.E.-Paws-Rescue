@@ -1,6 +1,6 @@
 <template>
 <div>
-  <router-link class="availablepets" v-bind:to="{ name: 'availablePets' }">Go to Available Pets</router-link>
+  <router-link class="availablepetslink" v-bind:to="{ name: 'availablePets' }">Go to Available Pets</router-link>
 
   <div class="form-container">
       <label for="image-upload">Image (PNG only):</label>
@@ -147,7 +147,7 @@ submitFormData() {
   width: 200px;
 }
 
-.availablepets {
+.availablepetslink {
   font-weight: bold;
   text-decoration: none;
   background-color: #ED815A;
@@ -159,7 +159,7 @@ submitFormData() {
   cursor: pointer;
 }
 
-.button-link:hover{
+.availablepetslink:hover{
   background-color: #ED815A;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
