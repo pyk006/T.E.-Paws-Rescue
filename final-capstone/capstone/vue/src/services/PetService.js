@@ -13,6 +13,7 @@ export default {
     editPet(animalObject) {
     return axios.put('/animals', animalObject)
     },
+    
     updatePetPhoto(object) {
         return axios.put('/animals/UpdatePhoto', object)
     }

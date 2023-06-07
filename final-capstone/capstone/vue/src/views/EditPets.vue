@@ -1,24 +1,5 @@
 <template>
   <div>
-    <div class="pet-card">
-      <div class="pet-info">
-        <h2>{{ animalName }}</h2>
-        <p>Type: {{ animalType }}</p>
-        <p>Gender: {{ gender }}</p>
-        <p>Age: {{ age }}</p>
-        <p>Description: {{ description }}</p>
-        <p>Breed: {{ breed }}</p>
-        <p v-if="isAdoptable">Status: Adoptable</p>
-        <p v-else>Status: Not Adoptable</p>
-        <slot></slot>
-      </div>
-      <div class="walk-status" v-if="animalType === 'Dog'">
-        <p>On a Walk: {{ isOnWalk ? "Yes" : "No" }}</p>
-        <button v-if="isLoggedIn" @click="handleToggleWalkAndModalVisibility">{{ isOnWalk ? "End Walk" : "Start Walk" }}</button>
-        <Modal v-show="isModalVisible" @close="closeModal"/>
-      </div>
-    </div>
-
     <form @submit.prevent="updateAnimal" class="editPetForm">
       <h3>Edit Pet Card</h3> 
       <div class="form-column">
@@ -51,7 +32,7 @@
 </template>
 
 <script>
-import Modal from '../components/Modal.vue';
+// import Modal from '../components/Modal.vue';
 import PetService from '../services/PetService'
 
 export default {
@@ -68,8 +49,6 @@ export default {
   },
   data() {
     return {
-      isModalVisible: false,
-      isOnWalk: false,
       updatedAnimalName: '',
       updatedAnimalType: '',
       updatedGender: '',
@@ -81,24 +60,9 @@ export default {
     };
   },
   components: {
-    Modal,
+
   },
   methods: {
-    handleToggleWalkAndModalVisibility() {
-      this.toggleWalkStatus();
-      this.showModal();
-      this.triggerInit();
-    },
-    toggleWalkStatus() {
-      this.isOnWalk = !this.isOnWalk;
-    },
-    showModal() {
-      this.isModalVisible = true;
-    },
-    closeModal() {
-      this.isModalVisible = false;
-      this.isOnWalk = false;
-    },
     updateAnimal() {
       const updatedAnimalObject = {
         animalId: this.animalId,
@@ -119,23 +83,6 @@ export default {
         .catch((error) => {
           console.error('Error updating animal:', error);
         });
-    },
-    fetchPets() {
-
-    },
-    triggerInit() {
-      this.$root.$emit('Locations');
-    },
-  },
-  watch: {
-    isOnWalk(value) {
-      if (value) {
-        
-        console.log('The pet is on a walk!');
-      } else {
-       
-        console.log('The pet has finished the walk.');
-      }
     },
   },
   computed: {

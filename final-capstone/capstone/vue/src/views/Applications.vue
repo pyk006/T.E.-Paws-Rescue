@@ -22,7 +22,7 @@
     <table id="tblApplications">
       <thead>
         <tr>
-          <th>Admin Approval</th>
+          <th v-if="isAdmin">Admin Approval</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Date of Birth</th>
@@ -40,7 +40,7 @@
           v-for="application in filteredApplications"
           :key="application.applicationId"
         >
-          <td>
+          <td v-if="isAdmin">
             <select
               v-model="application.adminApproval"
               @change="updateAdminApproval(application)"
@@ -97,6 +97,12 @@ export default {
         });
     },
     updateAdminApproval(application) {
+      //check if user is admin
+      if(!this.isAdmin) {
+        console.error("Unauthorized access: Only admins can update the approval status.")
+        return;
+      }
+
       const newStatus =
         application.adminApproval === "Approved" ? "Approved" : "Declined";
       const isNewlyApproved = newStatus === "Approved";
@@ -165,6 +171,9 @@ export default {
     isLoggedIn() {
       return this.$store.state.token !== "";
     },
+    isAdmin(){
+      return this.$store.state.role === "ROLE_ADMIN";
+    },
 
   },
 };
@@ -212,7 +221,7 @@ tr:hover {
   background-color: #ed815a;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  color: #0870a3;
+  color: rgb(5, 81, 119);
   text-decoration: none;
 }
 

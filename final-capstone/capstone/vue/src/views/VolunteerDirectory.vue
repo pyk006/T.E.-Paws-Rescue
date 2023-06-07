@@ -67,7 +67,7 @@ export default {
   border: 3px solid rgb(5, 81, 119);
   background-color: rgb(5, 81, 119);
   border-radius: 10px;
-  width: 250px;
+  width: 300px;
   height: 250px;
   padding: 0 20px;
   margin: 10px;
@@ -79,6 +79,17 @@ export default {
   object-fit: cover;
   border-radius: 50%;
   margin-top: 10px;
+}
+
+.applications-link {
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb(5, 81, 119);
+  margin-left: 10px;
+}
+
+.applications-link:hover {
+  color: #ED815A;
 }
 
 @media (max-width: 576px) {

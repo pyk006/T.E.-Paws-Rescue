@@ -91,7 +91,7 @@ header {
   padding: 4px 8px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.8); 
-  color: #0870a3;
+  color: rgb(5, 81, 119);
   cursor: pointer;
 }
 

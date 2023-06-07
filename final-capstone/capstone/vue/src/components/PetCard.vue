@@ -4,10 +4,9 @@
     <img :src="photo" alt="Pet Photo" class="pet-photo" />
     <!-- <button>Update Photo</button> -->
     
-    <label for="image-upload">Update Photo:</label>
-    <CloudinaryWidget @photo-uploaded="updatePhoto" />
-
-    
+    <label v-if="isLoggedIn" for="image-upload">Update Photo:
+      <CloudinaryWidget @photo-uploaded="updatePhoto" />
+    </label>
     
     <div class="pet-info">
       <h2>{{ animalName }}</h2>
@@ -90,7 +89,6 @@ export default {
     },
   updatePhoto(imageUrl) {
       console.log('Update photo called'); // Add this line
-      this.form.photo = imageUrl;
       console.log('Updated form:', this.form);
 
       this.form.photo = imageUrl;
