@@ -22,7 +22,7 @@
     <table id="tblApplications">
       <thead>
         <tr>
-          <th v-if="isAdmin">Admin Approval</th>
+          <th>Admin Approval</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Date of Birth</th>
@@ -40,7 +40,7 @@
           v-for="application in filteredApplications"
           :key="application.applicationId"
         >
-          <td v-if="isAdmin">
+          <td>
             <select
               v-model="application.adminApproval"
               @change="updateAdminApproval(application)"
@@ -97,11 +97,11 @@ export default {
         });
     },
     updateAdminApproval(application) {
-      //check if user is admin
-      if(!this.isAdmin) {
-        console.error("Unauthorized access: Only admins can update the approval status.")
-        return;
-      }
+      // //check if user is admin
+      // if(!this.isAdmin) {
+      //   console.error("Unauthorized access: Only admins can update the approval status.")
+      //   return;
+      // }
 
       const newStatus =
         application.adminApproval === "Approved" ? "Approved" : "Declined";
@@ -171,9 +171,7 @@ export default {
     isLoggedIn() {
       return this.$store.state.token !== "";
     },
-    isAdmin(){
-      return this.$store.state.role === "ROLE_ADMIN";
-    },
+   
 
   },
 };

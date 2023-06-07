@@ -80,6 +80,7 @@ export default {
       console.log('Update photo called'); // Add this line
       console.log('Updated form:', this.form);
       this.form.photo = imageUrl;
+    
       PetService.updatePetPhoto(this.form)
        .then((response) => {
       if (response.status === 201) {

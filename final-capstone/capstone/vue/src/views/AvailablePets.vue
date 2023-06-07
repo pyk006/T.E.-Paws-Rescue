@@ -35,7 +35,7 @@
       class="button-edit-pets"
       v-if="isLoggedIn"
       v-bind:to="{ name: 'editPets', params: {pet: pet} }"
-      >Edit/Delete</router-link
+      >Edit</router-link
     >
         </div>
       </div>
@@ -91,8 +91,8 @@ export default {
         }
         );
       } else {
-
         return this.pets.filter((pet) => pet.isAdoptable);
+
       }
     },
   },
