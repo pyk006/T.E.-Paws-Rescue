@@ -162,6 +162,22 @@ public class JdbcApplicationsDao implements ApplicationsDao {
         return status;
     }
 
+    @Override
+    public boolean updateApplicationPhoto(Applications applications) {
+        String sql = "UPDATE applications SET photo =? WHERE application_id = ?";
+        boolean status;
+        try{
+            status= jdbcTemplate.update(sql, applications.getPhoto(), applications.getApplicationId()) == 1;
+        }  catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return status;
+    }
+
     private Applications mapRowToApplications(SqlRowSet sql) {
         Applications application = new Applications();
         application.setApplicationId(sql.getInt("application_id"));

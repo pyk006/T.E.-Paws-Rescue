@@ -18,5 +18,8 @@ export default {
     getVolunteers() {
         return axios.get('/directory');
     },
+    updateApplicationPhoto(object) {
+        return axios.put('/updateApps/photo', object)
+    }
 
 }

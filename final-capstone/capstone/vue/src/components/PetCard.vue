@@ -5,7 +5,7 @@
     <!-- <button>Update Photo</button> -->
     
     <label v-if="isLoggedIn" for="image-upload">Update Photo:
-      <CloudinaryWidget @photo-uploaded="updatePhoto" />
+      <CloudinaryWidget :animalId="animalId" @photo-uploaded="updatePhoto" />
     </label>
     
     <div class="pet-info">
@@ -88,12 +88,13 @@ export default {
       this.$root.$emit('Locations');
     },
   updatePhoto(imageUrl) {
+      console.log(this.animalId);
       console.log('Update photo called'); // Add this line
       console.log('Updated form:', this.form);
 
       this.form.photo = imageUrl;
     
-      PetService.updatePhoto(this.form)
+      PetService.updatePetPhoto(this.form)
        .then((response) => {
       if (response.status === 201) {
         console.log(response.status);

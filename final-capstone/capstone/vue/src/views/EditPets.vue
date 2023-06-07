@@ -20,7 +20,8 @@
       
       <label for="breed">Breed:</label>
       <input type="text" id="breed" v-model="updatedBreed" required>
-      
+
+      <label for="isAdoptable">Adoptable:</label>
             <label for="adoptable-yes">Yes</label>
             <input
               type="radio"
@@ -74,7 +75,34 @@ export default {
       
     };
   },
+<<<<<<< HEAD
   
+=======
+  components: {
+
+  },
+  mounted() {
+    // Pre-fill the form fields with the pet data
+    const {
+      animalName,
+      animalType,
+      gender,
+      age,
+      description,
+      breed,
+      isAdoptable,
+    } = this.pet;
+
+    this.updatedAnimalName = animalName;
+    this.updatedAnimalType = animalType;
+    this.updatedGender = gender;
+    this.updatedAge = age;
+    this.updatedDescription = description;
+    this.updatedBreed = breed;
+    this.updatedIsAdoptable = isAdoptable;
+  },
+
+>>>>>>> main
   methods: {
     updateAnimal() {
       const updatedAnimalObject = {
