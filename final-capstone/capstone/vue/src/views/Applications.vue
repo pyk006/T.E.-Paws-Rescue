@@ -97,11 +97,11 @@ export default {
         });
     },
     updateAdminApproval(application) {
-      //check if user is admin
-      if(!this.isAdmin) {
-        console.error("Unauthorized access: Only admins can update the approval status.")
-        return;
-      }
+      // //check if user is admin
+      // if(!this.isAdmin) {
+      //   console.error("Unauthorized access: Only admins can update the approval status.")
+      //   return;
+      // }
 
       const newStatus =
         application.adminApproval === "Approved" ? "Approved" : "Declined";
@@ -171,9 +171,7 @@ export default {
     isLoggedIn() {
       return this.$store.state.token !== "";
     },
-    isAdmin(){
-      return this.$store.state.role === "ROLE_ADMIN";
-    },
+   
 
   },
 };
