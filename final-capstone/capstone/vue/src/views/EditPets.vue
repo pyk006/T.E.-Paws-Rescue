@@ -74,9 +74,7 @@ export default {
       
     };
   },
-  components: {
-
-  },
+  
   methods: {
     updateAnimal() {
       const updatedAnimalObject = {
