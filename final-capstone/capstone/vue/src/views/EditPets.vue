@@ -20,7 +20,8 @@
       
       <label for="breed">Breed:</label>
       <input type="text" id="breed" v-model="updatedBreed" required>
-      
+
+      <label for="isAdoptable">Adoptable:</label>
             <label for="adoptable-yes">Yes</label>
             <input
               type="radio"
