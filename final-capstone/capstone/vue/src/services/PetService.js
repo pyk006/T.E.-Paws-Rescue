@@ -6,11 +6,14 @@ export default {
         return axios.get('/availablePets');
     },
 
-submitForm(formData) {
+    submitForm(formData) {
         return axios.post(`/availablePets/addPets`, formData)
     },
 
     editPet(animalObject) {
     return axios.put('/animals', animalObject)
-},
+    },
+    updatePetPhoto(object) {
+        return axios.put('/animals/UpdatePhoto', object)
+    }
 }

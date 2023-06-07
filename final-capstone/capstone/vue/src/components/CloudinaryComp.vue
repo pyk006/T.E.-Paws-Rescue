@@ -32,6 +32,7 @@ export default {
          console.error(error);
        // Handle error if upload fails
       });
+       
     },
   },
 };

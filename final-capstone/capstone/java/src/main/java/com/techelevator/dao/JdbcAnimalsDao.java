@@ -112,6 +112,22 @@ public class JdbcAnimalsDao implements AnimalsDao{
         return status;
     }
 
+    @Override
+    public boolean updatePetPhoto(Animals animal) {
+        String sql = "UPDATE animals SET photo =? WHERE animal_id = ?";
+        boolean status;
+        try{
+            status= jdbcTemplate.update(sql, animal.getPhoto(), animal.getAnimalId()) == 1;
+        }  catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return status;
+    }
+
     private Animals mapRowToAnimals(SqlRowSet result){
         Animals animals = new Animals();
         animals.setAnimalId(result.getInt("animal_id"));

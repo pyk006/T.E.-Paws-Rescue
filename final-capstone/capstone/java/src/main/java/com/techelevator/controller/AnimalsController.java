@@ -31,6 +31,12 @@ public class AnimalsController {
         animalsDao.updateAnimal(animals);
     }
 
+    @RequestMapping(path = "/animals/updatePhoto", method = RequestMethod.PUT)
+    public void updatePetPhoto(@RequestBody Animals animals){
+        System.out.println(animals.toString());
+        animalsDao.updatePetPhoto(animals);
+    }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/animals/{id}", method = RequestMethod.DELETE)
     public void deleteAnimal(@PathVariable int id){

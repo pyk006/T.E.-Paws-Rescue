@@ -2,6 +2,13 @@
 
   <div class="pet-card">
     <img :src="photo" alt="Pet Photo" class="pet-photo" />
+    <!-- <button>Update Photo</button> -->
+    
+    <label for="image-upload">Update Photo:</label>
+    <CloudinaryWidget @photo-uploaded="updatePhoto" />
+
+    
+    
     <div class="pet-info">
       <h2>{{ animalName }}</h2>
       <p>id: {{animalId}}</p>
@@ -19,13 +26,18 @@
       <button v-if="isLoggedIn" @click="handleToggleWalkAndModalVisibility">{{ isOnWalk ? "End Walk" : "Start Walk" }}</button>
           <Modal
       v-if="isModalVisible"
-      @close="closeModal"/>
+      @close="closeModal"/>    
     </div>
+    
+    
   </div>
 </template>
 
 <script>
 import Modal from './Modal.vue';
+import CloudinaryWidget from '../components/CloudinaryWidget.vue';
+import PetService from '../services/PetService';
+
 
 
 export default {
@@ -43,11 +55,16 @@ export default {
   data() {
     return {
       isModalVisible: false,
-      isOnWalk: false
+      isOnWalk: false,
+      form: {
+        animalId: this.animalId,
+        photo: "", // Variable to store the image URL
+      },  
     };
   },
   components: {
     Modal,
+    CloudinaryWidget,
   },
   methods: {
   handleToggleWalkAndModalVisibility() {
@@ -61,12 +78,34 @@ export default {
   showModal() {
     this.isModalVisible = true;
   },
+
+
   closeModal() {
     this.isModalVisible = false;
     this.isOnWalk = false;
   },
+
   triggerInit() {
       this.$root.$emit('Locations');
+    },
+  updatePhoto(imageUrl) {
+      console.log('Update photo called'); // Add this line
+      this.form.photo = imageUrl;
+      console.log('Updated form:', this.form);
+
+      this.form.photo = imageUrl;
+    
+      PetService.updatePhoto(this.form)
+       .then((response) => {
+      if (response.status === 201) {
+        console.log(response.status);
+        
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      // Handle error if form submission fails
+    });
     },
   },
   watch: {
@@ -86,6 +125,9 @@ export default {
     isLoggedIn() {
       return this.$store.state.token !== "";
     },
+  },
+    mounted() {
+    console.log('Component mounted');
   },
 };
 </script>
