@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 
 public class Applications {
+    @JsonProperty("applicationId")
     private int applicationId;
     private String firstName ="";
     private String lastName ="";
@@ -21,6 +22,7 @@ public class Applications {
     private String bkgrndCheckApproved = "pending";
     @JsonProperty("adminApproval")
     private String adminApproval = "pending";
+    @JsonProperty("photo")
     private String photo = "";
 
     public Applications(int applicationId, String firstName, String lastName, String dateOfBirth, String homeAddress, String availability, String schoolMascot, String email, String phoneNumber, boolean optInText, boolean experience, boolean transportation, String bkgrndCheckApproved, String adminApproval, String photo) {
