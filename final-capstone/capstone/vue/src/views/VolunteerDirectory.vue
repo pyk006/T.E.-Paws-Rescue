@@ -14,11 +14,10 @@
         />
         <label v-if="isLoggedIn" for="image-upload"
           >Update Photo:
-          <CloudinaryWidget :applicationId="applicationId" @photo-uploaded="updatePhoto"  />
+          <CloudinaryWidget :photo="application.photo" @photo-uploaded="updatePhoto(application, $event)"  />
         </label>
         <div class="volunteer-card-content">
           <h3>{{ application.firstName }} {{ application.lastName }}</h3>
-          <p>{{application.applicationId}}</p>
           <p>Phone Number: {{ application.phoneNumber }}</p>
           <p>Email: {{ application.email }}</p>
         </div>
@@ -72,14 +71,14 @@ export default {
         return require("@/assets/blank-profile.png");
       }
     },
-    updatePhoto(imageUrl) {
-      console.log(this.applicationId);
+    updatePhoto(application, imageUrl) {
+      console.log(application.applicationId);
       console.log('Update photo called'); // Add this line
       console.log('Updated form:', this.form);
 
       this.form = {
-          applicationId: this.applicationId,
-          photo: imageUrl
+        applicationId: application.applicationId,
+        photo: imageUrl
       };
     
       volunteerService.updateApplicationPhoto(this.form)

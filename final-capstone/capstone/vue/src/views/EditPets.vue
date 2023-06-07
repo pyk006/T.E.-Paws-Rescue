@@ -75,9 +75,7 @@ export default {
       
     };
   },
-<<<<<<< HEAD
   
-=======
   components: {
 
   },
@@ -102,7 +100,6 @@ export default {
     this.updatedIsAdoptable = isAdoptable;
   },
 
->>>>>>> main
   methods: {
     updateAnimal() {
       const updatedAnimalObject = {
