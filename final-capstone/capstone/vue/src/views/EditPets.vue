@@ -74,8 +74,25 @@ export default {
       
     };
   },
-  components: {
+  mounted() {
+    // Pre-fill the form fields with the pet data
+    const {
+      animalName,
+      animalType,
+      gender,
+      age,
+      description,
+      breed,
+      isAdoptable,
+    } = this.pet;
 
+    this.updatedAnimalName = animalName;
+    this.updatedAnimalType = animalType;
+    this.updatedGender = gender;
+    this.updatedAge = age;
+    this.updatedDescription = description;
+    this.updatedBreed = breed;
+    this.updatedIsAdoptable = isAdoptable;
   },
   methods: {
     updateAnimal() {

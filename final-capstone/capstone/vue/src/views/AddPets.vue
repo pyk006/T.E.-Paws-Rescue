@@ -1,7 +1,4 @@
 <template>
-<div>
-  <router-link class="availablepetslink" v-bind:to="{ name: 'availablePets' }">Go to Available Pets</router-link>
-
   <div class="form-container">
       <label for="image-upload">Image (PNG only):</label>
       <CloudinaryComp ref="cloudinaryComp" @image-uploaded="handleImageUploaded" />
@@ -39,12 +36,14 @@
               id="opt-in-no"
               value="false"
               v-model="form.adoptable"
-            />       
+            />
+      <br>        
+            <!-- <button type="submit">Submit</button> -->
+        
       </div>
       <button type="submit" @click="submitForm">Submit</button>
     </div>
-    
-  </div>
+
 
 </template>
 
@@ -67,7 +66,7 @@ export default {
         description: "",
         breed: "",
         isAdoptable: false,
-        photo: "", 
+        photo: "", // Variable to store the image URL
       },
     };
   },
@@ -78,44 +77,45 @@ methods: {
   const cloudinaryComp = this.$refs.cloudinaryComp;
   if (cloudinaryComp.selectedFile) {
     cloudinaryComp.uploadImage().then((data) => {
-      
+      // Access the image URL from the response data
       const imageUrl = data.url;
 
-
+      // Emit the image-uploaded event with the image URL
         this.handleImageUploaded(imageUrl);
 
-
+        // Submit the form data with the image URL to the backend
         this.submitFormData();
      })
       .catch((error) => {
         console.error(error);
-
+        // Handle error if image upload fails
       });
   } else {
     console.log("Please select an image to upload");
   }
 },
 submitFormData() {
-
+  // Send the form data to the backend
   petService.submitForm(this.form)
     .then((response) => {
       if (response.status === 201) {
         console.log(response.status);
-        this.showForm = false; 
+        this.showForm = false; // hide after successful submission
         window.alert("Form submitted successfully");
       }
     })
     .catch((error) => {
       console.error(error);
- 
+      // Handle error if form submission fails
     });
 },
 
 
   handleImageUploaded(imageUrl) {
-  this.form.photo = imageUrl; 
+  this.form.photo = imageUrl; // Assign the image URL to the form's photo field
+  console.log(imageUrl);
 
-
+   // Emit the image-uploaded event with the image URL
   this.$emit("image-uploaded", imageUrl);
 },
 
@@ -135,7 +135,6 @@ submitFormData() {
   justify-content: center; 
   max-width: 400px;
   color:rgb(5, 81, 119); 
-  margin-top: 20px;
 }
 
 .form-container label {
@@ -145,23 +144,6 @@ submitFormData() {
 .form-container input[type="text"] {
   padding: 5px;
   width: 200px;
-}
-
-.availablepetslink {
-  font-weight: bold;
-  text-decoration: none;
-  background-color: #ED815A;
-  padding: 4px 8px;
-  border-radius: 8px;
-  margin-left: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.8); 
-  color: rgb(5, 81, 119);
-  cursor: pointer;
-}
-
-.availablepetslink:hover{
-  background-color: #ED815A;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 
