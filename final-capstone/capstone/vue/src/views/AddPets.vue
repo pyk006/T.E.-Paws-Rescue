@@ -38,7 +38,7 @@
               v-model="form.adoptable"
             />
       <br>        
-            <!-- <button type="submit">Submit</button> -->
+           
         
       </div>
       <button type="submit" @click="submitForm">Submit</button>
@@ -66,7 +66,7 @@ export default {
         description: "",
         breed: "",
         isAdoptable: false,
-        photo: "", // Variable to store the image URL
+        photo: "", 
       },
     };
   },
@@ -77,45 +77,44 @@ methods: {
   const cloudinaryComp = this.$refs.cloudinaryComp;
   if (cloudinaryComp.selectedFile) {
     cloudinaryComp.uploadImage().then((data) => {
-      // Access the image URL from the response data
+      
       const imageUrl = data.url;
 
-      // Emit the image-uploaded event with the image URL
+
         this.handleImageUploaded(imageUrl);
 
-        // Submit the form data with the image URL to the backend
+
         this.submitFormData();
      })
       .catch((error) => {
         console.error(error);
-        // Handle error if image upload fails
+
       });
   } else {
     console.log("Please select an image to upload");
   }
 },
 submitFormData() {
-  // Send the form data to the backend
+
   petService.submitForm(this.form)
     .then((response) => {
       if (response.status === 201) {
         console.log(response.status);
-        this.showForm = false; // hide after successful submission
+        this.showForm = false; 
         window.alert("Form submitted successfully");
       }
     })
     .catch((error) => {
       console.error(error);
-      // Handle error if form submission fails
+ 
     });
 },
 
 
   handleImageUploaded(imageUrl) {
-  this.form.photo = imageUrl; // Assign the image URL to the form's photo field
-  console.log(imageUrl);
+  this.form.photo = imageUrl; 
 
-   // Emit the image-uploaded event with the image URL
+
   this.$emit("image-uploaded", imageUrl);
 },
 

@@ -19,8 +19,9 @@
       </div>
     </div>
 
-    <form @submit.prevent="updateAnimal">
-      <h3>Edit Pet Card</h3>
+    <form @submit.prevent="updateAnimal" class="editPetForm">
+      <h3>Edit Pet Card</h3> 
+      <div class="form-column">
       <label for="animalName">Name:</label>
       <input type="text" id="animalName" v-model="updatedAnimalName" required>
       
@@ -39,27 +40,13 @@
       <label for="breed">Breed:</label>
       <input type="text" id="breed" v-model="updatedBreed" required>
       
-      <!-- <label for="isAdoptable">Adoptable:</label>
-      <input type="checkbox" id="isAdoptable" v-model="updatedIsAdoptable"> -->
-            <label for="adoptable-yes">Yes</label>
-            <input
-              type="radio"
-              id="adoptable-yes"
-              value="true"
-              v-model="updatedIsAdoptable"
-            />
-
-            <label for="adoptable-no">No</label>
-            <input
-              type="radio"
-              id="adoptable-no"
-              value="false"
-              v-model="updatedIsAdoptable"
-            />
-
+      <label for="isAdoptable">Adoptable:</label>
+      <input type="checkbox" id="isAdoptable" v-model="updatedIsAdoptable">
       
       <button type="submit">Save Changes</button>
+      </div>
     </form>
+    <router-link class="editPet-link" v-bind:to="{ name: 'availablePets' }">Go to Available Pets</router-link>
   </div>
 </template>
 
@@ -69,7 +56,6 @@ import PetService from '../services/PetService'
 
 export default {
   props: {
-    pet: Object,
     photo: String,
     animalName: String,
     animalType: String,
@@ -114,10 +100,8 @@ export default {
       this.isOnWalk = false;
     },
     updateAnimal() {
-      console.log(this.pet.animalId);
-      console.log(this.updatedIsAdoptable);
       const updatedAnimalObject = {
-        animalId: this.pet.animalId,
+        animalId: this.animalId,
         animalName: this.updatedAnimalName,
         animalType: this.updatedAnimalType,
         gender: this.updatedGender,
@@ -128,16 +112,16 @@ export default {
       };
 
       PetService.editPet(updatedAnimalObject)
-        .then(() => {
-          console.log(this.updatedIsAdoptable);
-          console.log(updatedAnimalObject);
-          this.$emit('update-pet', updatedAnimalObject);
-          // console.log('Animal updated:', response.data);
-
+        .then((response) => {
+          this.$emit('update-pet', response.data);
+          console.log('Animal updated:', response.data);
         })
         .catch((error) => {
           console.error('Error updating animal:', error);
         });
+    },
+    fetchPets() {
+
     },
     triggerInit() {
       this.$root.$emit('Locations');
@@ -163,5 +147,40 @@ export default {
 </script>
 
 <style>
-/* Add your CSS styles here */
+.editPetForm {
+  border: 3px solid rgb(5, 81, 119);
+  border-radius: 10px;
+  max-width: 400px;
+  height: 500px;
+  padding: 0 10px;
+  margin: 10px;
+  background: rgb(5, 81, 119);;
+  color: rgb(160, 187, 226);
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+label {
+  margin-bottom: 5px;
+}
+.editPet-link{
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ed815a;
+  padding: 10px 7px;
+  border-radius: px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  color: #0870a3;
+  cursor: pointer;
+  margin-top: 10px;
+  max-width: 150px;
+  margin-left: 100px;
+}
+
 </style>

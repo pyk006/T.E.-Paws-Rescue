@@ -1,8 +1,10 @@
 <template>
+
   <div class="pet-card">
     <img :src="photo" alt="Pet Photo" class="pet-photo" />
     <div class="pet-info">
       <h2>{{ animalName }}</h2>
+      <p>id: {{animalId}}</p>
       <p>Type: {{ animalType }}</p>
       <p>Gender: {{ gender }}</p>
       <p>Age: {{ age }}</p>
