@@ -22,7 +22,7 @@
     <table id="tblApplications">
       <thead>
         <tr>
-          <th v-if="isAdmin">Admin Approval</th>
+          <th>Admin Approval</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Date of Birth</th>
@@ -40,7 +40,7 @@
           v-for="application in filteredApplications"
           :key="application.applicationId"
         >
-          <td v-if="isAdmin">
+          <td>
             <select
               v-model="application.adminApproval"
               @change="updateAdminApproval(application)"

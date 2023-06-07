@@ -15,6 +15,6 @@ export default {
     },
     
     updatePetPhoto(object) {
-        return axios.put('/animals/UpdatePhoto', object)
+        return axios.put('/animals/updatePhoto', object)
     }
 }
