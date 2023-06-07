@@ -16,4 +16,6 @@ public interface AnimalsDao {
 
     boolean deleteAnimal(int animalId);
 
+    boolean updatePetPhoto(Animals animal);
+
 }
