@@ -34,7 +34,7 @@
 <router-link
       class="button-edit-pets"
       v-if="isLoggedIn"
-      v-bind:to="{ name: 'editPets', params: {pet: pet} }"
+      v-bind:to="{ name: 'editPets' }"
       >Edit/Delete</router-link
     >
         </div>
@@ -86,13 +86,11 @@ export default {
     },
     filteredPets() {
       if (this.searchQuery) {
-        return this.pets.filter((pet) => {
-          return pet.animalType.toLowerCase().includes(this.searchQuery.toLowerCase()) && pet.isAdoptable
-        }
+        return this.pets.filter((pet) =>
+          pet.animalType.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
       } else {
-
-        return this.pets.filter((pet) => pet.isAdoptable);
+        return this.pets;
       }
     },
   },
