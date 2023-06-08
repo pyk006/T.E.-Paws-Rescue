@@ -1,8 +1,12 @@
 <template>
-<div>
+<div class>
+      <div class = "available-pets-link">
   <router-link class="availablepetslink" v-bind:to="{ name: 'availablePets' }">Go to Available Pets</router-link>
+      </div>
 
-  <div class="form-container">
+
+  <div class="form-container page-wrap">
+
       <label for="image-upload">Image (PNG only):</label>
       <CloudinaryComp ref="cloudinaryComp" @image-uploaded="handleImageUploaded" />
 
@@ -126,6 +130,12 @@ submitFormData() {
 </script>
 
 <style>
+.page-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .form-container {
   display: flex;
   flex-direction: column;
@@ -135,7 +145,7 @@ submitFormData() {
   justify-content: center; 
   max-width: 400px;
   color:rgb(5, 81, 119); 
-  margin-top: 20px;
+  margin: 20px auto;
 }
 
 .form-container label {
@@ -146,20 +156,19 @@ submitFormData() {
   padding: 5px;
   width: 200px;
 }
-
 .availablepetslink {
+  align-self: flex-start;
   font-weight: bold;
   text-decoration: none;
   background-color: #ED815A;
   padding: 4px 8px;
   border-radius: 8px;
-  margin-left: 10px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.8); 
   color: rgb(5, 81, 119);
   cursor: pointer;
 }
 
-.availablepetslink:hover{
+.availablepetslink:hover {
   background-color: #ED815A;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }

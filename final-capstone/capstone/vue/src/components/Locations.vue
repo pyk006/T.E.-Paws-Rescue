@@ -216,6 +216,7 @@ export default {
 
 #input-area {
   grid-area: inputs;
+
 }
 
 #panel {
@@ -231,6 +232,7 @@ export default {
 .route-btn {
     background-color: #ED815A;
     color: #0870a3;
+    font-weight: bold;
     border-radius: 8px;
 }
 .route-btn:hover {
