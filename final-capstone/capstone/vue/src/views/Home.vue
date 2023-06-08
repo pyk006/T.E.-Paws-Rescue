@@ -93,16 +93,14 @@
       </div>
       <div id="follow-us">Follow Us:</div>
       <div class="social-icons">
-        <img src="@/assets/facebook.png" alt="Facebook Icon" class="icon" />
-        <img src="@/assets/instagram.png" alt="Instagram Icon" class="icon" />
+        <a href="https://www.facebook.com/profile.php?id=100093189323422" target="_blank">
+      <img src="@/assets/facebook.png" alt="Facebook Icon" class="icon" />
+    </a>
+    <a href="https://www.instagram.com/tepawsrescue/" target="_blank">
+      <img src="@/assets/instagram.png" alt="Instagram Icon" class="icon" />
+    </a>
       </div>
-      <div v-if="isLoggedIn" class="applications-link">
-        <router-link
-          class="application-button"
-          v-bind:to="{ name: 'applications' }"
-          >Applications</router-link
-        >
-      </div>
+    
     </footer>
   </div>
 </template>
@@ -222,31 +220,12 @@ footer {
   padding: 20px;
   display: grid;
   align-content: flex-start;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-areas:
-    "contact-us find-us follow-us ."
-    "contact-info address social-icons application"
-    "contact-info address social-icons .";
+    "contact-us find-us follow-us"
+    "contact-info address social-icons"
+    "contact-info address social-icons";
   color: whitesmoke;
-}
-
-.application-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  text-decoration: none;
-  background-color: #ed815a;
-  padding: 4px 8px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  color: rgb(5, 81, 119);
-  cursor: pointer;
-}
-
-.application-button:hover {
-  background-color: #ed815a;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 #contact-us {
@@ -259,10 +238,6 @@ footer {
 
 #find-us {
   grid-area: find-us;
-}
-
-#application-link {
-  grid-area: application;
 }
 
 .address {
@@ -305,8 +280,8 @@ footer {
 }
 
 .social-icons .icon {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
 }
 
