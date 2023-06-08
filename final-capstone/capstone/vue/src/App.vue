@@ -100,7 +100,7 @@ header {
   margin-right: 10px;
 }
 
-.button-link:hover{
+.button-link:hover, .button-link-last:hover{
   background-color: #ED815A;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }

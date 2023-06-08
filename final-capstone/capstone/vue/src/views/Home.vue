@@ -143,16 +143,14 @@ export default {
 </script>
 
 <style scoped>
-.banner {
-  overflow: hidden;
-  white-space: nowrap;
-}
 
 .banner {
   overflow: hidden;
   white-space: nowrap;
   max-width: 100%;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .banner-slider {

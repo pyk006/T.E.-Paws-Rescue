@@ -9,15 +9,15 @@
       <button @click="searchPets">Search</button>
     </div>
 
-    <router-link
-      class="button-link-last"
-      v-if="isLoggedIn"
-      v-bind:to="{ name: 'addPets' }"
-      >Add Pets</router-link
-    >
+    
 
     <div class="available-container">
       <h1 class="availablepets">Available Pets</h1>
+      <router-link
+      class="button-link-last add-pet" 
+      v-if="isLoggedIn"
+      v-bind:to="{ name: 'addPets' }"
+      >Add Pet</router-link>
       <div class="pet-card-container">
         <div class="pet-cards" v-for="pet in filteredPets" :key="pet.animal_id">
           <pet
@@ -149,23 +149,26 @@ export default {
 }
 
 .search-container button {
-  background-color: rgb(5, 81, 119);
-  color: white;
-  padding: 10px 0px;
-  border: none;
-  border-radius: 5px;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ed815a;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  color: rgb(5, 81, 119);
   cursor: pointer;
-  width: 100px;
+  margin-left: 10px;
   }
 
-.search-container button {
+/* .search-container button {
   background-color: rgb(5, 81, 119);
   color: white;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
 .button-link-last {
   display: inline-block;
@@ -175,6 +178,21 @@ export default {
   padding: 5px 10px;
   border-radius: 5px;
   text-decoration: none;
+}
+
+.add-pet {
+  display: flex;
+  justify-content:center;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ed815a;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  color: rgb(5, 81, 119);
+  cursor: pointer;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .button-link-last:hover {
