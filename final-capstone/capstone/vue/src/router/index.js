@@ -104,7 +104,7 @@ const router = new Router({
       }
     },
     {
-      path: "/volunteer/applications/directory",
+      path: "/directory",
       name: "volunteer-directory",
       component: VolunteerDirectory,
       meta: {

@@ -1,13 +1,12 @@
 <template>
-<div class>
-      <div class = "available-pets-link">
+<div class ="page-wrap">
+
   <router-link class="availablepetslink" v-bind:to="{ name: 'availablePets' }">Go to Available Pets</router-link>
-      </div>
 
 
-  <div class="form-container page-wrap">
-
-      <label for="image-upload">Image (PNG only):</label>
+<div class="add-pet-form">
+  <div class="form-container">
+    <h2>Add Pet</h2>
       <CloudinaryComp ref="cloudinaryComp" @image-uploaded="handleImageUploaded" />
 
         <label for="animal-name">Name:</label>
@@ -20,7 +19,7 @@
         <input type="text" id="gender" v-model="form.gender" required />
 
         <label for="description">Description:</label>
-        <input type="text" id="dob" v-model="form.description" required />
+        <textarea id="description" v-model="form.description" maxlength="150" required ></textarea>
 
         <label for="breed">Breed:</label>
         <input type="text" id="breed" v-model="form.breed" required />
@@ -43,14 +42,12 @@
               id="opt-in-no"
               value="false"
               v-model="form.adoptable"
-            />
-      <br>        
-            <!-- <button type="submit">Submit</button> -->
-        
+            />       
       </div>
+      <br>
       <button type="submit" @click="submitForm">Submit</button>
     </div>
-
+  </div>
 </div>
 </template>
 
@@ -73,7 +70,7 @@ export default {
         description: "",
         breed: "",
         isAdoptable: false,
-        photo: "", // Variable to store the image URL
+        photo: "", 
       },
     };
   },
@@ -84,45 +81,44 @@ methods: {
   const cloudinaryComp = this.$refs.cloudinaryComp;
   if (cloudinaryComp.selectedFile) {
     cloudinaryComp.uploadImage().then((data) => {
-      // Access the image URL from the response data
+      
       const imageUrl = data.url;
 
-      // Emit the image-uploaded event with the image URL
+
         this.handleImageUploaded(imageUrl);
 
-        // Submit the form data with the image URL to the backend
+
         this.submitFormData();
      })
       .catch((error) => {
         console.error(error);
-        // Handle error if image upload fails
+
       });
   } else {
     console.log("Please select an image to upload");
   }
 },
 submitFormData() {
-  // Send the form data to the backend
+
   petService.submitForm(this.form)
     .then((response) => {
       if (response.status === 201) {
         console.log(response.status);
-        this.showForm = false; // hide after successful submission
+        this.showForm = false; 
         window.alert("Form submitted successfully");
       }
     })
     .catch((error) => {
       console.error(error);
-      // Handle error if form submission fails
+ 
     });
 },
 
 
   handleImageUploaded(imageUrl) {
-  this.form.photo = imageUrl; // Assign the image URL to the form's photo field
-  console.log(imageUrl);
+  this.form.photo = imageUrl; 
 
-   // Emit the image-uploaded event with the image URL
+
   this.$emit("image-uploaded", imageUrl);
 },
 
@@ -139,16 +135,22 @@ submitFormData() {
   align-items: center;
   flex-direction: column;
 }
+.add-pet-form {
+  border: 3px solid rgb(5, 81, 119);
+  border-radius: 10px;
+  width: 400px;
+  height: 550px;
+  padding: 0 10px;
+  margin: 20px;
+  background: rgb(5, 81, 119);
+  color: rgb(160, 187, 226);
+}
 .form-container {
   display: flex;
+  align-items: center;
   flex-direction: column;
-  border: 4px solid rgb(5, 81, 119); 
-  padding: 5px; 
-  align-items: center; 
-  justify-content: center; 
-  max-width: 400px;
-  color:rgb(5, 81, 119); 
-  margin: 20px auto;
+  margin-right:20px;
+  margin-top:20px;
 }
 
 .form-container label {
@@ -160,7 +162,8 @@ submitFormData() {
   width: 200px;
 }
 .availablepetslink {
-  align-self: flex-start;
+  display: flex;
+  justify-content:center;
   font-weight: bold;
   text-decoration: none;
   background-color: #ED815A;
@@ -169,6 +172,8 @@ submitFormData() {
   box-shadow: 0 2px 4px rgba(0,0,0,0.8); 
   color: rgb(5, 81, 119);
   cursor: pointer;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .availablepetslink:hover {
@@ -176,6 +181,12 @@ submitFormData() {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
+#opt-in-yes {
+  margin-right: 15px;
+}
+#description {
+  width: 210px;
+}
 
 
 </style>

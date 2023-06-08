@@ -21,6 +21,7 @@ public class AnimalsController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/availablePets/addPets")
     public void createAnimal(@RequestBody Animals animals){
+        System.out.println(animals.toString());
         animalsDao.createAnimal(animals.getAnimalName(), animals.getAnimalType(), animals.getGender(),
                 animals.getAge(), animals.getDescription(), animals.getBreed(), animals.isAdoptable(), animals.getPhoto());
     }

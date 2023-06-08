@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class = "page-wrap">
     <router-link class="editPet-link" v-bind:to="{ name: 'availablePets' }"
       >Go to Available Pets</router-link
     >
@@ -32,6 +32,7 @@
         <textarea
           id="description"
           v-model="updatedDescription"
+          maxlength="150"
           required
         ></textarea>
 
@@ -151,10 +152,15 @@ export default {
 </script>
 
 <style>
+.page-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .editPetForm {
   border: 3px solid rgb(5, 81, 119);
   border-radius: 10px;
-  max-width: 400px;
+  width: 400px;
   height: 500px;
   padding: 0 10px;
   margin: 10px;
@@ -183,7 +189,6 @@ label {
   cursor: pointer;
   margin-top: 10px;
   max-width: 150px;
-  margin-left: 100px;
 }
 
 .editPet-link:hover{
