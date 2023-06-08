@@ -70,6 +70,7 @@ import Locations from './Locations.vue';
 
   .btn-theme {
     color: #0870a3;
+    font-weight: bold;
     background: #ED815A;
     border: 1px solid #ED815A;
     width: 200px;

@@ -114,6 +114,10 @@
           <div class="team-member-title">
             <h2>Nicole</h2>
             <a href="https://nguyenlnicole.github.io/Portfolio/" target="_blank"
+              >View my Portfolio</a
+            >
+            <br />
+            <a href="https://github.com/nguyenlnicole" target="_blank"
               >View my Github</a
             >
             <br />

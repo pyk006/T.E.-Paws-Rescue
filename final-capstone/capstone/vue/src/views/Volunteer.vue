@@ -63,7 +63,7 @@
         <input type="text" id="last-name" v-model="form.lastName" required />
 
         <label for="dob">Date of Birth (YYYY-MM-DD):</label>
-        <input type="text" id="dob" v-model="form.dateOfBirth" required />
+        <input type="date" id="dob" v-model="form.dateOfBirth" required />
 
         <label for="">Location(for on call):</label>
         <input
@@ -234,6 +234,7 @@ export default {
       volunteerService.submitForm(this.form).then((response) => {
         if (response.status === 201) {
           console.log(response.status);
+          this.form.dateOfBirth = this.form.dateOfBirth.toString();
           this.showForm = false; //hide after successful submission
           this.$router.push({ name: "volunteer" });
         }
