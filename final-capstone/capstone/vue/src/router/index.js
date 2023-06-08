@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
-import Register from '../views/Register.vue'
+import AboutUs from '../views/AboutUs.vue'
 import store from '../store/index'
 import Volunteer from '../views/Volunteer.vue'
 import AvailablePets from '../views/AvailablePets.vue'
@@ -53,9 +53,9 @@ const router = new Router({
       }
     },
     {
-      path: "/register",
-      name: "register",
-      component: Register,
+      path: "/about-us",
+      name: "about-us",
+      component: AboutUs,
       meta: {
         requiresAuth: false
       }
@@ -96,7 +96,7 @@ const router = new Router({
       props: true,
     },
     {
-      path: "/applications",
+      path: "/volunteer/applications",
       name: "applications",
       component: Applications,
       meta: {
@@ -104,7 +104,7 @@ const router = new Router({
       }
     },
     {
-      path: "/directory",
+      path: "/volunteer/applications/directory",
       name: "volunteer-directory",
       component: VolunteerDirectory,
       meta: {
