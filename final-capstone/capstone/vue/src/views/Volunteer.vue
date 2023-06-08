@@ -1,5 +1,12 @@
 <template>
   <div class="volunteer">
+      <div v-if="isLoggedIn" class="applications-link">
+        <router-link
+          class="application-button"
+          v-bind:to="{ name: 'applications' }"
+          >Applications</router-link
+        >
+      </div>
     <h2>Volunteer With Us</h2>
     <p>
       At TE Paw Rescue, we are always looking for dedicated and compassionate
@@ -234,12 +241,8 @@ export default {
     },
   },
   computed: {
-    isAdmin() {
-      if (this.user && this.user.role === "admin") {
-        return true; // User is an admin
-      } else {
-        return false; // User is not an admin
-      }
+    isLoggedIn() {
+      return this.$store.state.token !== "";
     },
   },
 };
@@ -289,6 +292,25 @@ button[type="submit"] {
 .radio-buttons input[type="radio"] {
   margin-right: 5px;
 }
+
+.application-button {
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ed815a;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  color: rgb(5, 81, 119);
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.application-button:hover {
+  background-color: #ed815a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
 </style>
 
 

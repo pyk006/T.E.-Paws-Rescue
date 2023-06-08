@@ -11,9 +11,10 @@
         >&nbsp;
         <router-link class="button-link" v-bind:to="{ name: 'volunteer' }">Volunteer</router-link
         >&nbsp;
-        <router-link class="button-link" v-bind:to="{ name: 'register' }">Register </router-link>
+        <!-- <router-link class="button-link" v-bind:to="{ name: 'register' }">Register </router-link>
+        &nbsp; -->
+        <router-link class="button-link" v-bind:to="{ name: 'about-us' }">About Us </router-link>
         &nbsp;
-
         <template v-if="!isLoggedIn">
         <router-link class="button-link-last" v-bind:to="{ name: 'login' }">Login </router-link>
         </template>
