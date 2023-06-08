@@ -1,5 +1,8 @@
 <template>
   <div class="directory-container">
+    <div v-if="isLoggedIn" class="applications-link">
+      <router-link class="application-button" v-bind:to="{ name: 'applications' }">Applications</router-link>
+    </div>
     <h1 class="volunteer-directory">Volunteer Directory</h1>
     <div class="volunteer-card-container">
       <div
@@ -12,13 +15,12 @@
           alt="Profile Image"
           class="profile-image"
         />
-        <label v-if="isLoggedIn" for="image-upload"
-          >Update Photo:
-          <CloudinaryWidget :applicationId="applicationId" @photo-uploaded="updatePhoto"  />
+        <br>
+        <label v-if="isLoggedIn" for="image-upload">Update Photo:
+          <CloudinaryWidget :photo="application.photo" @photo-uploaded="updatePhoto(application, $event)"  />
         </label>
         <div class="volunteer-card-content">
           <h3>{{ application.firstName }} {{ application.lastName }}</h3>
-          <p>{{application.applicationId}}</p>
           <p>Phone Number: {{ application.phoneNumber }}</p>
           <p>Email: {{ application.email }}</p>
         </div>
@@ -72,14 +74,14 @@ export default {
         return require("@/assets/blank-profile.png");
       }
     },
-    updatePhoto(imageUrl) {
-      console.log(this.applicationId);
+    updatePhoto(application, imageUrl) {
+      console.log(application.applicationId);
       console.log('Update photo called'); // Add this line
       console.log('Updated form:', this.form);
 
       this.form = {
-          applicationId: this.applicationId,
-          photo: imageUrl
+        applicationId: application.applicationId,
+        photo: imageUrl
       };
     
       volunteerService.updateApplicationPhoto(this.form)
@@ -104,7 +106,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .volunteer-directory {
   text-align: center;
   margin-bottom: 20px;
@@ -123,7 +125,7 @@ export default {
   background-color: rgb(5, 81, 119);
   border-radius: 10px;
   width: 300px;
-  height: 250px;
+  height: 300px;
   padding: 0 20px;
   margin: 10px;
 }
@@ -134,17 +136,25 @@ export default {
   object-fit: cover;
   border-radius: 50%;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.applications-link {
-  font-weight: bold;
+.application-button {
+  display: inline-block;
   text-decoration: none;
-  color: rgb(5, 81, 119);
+  margin-top: 10px;
   margin-left: 10px;
+  font-weight: bold;
+  padding: 4px 8px;
+  background-color: #ed815a;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  color: rgb(5, 81, 119);
 }
 
-.applications-link:hover {
-  color: #ed815a;
+.application-button:hover {
+  background-color: #ed815a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 576px) {

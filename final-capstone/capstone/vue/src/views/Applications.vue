@@ -97,12 +97,6 @@ export default {
         });
     },
     updateAdminApproval(application) {
-      // //check if user is admin
-      // if(!this.isAdmin) {
-      //   console.error("Unauthorized access: Only admins can update the approval status.")
-      //   return;
-      // }
-
       const newStatus =
         application.adminApproval === "Approved" ? "Approved" : "Declined";
       const isNewlyApproved = newStatus === "Approved";

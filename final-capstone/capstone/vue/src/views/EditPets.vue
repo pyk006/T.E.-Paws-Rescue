@@ -1,27 +1,48 @@
 <template>
   <div>
+    <router-link class="editPet-link" v-bind:to="{ name: 'availablePets' }"
+      >Go to Available Pets</router-link
+    >
     <form @submit.prevent="updateAnimal" class="editPetForm">
-      <h3>Edit Pet Card</h3> 
+      <h3>Edit Pet Card</h3>
       <div class="form-column">
-      <label for="animalName">Name:</label>
-      <input type="text" id="animalName" v-model="updatedAnimalName" required>
-      
-      <label for="animalType">Type:</label>
-      <input type="text" id="animalType" v-model="updatedAnimalType" required>
-      
-      <label for="gender">Gender:</label>
-      <input type="text" id="gender" v-model="updatedGender" required>
-      
-      <label for="age">Age:</label>
-      <input type="number" id="age" v-model="updatedAge" required>
-      
-      <label for="description">Description:</label>
-      <textarea id="description" v-model="updatedDescription" required></textarea>
-      
-      <label for="breed">Breed:</label>
-      <input type="text" id="breed" v-model="updatedBreed" required>
+        <label for="animalName">Name:</label>
+        <input
+          type="text"
+          id="animalName"
+          v-model="updatedAnimalName"
+          required
+        />
 
-      <label for="isAdoptable">Adoptable:</label>
+        <label for="animalType">Type:</label>
+        <input
+          type="text"
+          id="animalType"
+          v-model="updatedAnimalType"
+          required
+        />
+
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" v-model="updatedGender" required />
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" v-model="updatedAge" required />
+
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          v-model="updatedDescription"
+          required
+        ></textarea>
+
+        <label for="breed">Breed:</label>
+        <input type="text" id="breed" v-model="updatedBreed" required />
+        <br />
+        
+        <label for="isAdoptable">Available for Adoption:</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            
             <label for="adoptable-yes">Yes</label>
             <input
               type="radio"
@@ -37,18 +58,18 @@
               value="false"
               v-model="updatedIsAdoptable"
             />
-
-      
-      <button type="submit">Save Changes</button>
+          </div>
+        </div>
+        <br /><br />
+        <button type="submit">Save Changes</button>
       </div>
     </form>
-    <router-link class="editPet-link" v-bind:to="{ name: 'availablePets' }">Go to Available Pets</router-link>
   </div>
 </template>
 
 <script>
 // import Modal from '../components/Modal.vue';
-import PetService from '../services/PetService'
+import PetService from "../services/PetService";
 
 export default {
   props: {
@@ -65,16 +86,17 @@ export default {
   },
   data() {
     return {
-      updatedAnimalName: '',
-      updatedAnimalType: '',
-      updatedGender: '',
+      updatedAnimalName: "",
+      updatedAnimalType: "",
+      updatedGender: "",
       updatedAge: 0,
-      updatedDescription: '',
-      updatedBreed: '',
+      updatedDescription: "",
+      updatedBreed: "",
       updatedIsAdoptable: false,
-      
     };
   },
+
+  components: {},
   mounted() {
     // Pre-fill the form fields with the pet data
     const {
@@ -111,18 +133,18 @@ export default {
 
       PetService.editPet(updatedAnimalObject)
         .then((response) => {
-          this.$emit('update-pet', updatedAnimalObject);
-          window.alert(`${updatedAnimalObject.animalName} has been changed!`)
-          console.log('Animal updated:', response.data);
+          this.$emit("update-pet", updatedAnimalObject);
+          window.alert(`${updatedAnimalObject.animalName} has been changed!`);
+          console.log("Animal updated:", response.data);
         })
         .catch((error) => {
-          console.error('Error updating animal:', error);
+          console.error("Error updating animal:", error);
         });
     },
   },
   computed: {
     isLoggedIn() {
-      return this.$store.state.token !== '';
+      return this.$store.state.token !== "";
     },
   },
 };
@@ -136,7 +158,7 @@ export default {
   height: 500px;
   padding: 0 10px;
   margin: 10px;
-  background: rgb(5, 81, 119);;
+  background: rgb(5, 81, 119);
   color: rgb(160, 187, 226);
 }
 
@@ -149,20 +171,33 @@ export default {
 label {
   margin-bottom: 5px;
 }
-.editPet-link{
-  display: flex;
-  justify-content: center;
+.editPet-link {
+  display: inline-block;
   font-weight: bold;
   text-decoration: none;
   background-color: #ed815a;
   padding: 10px 7px;
-  border-radius: px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  color: #0870a3;
+  color: rgb(5, 81, 119);
   cursor: pointer;
   margin-top: 10px;
   max-width: 150px;
   margin-left: 100px;
 }
 
+.editPet-link:hover{
+  background-color: #ED815A;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.radio-lable {
+  margin-right: 10px;
+}
 </style>
