@@ -4,7 +4,7 @@
       >Go to Available Pets</router-link
     >
     <form @submit.prevent="updateAnimal" class="editPetForm">
-      <h3>Edit Pet Card</h3>
+      <h3>Edit Pet</h3>
       <div class="form-column">
         <label for="animalName">Name:</label>
         <input

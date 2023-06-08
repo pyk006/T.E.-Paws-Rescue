@@ -46,7 +46,7 @@ import Locations from './Locations.vue';
 
   .modal {
     background: #FFFFFF;
-    box-shadow: 2px 2px 40px 1px;
+    box-shadow: 2px 2px 40px 1px black;
     display: flex;
     flex-direction: column;
   }

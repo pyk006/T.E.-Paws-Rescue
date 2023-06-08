@@ -46,7 +46,23 @@ export default {
 };
 
 </script>
+<style>
+/* Global styles for scrollbar */
+::-webkit-scrollbar {
+  background-color: #b2d8f5;
+}
 
+::-webkit-scrollbar-track {
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 1px;
+  border-radius: 100vw;
+  border: 0.2em solid #b2d8f5;
+  background-color: #ED815A;
+}
+</style>
 <style scoped>
 #app {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

@@ -1,6 +1,10 @@
 <template>
   <div class="new-pets">
-    <div class="search-container">
+    
+    
+    <div class="available-container">
+      <h1 class="availablepets">Available Pets</h1>
+      <div class="search-container">
       <input
         type="text"
         v-model="searchQuery"
@@ -9,12 +13,8 @@
       <button @click="searchPets">Search</button>
     </div>
 
-    
-
-    <div class="available-container">
-      <h1 class="availablepets">Available Pets</h1>
       <router-link
-      class="button-link-last add-pet" 
+      class="add-pet" 
       v-if="isLoggedIn"
       v-bind:to="{ name: 'addPets' }"
       >Add Pet</router-link>
@@ -137,8 +137,11 @@ export default {
 }
 
 .search-container {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   margin-left: 20px;
+  display: flex;
+  justify-content:center;
+  height: 30px;
 }
 
 .search-container input {
@@ -151,6 +154,7 @@ export default {
 .search-container button {
   display: inline-block;
   font-weight: bold;
+  font-size: 14px;
   text-decoration: none;
   background-color: #ed815a;
   padding: 4px 8px;
@@ -170,15 +174,7 @@ export default {
   cursor: pointer;
 } */
 
-.button-link-last {
-  display: inline-block;
-  margin-bottom: 10px;
-  background-color: rgb(5, 81, 119);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  text-decoration: none;
-}
+
 
 .add-pet {
   display: flex;
@@ -193,11 +189,17 @@ export default {
   cursor: pointer;
   width: fit-content;
   margin: 0 auto;
+  margin-bottom: 10px;
 }
 
-.button-link-last:hover {
-  opacity: 0.8;
+.add-pet:hover{
+   background-color: #ED815A;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
+
+/* .button-link-last:hover {
+  opacity: 0.8;
+} */
 .button-edit-pets{
   display: flex;
   justify-content: center;

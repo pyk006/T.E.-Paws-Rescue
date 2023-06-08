@@ -1,15 +1,8 @@
 <template>
   <div>
-    <div class="directory-link">
-      <template v-if="isLoggedIn">
-        <router-link
-          class="volunteer-directory-link"
-          v-bind:to="{ path: '/directory' }"
-          >Volunteer Directory</router-link
-        >
-      </template>
-    </div>
+    
     <h1>Applications</h1>
+
     <div class="search-container">
       <input
         type="text"
@@ -18,6 +11,15 @@
         @keyup.enter="searchApplications"
       />
       <button @click="searchApplications">Search</button>
+    </div>
+    <div class="directory-link">
+      <template v-if="isLoggedIn">
+        <router-link
+          class="volunteer-directory-link"
+          v-bind:to="{ path: '/directory' }"
+          >Volunteer Directory</router-link
+        >
+      </template>
     </div>
     <table id="tblApplications">
       <thead>
@@ -172,6 +174,10 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  color: rgb(5, 81, 119);
+  text-align: center;
+}
 .container {
   max-width: 100vw;
   margin: 0 auto;
@@ -205,7 +211,8 @@ tr:hover {
 }
 
 .volunteer-directory-link {
-  display: inline-block;
+  display: flex;
+  justify-content:center;
   margin-top: 10px;
   margin-left: 10px;
   font-weight: bold;
@@ -215,6 +222,8 @@ tr:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   color: rgb(5, 81, 119);
   text-decoration: none;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .volunteer-directory-link:hover {

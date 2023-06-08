@@ -200,6 +200,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: rgb(5, 81, 119);
 }
 
 .about-us {

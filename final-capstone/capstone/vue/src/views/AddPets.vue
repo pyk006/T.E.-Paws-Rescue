@@ -51,7 +51,7 @@
       <button type="submit" @click="submitForm">Submit</button>
     </div>
 
-
+</div>
 </template>
 
 <script>
