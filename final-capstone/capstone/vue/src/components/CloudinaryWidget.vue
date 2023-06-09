@@ -29,8 +29,8 @@ export default {
   mounted() {
     this.myWidget = window.cloudinary.createUploadWidget(
       {
-        cloudName: 'dfg9ft030',
-        uploadPreset: 'animalPhotoCloud'
+        cloudName: 'cloudName',
+        uploadPreset: 'uploadPreset'
       },
       (error, result) => {
         if (!error && result && result.event === 'success') {
