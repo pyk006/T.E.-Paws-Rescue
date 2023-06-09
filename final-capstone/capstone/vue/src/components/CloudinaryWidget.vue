@@ -14,8 +14,8 @@ export default {
   methods: {
     upload() {
       this.myWidget.open({
-        cloudName: 'dfg9ft030',
-        uploadPreset: 'animalPhotoCloud'
+        cloudName: 'cloudName',
+        uploadPreset: 'uploadPreset'
       });
     },
     handleFileUploadDone(result) {
