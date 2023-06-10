@@ -18,10 +18,10 @@ export default {
     uploadImage() {
       const formData = new FormData();
       formData.append("file", this.selectedFile);
-      formData.append("upload_preset", 'bs4agnn4'); //insert your Cloudinary upload preset
+      formData.append("upload_preset", 'un133o5a'); //insert your Cloudinary upload preset
 
       return fetch(
-        `https://api.cloudinary.com/v1_1/dvkwnvchw/upload`, //insert your Cloudinary cloudName 
+        `https://api.cloudinary.com/v1_1/dydfdj1r5/upload`, //insert your Cloudinary cloudName 
         {
           method: "POST",
           body: formData,

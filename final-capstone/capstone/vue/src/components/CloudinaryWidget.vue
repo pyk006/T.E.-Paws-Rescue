@@ -14,8 +14,8 @@ export default {
   methods: {
     upload() {
       this.myWidget.open({
-        cloudName: 'dvkwnvchw',
-        uploadPreset: 'bs4agnn4'
+        cloudName: 'dydfdj1r5',
+        uploadPreset: 'un133o5a'
       });
     },
     handleFileUploadDone(result) {
@@ -29,8 +29,8 @@ export default {
   mounted() {
     this.myWidget = window.cloudinary.createUploadWidget(
       {
-        cloudName: 'dvkwnvchw',
-        uploadPreset: 'bs4agnn4'
+        cloudName: 'dydfdj1r5',
+        uploadPreset: 'un133o5a'
       },
       (error, result) => {
         if (!error && result && result.event === 'success') {
