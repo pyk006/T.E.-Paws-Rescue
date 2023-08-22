@@ -1,6 +1,6 @@
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
-    ? '/<github-repo-name>/'
+    ? '/T.E.-Paws-Rescue/'
     : './'
     };
     
