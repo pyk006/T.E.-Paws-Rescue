@@ -92,10 +92,9 @@ export default {
         .then((response) => {
           this.applications = response.data;
           this.filteredApplications = response.data;
-          console.log(response.data);
         })
         .catch((error) => {
-          console.error("Error fetching applications:", error);
+          alert("An error occurred" + error.message);
         });
     },
     updateAdminApproval(application) {
@@ -108,7 +107,7 @@ export default {
           applicationId: application.applicationId,
         })
         .then((response) => {
-          console.log("Admin approval updated successfully:", response.data);
+          alert("Admin approval updated successfully:", response.data);
           const updatedApplicationIndex = this.applications.findIndex(
             (app) => app.applicationId === application.applicationId
           );
@@ -133,7 +132,7 @@ export default {
               .register(newUser)
               .then((registerResponse) => {
                 if (registerResponse.status === 201) {
-                  console.log(
+                  alert(
                     "User registered successfully:",
                     registerResponse.data
                   );
@@ -141,13 +140,13 @@ export default {
                   window.alert("New user added successfully");
                 }
               })
-              .catch((registerError) => {
-                console.error("Error registering user:", registerError);
+              .catch((error) => {
+                alert("An error occurred with register" + error.message);
               });
           }
         })
         .catch((error) => {
-          console.error("Error updating admin approval:", error);
+          alert("An error occurred" + error.message);
         });
     },
     searchApplications() {

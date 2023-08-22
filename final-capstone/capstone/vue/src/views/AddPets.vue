@@ -91,11 +91,11 @@ methods: {
         this.submitFormData();
      })
       .catch((error) => {
-        console.error(error);
+        alert("An error occurred" + error.message);
 
       });
   } else {
-    console.log("Please select an image to upload");
+    alert("Please select an image to upload");
   }
 },
 submitFormData() {
@@ -103,13 +103,12 @@ submitFormData() {
   petService.submitForm(this.form)
     .then((response) => {
       if (response.status === 201) {
-        console.log(response.status);
         this.showForm = false; 
         window.alert("Form submitted successfully");
       }
     })
     .catch((error) => {
-      console.error(error);
+      alert("An error occurred" + error.message);
  
     });
 },

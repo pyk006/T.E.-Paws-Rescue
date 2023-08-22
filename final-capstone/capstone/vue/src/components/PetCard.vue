@@ -75,19 +75,16 @@ export default {
       this.$root.$emit('Locations');
     },
   updatePhoto(imageUrl) {
-      console.log(this.animalId);
-      console.log('Update photo called'); // Add this line
-      console.log('Updated form:', this.form);
       this.form.photo = imageUrl;
     
       PetService.updatePetPhoto(this.form)
        .then((response) => {
       if (response.status === 201) {
-        console.log(response.status);
+        alert(response.status);
       }
     })
     .catch((error) => {
-      console.error(error);
+      alert("An error occurred" + error.message);
       // Handle error if form submission fails
     });
     },
@@ -96,10 +93,10 @@ export default {
     isOnWalk(value) {
       if (value) {
         // Need to do an API update to make it show  when the pet start the walk
-        console.log("The pet is on a walk!");
+        alert("The pet is on a walk!");
       } else {
         // Need to do an API update to make it show  when the pet ends the walk
-        console.log("The pet has finished the walk.");
+        alert("The pet has finished the walk.");
       }
     }
   },
@@ -107,9 +104,6 @@ export default {
     isLoggedIn() {
       return this.$store.state.token !== "";
     },
-  },
-    mounted() {
-    console.log('Component mounted');
   },
 };
 </script>

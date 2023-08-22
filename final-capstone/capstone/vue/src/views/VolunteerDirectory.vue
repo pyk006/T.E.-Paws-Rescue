@@ -63,7 +63,7 @@ export default {
           this.applications = response.data;
         })
         .catch((error) => {
-          console.error("Error fetching volunteers:", error);
+          alert("An error occurred" + error.message);
         });
     },
 
@@ -75,9 +75,6 @@ export default {
       }
     },
     updatePhoto(application, imageUrl) {
-      console.log(application.applicationId);
-      console.log('Update photo called'); // Add this line
-      console.log('Updated form:', this.form);
 
       this.form = {
         applicationId: application.applicationId,
@@ -87,12 +84,12 @@ export default {
       volunteerService.updateApplicationPhoto(this.form)
        .then((response) => {
       if (response.status === 201) {
-        console.log(response.status);
+        alert('Success!');
         
       }
     })
     .catch((error) => {
-      console.error(error);
+      alert("An error occurred" + error.message);
       // Handle error if form submission fails
     });
     },

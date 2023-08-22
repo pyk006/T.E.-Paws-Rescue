@@ -136,10 +136,10 @@ export default {
         .then((response) => {
           this.$emit("update-pet", updatedAnimalObject);
           window.alert(`${updatedAnimalObject.animalName} has been changed!`);
-          console.log("Animal updated:", response.data);
+          alert("Animal updated:", response.data);
         })
         .catch((error) => {
-          console.error("Error updating animal:", error);
+          alert("An error occurred" + error.message);
         });
     },
   },

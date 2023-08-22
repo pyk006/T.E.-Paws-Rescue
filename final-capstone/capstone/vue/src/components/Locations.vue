@@ -177,7 +177,7 @@ export default {
           }
        ). catch(
           (error) => {
-            console.log(error + "Could not generate route");
+            alert("An error occurred with map" + error.message);
           }
        );
 

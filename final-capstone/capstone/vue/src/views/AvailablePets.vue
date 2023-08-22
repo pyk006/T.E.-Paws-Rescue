@@ -66,11 +66,9 @@ export default {
         .getPet(this.searchQuery)
         .then((response) => {
           this.pets = response.data;
-          console.log(response.data);
-          console.log(response.data[0].adoptable);
         })
         .catch((error) => {
-          console.error("Error loading pets.", error);
+          alert("An error occurred" + error.message);
         });
     },
     searchPets() {

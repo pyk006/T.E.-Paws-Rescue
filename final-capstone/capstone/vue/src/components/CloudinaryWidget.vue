@@ -21,7 +21,6 @@ export default {
     handleFileUploadDone(result) {
       if (result.event === 'success' && result.info && result.info.url) {
         const imageUrl = result.info.url;
-        console.log('Photo uploaded:', imageUrl);
         this.$emit('photo-uploaded', imageUrl);
       }
     }
@@ -34,8 +33,6 @@ export default {
       },
       (error, result) => {
         if (!error && result && result.event === 'success') {
-          console.log('Done! Here is the image info:', result.info);
-          console.log('Image URL:', result.info.url);
           this.handleFileUploadDone(result);
         }
       }

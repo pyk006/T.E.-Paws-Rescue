@@ -233,7 +233,6 @@ export default {
     submitForm() {
       volunteerService.submitForm(this.form).then((response) => {
         if (response.status === 201) {
-          console.log(response.status);
           this.form.dateOfBirth = this.form.dateOfBirth.toString();
           this.showForm = false; //hide after successful submission
           this.$router.push({ name: "volunteer" });

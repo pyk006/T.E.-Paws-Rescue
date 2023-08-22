@@ -29,7 +29,7 @@ export default {
       )
         .then((response) => response.json())
         .catch((error) => {
-         console.error(error);
+         alert("An error occurred" + error.message);
        // Handle error if upload fails
       });
        
